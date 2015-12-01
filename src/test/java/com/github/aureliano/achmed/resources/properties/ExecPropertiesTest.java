@@ -1,9 +1,21 @@
 package com.github.aureliano.achmed.resources.properties;
 
+import java.io.File;
+
 import org.junit.Assert;
 import org.junit.Test;
 
 public class ExecPropertiesTest {
+	
+	@Test
+	public void testDefaultValues() {
+		ExecProperties exec = new ExecProperties();
+		
+		Assert.assertEquals(new File("").getAbsolutePath(), exec.getCwd());
+		Assert.assertEquals(true, exec.isVerbose());
+		Assert.assertEquals(new Long(300000), exec.getTimeout());
+		Assert.assertEquals(new Integer(1), exec.getTries());
+	}
 
 	@Test
 	public void testConfigureAttributes() {
