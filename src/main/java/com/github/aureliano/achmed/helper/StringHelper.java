@@ -8,15 +8,15 @@ public final class StringHelper {
 	private static final String NUMBER_REGEX = "[+-]?\\d+\\.?\\d*";
 	
 	private StringHelper() {
-	super();
+		super();
 	}
 	
 	public static boolean isEmpty(String text) {
-	return ((text == null) || (text.equals(EMPTY)));
+		return ((text == null) || (text.equals(EMPTY)));
 	}
 	
 	public static String toString(Object object) {
-	return ((object == null) ? "null" : object.toString());
+		return ((object == null) ? "null" : object.toString());
 	}
 	
 	public static String parse(Object object) {
