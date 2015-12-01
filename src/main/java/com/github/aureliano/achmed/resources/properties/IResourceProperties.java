@@ -6,5 +6,5 @@ public interface IResourceProperties {
 	
 	public abstract Object get(String key);
 	
-	public abstract void configureAttributes();
+	public abstract IResourceProperties configureAttributes();
 }
