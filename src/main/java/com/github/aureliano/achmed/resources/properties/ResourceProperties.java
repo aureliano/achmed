@@ -3,9 +3,9 @@ package com.github.aureliano.achmed.resources.properties;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ResourceProperties implements IResourceProperties {
+public abstract class ResourceProperties implements IResourceProperties {
 
-	private Map<String, Object> properties;
+	protected Map<String, Object> properties;
 	
 	public ResourceProperties() {
 		this.properties = new HashMap<String, Object>();
