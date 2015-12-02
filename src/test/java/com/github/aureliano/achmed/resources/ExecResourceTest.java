@@ -11,13 +11,13 @@ public class ExecResourceTest {
 
 	@Test(expected = UnsupportedOperationException.class)
 	public void testApply() {
-		ExecResource r = new ExecResource(null);
-		r.apply(null);
+		ExecResource r = new ExecResource();
+		r.apply();
 	}
 	
 	@Test
 	public void testType() {
-		ExecResource r = new ExecResource(null);
+		ExecResource r = new ExecResource();
 		assertEquals(ResourceType.EXEC, r.type());
 	}
 	
@@ -26,13 +26,13 @@ public class ExecResourceTest {
 		ExecResource r = new ExecResource(this.createProperties());
 		
 		ExecProperties p = (ExecProperties) r.getProperties();
-		assertEquals("ls", p.getCommand());
-		assertEquals("/path/to/directory", p.getCwd());
-		assertEquals("if command success", p.getOnlyIf());
-		assertEquals(new Long(5000), p.getTimeout());
-		assertEquals(new Integer(2), p.getTries());
-		assertEquals("unless command success", p.getUnless());
-		assertTrue(p.isVerbose());
+		this.checkProperties(p);
+		
+		r = new ExecResource();
+		r.setProperties(this.createProperties());
+		
+		p = (ExecProperties) r.getProperties();
+		this.checkProperties(p);
 	}
 	
 	private ExecProperties createProperties() {
@@ -47,5 +47,15 @@ public class ExecResourceTest {
 		p.setVerbose(true);
 		
 		return p;
+	}
+	
+	private void checkProperties(ExecProperties p) {
+		assertEquals("ls", p.getCommand());
+		assertEquals("/path/to/directory", p.getCwd());
+		assertEquals("if command success", p.getOnlyIf());
+		assertEquals(new Long(5000), p.getTimeout());
+		assertEquals(new Integer(2), p.getTries());
+		assertEquals("unless command success", p.getUnless());
+		assertTrue(p.isVerbose());
 	}
 }
