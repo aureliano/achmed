@@ -10,7 +10,7 @@ public final class ResourceFactory {
 	
 	public static IResource createResource(ResourceType type) {
 		switch (type) {
-			case FILE : throw new NoSuchResourceException("File resource not implemented yet.");
+			case FILE : return new FileResource();
 			case EXEC : return new ExecResource();
 			case PACKAGE : return new PackageResource();
 			case SERVICE : return new ServiceResource();

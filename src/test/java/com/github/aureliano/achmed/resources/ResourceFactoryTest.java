@@ -9,14 +9,16 @@ import com.github.aureliano.achmed.exception.NoSuchResourceException;
 
 public class ResourceFactoryTest {
 
-	@Test(expected = NoSuchResourceException.class)
 	public void testCreateFileResource() {
-		ResourceFactory.createResource(ResourceType.FILE);
+		IResource resource = ResourceFactory.createResource(ResourceType.FILE);
+		assertEquals(ResourceType.FILE, resource.type());
+		assertTrue(resource instanceof FileResource);
 	}
 	
-	@Test(expected = NoSuchResourceException.class)
 	public void testCreateFileResourceByTypeName() {
-		ResourceFactory.createResource("file");
+		IResource resource = ResourceFactory.createResource("file");
+		assertEquals(ResourceType.FILE, resource.type());
+		assertTrue(resource instanceof FileResource);
 	}
 
 	public void testCreateExecResource() {
