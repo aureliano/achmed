@@ -14,7 +14,7 @@ public final class ResourceFactory {
 			case EXEC : throw new NoSuchResourceException("File resource not implemented yet.");
 			case PACKAGE : throw new NoSuchResourceException("File resource not implemented yet.");
 			case SERVICE : throw new NoSuchResourceException("File resource not implemented yet.");
-			default : throw new NoSuchResourceException("There is no such resource implementation to " + type + " type.");
+			default : throw new NoSuchResourceException("There is no such resource implementation to '" + type + "' type.");
 		}
 	}
 	
