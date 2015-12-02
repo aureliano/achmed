@@ -26,7 +26,7 @@ public class ServiceProperties extends ResourceProperties {
 		this.hasStatus = true;
 	}
 	
-	public IResourceProperties configureAttributes() {
+	public ServiceProperties configureAttributes() {
 		for (String key : super.properties.keySet()) {
 			this.setAttribute(key, super.properties.get(key));
 		}
