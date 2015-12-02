@@ -13,7 +13,7 @@ public final class ResourceFactory {
 			case FILE : throw new NoSuchResourceException("File resource not implemented yet.");
 			case EXEC : return new ExecResource();
 			case PACKAGE : throw new NoSuchResourceException("File resource not implemented yet.");
-			case SERVICE : throw new NoSuchResourceException("File resource not implemented yet.");
+			case SERVICE : return new ServiceResource();
 			default : throw new NoSuchResourceException("There is no such resource implementation to '" + type + "' type.");
 		}
 	}
