@@ -1,8 +1,11 @@
 package com.github.aureliano.achmed.resources.properties;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import java.io.File;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 public class ExecPropertiesTest {
@@ -11,10 +14,10 @@ public class ExecPropertiesTest {
 	public void testDefaultValues() {
 		ExecProperties exec = new ExecProperties();
 		
-		Assert.assertEquals(new File("").getAbsolutePath(), exec.getCwd());
-		Assert.assertEquals(true, exec.isVerbose());
-		Assert.assertEquals(new Long(300000), exec.getTimeout());
-		Assert.assertEquals(new Integer(1), exec.getTries());
+		assertEquals(new File("").getAbsolutePath(), exec.getCwd());
+		assertEquals(true, exec.isVerbose());
+		assertEquals(new Long(300000), exec.getTimeout());
+		assertEquals(new Integer(1), exec.getTries());
 	}
 
 	@Test
@@ -29,13 +32,13 @@ public class ExecPropertiesTest {
 			.put("tries", 3)
 			.configureAttributes();
 		
-		Assert.assertEquals("echo something", exec.getCommand());
-		Assert.assertEquals("/path/to/some/directory", exec.getCwd());
-		Assert.assertTrue(exec.isVerbose());
-		Assert.assertEquals("another command", exec.getOnlyIf());
-		Assert.assertEquals("any other command", exec.getUnless());
-		Assert.assertEquals(new Long(10000), exec.getTimeout());
-		Assert.assertEquals(new Integer(3), exec.getTries());
+		assertEquals("echo something", exec.getCommand());
+		assertEquals("/path/to/some/directory", exec.getCwd());
+		assertTrue(exec.isVerbose());
+		assertEquals("another command", exec.getOnlyIf());
+		assertEquals("any other command", exec.getUnless());
+		assertEquals(new Long(10000), exec.getTimeout());
+		assertEquals(new Integer(3), exec.getTries());
 	}
 	
 	@Test
@@ -43,19 +46,19 @@ public class ExecPropertiesTest {
 		ExecProperties e1 = new ExecProperties();
 		ExecProperties e2 = new ExecProperties();
 		
-		Assert.assertEquals(e1.hashCode(), e2.hashCode());
+		assertEquals(e1.hashCode(), e2.hashCode());
 		
 		e1.setCommand("cmd");
-		Assert.assertFalse(e1.hashCode() == e2.hashCode());
+		assertFalse(e1.hashCode() == e2.hashCode());
 		
 		e2.setCommand("cmd");
-		Assert.assertTrue(e1.hashCode() == e2.hashCode());
+		assertTrue(e1.hashCode() == e2.hashCode());
 		
 		e1.setCwd("dir");
-		Assert.assertFalse(e1.hashCode() == e2.hashCode());
+		assertFalse(e1.hashCode() == e2.hashCode());
 		
 		e2.setCwd("dir");
-		Assert.assertTrue(e1.hashCode() == e2.hashCode());
+		assertTrue(e1.hashCode() == e2.hashCode());
 	}
 	
 	@Test
@@ -63,18 +66,18 @@ public class ExecPropertiesTest {
 		ExecProperties e1 = new ExecProperties();
 		ExecProperties e2 = new ExecProperties();
 		
-		Assert.assertEquals(e1, e2);
+		assertEquals(e1, e2);
 		
 		e1.setCommand("cmd");
-		Assert.assertFalse(e1.equals(e2));
+		assertFalse(e1.equals(e2));
 		
 		e2.setCommand("cmd");
-		Assert.assertTrue(e1.equals(e2));
+		assertTrue(e1.equals(e2));
 		
 		e1.setCwd("dir");
-		Assert.assertFalse(e1.equals(e2));
+		assertFalse(e1.equals(e2));
 		
 		e2.setCwd("dir");
-		Assert.assertTrue(e1.equals(e2));
+		assertTrue(e1.equals(e2));
 	}
 }

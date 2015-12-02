@@ -1,6 +1,8 @@
 package com.github.aureliano.achmed.helper;
 
-import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+
 import org.junit.Test;
 
 public class IntegerHelperTest {
@@ -8,10 +10,10 @@ public class IntegerHelperTest {
 	@Test
 	public void testParse() {
 		Integer expected = 1;
-		Assert.assertNull(IntegerHelper.parse(null));
+		assertNull(IntegerHelper.parse(null));
 		
-		Assert.assertEquals(expected, IntegerHelper.parse(1));
-		Assert.assertEquals(expected, IntegerHelper.parse("1"));
-		Assert.assertEquals(expected, IntegerHelper.parse(new Integer(1)));
+		assertEquals(expected, IntegerHelper.parse(1));
+		assertEquals(expected, IntegerHelper.parse("1"));
+		assertEquals(expected, IntegerHelper.parse(new Integer(1)));
 	}
 }
