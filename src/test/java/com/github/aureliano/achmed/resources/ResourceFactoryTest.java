@@ -31,14 +31,16 @@ public class ResourceFactoryTest {
 		assertTrue(resource instanceof ExecResource);
 	}
 
-	@Test(expected = NoSuchResourceException.class)
 	public void testCreatePackageResource() {
-		ResourceFactory.createResource(ResourceType.PACKAGE);
+		IResource resource = ResourceFactory.createResource(ResourceType.PACKAGE);
+		assertEquals(ResourceType.PACKAGE, resource.type());
+		assertTrue(resource instanceof PackageResource);
 	}
 	
-	@Test(expected = NoSuchResourceException.class)
 	public void testCreatePackageResourceByTypeName() {
-		ResourceFactory.createResource("package");
+		IResource resource = ResourceFactory.createResource("package");
+		assertEquals(ResourceType.PACKAGE, resource.type());
+		assertTrue(resource instanceof PackageResource);
 	}
 
 	public void testCreateServiceResource() {
