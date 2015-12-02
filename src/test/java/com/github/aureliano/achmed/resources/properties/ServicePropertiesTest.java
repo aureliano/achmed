@@ -7,6 +7,24 @@ import org.junit.Test;
 import com.github.aureliano.achmed.resources.types.ServiceProvider;
 
 public class ServicePropertiesTest {
+	
+	@Test
+	public void testDefaultValues() {
+		ServiceProperties service = (ServiceProperties) new ServiceProperties()
+			.put("name", "service-name")
+			.configureAttributes();
+		
+		assertEquals("service-name", service.getName());
+		assertEquals("service-name", service.getPattern());
+		assertEquals(service.getName(), service.getPattern());
+		assertFalse(service.getHasRestart());
+		assertTrue(service.getHasStatus());
+		
+		service.setPattern("any pattern");
+		service.configureAttributes();
+		
+		assertFalse(service.getPattern().equals(service.getName()));
+	}
 
 	@Test
 	public void testConfigureAttributes() {

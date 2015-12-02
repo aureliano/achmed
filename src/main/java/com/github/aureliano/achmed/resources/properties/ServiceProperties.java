@@ -21,7 +21,6 @@ public class ServiceProperties extends ResourceProperties {
 	private String stop;
 	
 	public ServiceProperties() {
-		this.pattern = this.name;
 		this.hasRestart = false;
 		this.hasStatus = true;
 	}
@@ -170,6 +169,10 @@ public class ServiceProperties extends ResourceProperties {
 			this.status = StringHelper.parse(value);
 		} else if ("stop".equalsIgnoreCase(name)) {
 			this.stop = StringHelper.parse(value);
+		}
+		
+		if (StringHelper.isEmpty(this.pattern)) {
+			this.pattern = this.name;
 		}
 	}
 
