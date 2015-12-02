@@ -1,5 +1,8 @@
 package com.github.aureliano.achmed.resources;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 
 import com.github.aureliano.achmed.exception.NoSuchResourceException;
@@ -16,14 +19,16 @@ public class ResourceFactoryTest {
 		ResourceFactory.createResource("file");
 	}
 
-	@Test(expected = NoSuchResourceException.class)
 	public void testCreateExecResource() {
-		ResourceFactory.createResource(ResourceType.EXEC);
+		IResource resource = ResourceFactory.createResource(ResourceType.EXEC);
+		assertEquals(ResourceType.EXEC, resource.type());
+		assertTrue(resource instanceof ExecResource);
 	}
 	
-	@Test(expected = NoSuchResourceException.class)
 	public void testCreateExecResourceByTypeName() {
-		ResourceFactory.createResource("exec");
+		IResource resource = ResourceFactory.createResource("exec");
+		assertEquals(ResourceType.EXEC, resource.type());
+		assertTrue(resource instanceof ExecResource);
 	}
 
 	@Test(expected = NoSuchResourceException.class)

@@ -11,7 +11,7 @@ public final class ResourceFactory {
 	public static IResource createResource(ResourceType type) {
 		switch (type) {
 			case FILE : throw new NoSuchResourceException("File resource not implemented yet.");
-			case EXEC : throw new NoSuchResourceException("File resource not implemented yet.");
+			case EXEC : return new ExecResource();
 			case PACKAGE : throw new NoSuchResourceException("File resource not implemented yet.");
 			case SERVICE : throw new NoSuchResourceException("File resource not implemented yet.");
 			default : throw new NoSuchResourceException("There is no such resource implementation to '" + type + "' type.");
