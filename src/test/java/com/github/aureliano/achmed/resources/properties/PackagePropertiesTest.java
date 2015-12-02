@@ -1,8 +1,12 @@
 package com.github.aureliano.achmed.resources.properties;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
 import java.util.Arrays;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import com.github.aureliano.achmed.resources.types.PackageProvider;
@@ -20,12 +24,18 @@ public class PackagePropertiesTest {
 			.put("source", "src")
 			.configureAttributes();
 		
-		Assert.assertEquals("pkg", pkg.getName());
-		Assert.assertEquals(PackageProvider.APT, pkg.getProvider());
-		Assert.assertEquals("latest", pkg.getEnsure());
-		Assert.assertEquals(Arrays.asList("-i test"), pkg.getInstallOptions());
-		Assert.assertEquals(Arrays.asList("-u test"), pkg.getUninstallOptions());
-		Assert.assertEquals("src", pkg.getSource());
+		assertEquals("pkg", pkg.getName());
+		assertEquals(PackageProvider.APT, pkg.getProvider());
+		assertEquals("latest", pkg.getEnsure());
+		assertEquals(Arrays.asList("-i test"), pkg.getInstallOptions());
+		assertEquals(Arrays.asList("-u test"), pkg.getUninstallOptions());
+		assertEquals("src", pkg.getSource());
+		
+		pkg.setProvider(null);
+		assertNull(pkg.getProvider());
+		
+		pkg.put("provider", "apt").configureAttributes();
+		assertEquals(PackageProvider.APT, pkg.getProvider());
 	}
 
 	@Test
@@ -33,19 +43,19 @@ public class PackagePropertiesTest {
 		PackageProperties p1 = new PackageProperties();
 		PackageProperties p2 = new PackageProperties();
 		
-		Assert.assertEquals(p1.hashCode(), p2.hashCode());
+		assertEquals(p1.hashCode(), p2.hashCode());
 		
 		p1.setName("pkg");
-		Assert.assertFalse(p1.hashCode() == p2.hashCode());
+		assertFalse(p1.hashCode() == p2.hashCode());
 		
 		p2.setName("pkg");
-		Assert.assertTrue(p1.hashCode() == p2.hashCode());
+		assertTrue(p1.hashCode() == p2.hashCode());
 		
 		p1.setProvider(PackageProvider.APT);
-		Assert.assertFalse(p1.hashCode() == p2.hashCode());
+		assertFalse(p1.hashCode() == p2.hashCode());
 		
 		p2.setProvider(PackageProvider.APT);
-		Assert.assertTrue(p1.hashCode() == p2.hashCode());
+		assertTrue(p1.hashCode() == p2.hashCode());
 	}
 	
 	@Test
@@ -53,18 +63,18 @@ public class PackagePropertiesTest {
 		PackageProperties p1 = new PackageProperties();
 		PackageProperties p2 = new PackageProperties();
 		
-		Assert.assertEquals(p1, p2);
+		assertEquals(p1, p2);
 		
 		p1.setName("pkg");
-		Assert.assertFalse(p1.equals(p2));
+		assertFalse(p1.equals(p2));
 		
 		p2.setName("pkg");
-		Assert.assertTrue(p1.equals(p2));
+		assertTrue(p1.equals(p2));
 		
 		p1.setProvider(PackageProvider.APT);
-		Assert.assertFalse(p1.equals(p2));
+		assertFalse(p1.equals(p2));
 		
 		p2.setProvider(PackageProvider.APT);
-		Assert.assertTrue(p1.equals(p2));
+		assertTrue(p1.equals(p2));
 	}
 }
