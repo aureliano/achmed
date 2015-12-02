@@ -4,7 +4,7 @@ import com.github.aureliano.achmed.resources.properties.IResourceProperties;
 import com.github.aureliano.achmed.resources.properties.PackageProperties;
 
 
-public class PackageResource {
+public class PackageResource implements IResource {
 
 	private PackageProperties properties;
 	
