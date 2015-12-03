@@ -8,6 +8,7 @@ public class CommandBuilder {
 	private String workingDir;
 	private Boolean verbose;
 	private Long timeout;
+	private Integer tries;
 	
 	public CommandBuilder() {
 		super();
@@ -18,7 +19,8 @@ public class CommandBuilder {
 			.withCommand(properties.getCommand())
 			.withWorkingDir(properties.getCwd())
 			.withVerbose(properties.isVerbose())
-			.withTimeout(properties.getTimeout());
+			.withTimeout(properties.getTimeout())
+			.withTries(properties.getTries());
 	}
 
 	public String getCommand() {
@@ -54,6 +56,15 @@ public class CommandBuilder {
 
 	public CommandBuilder withTimeout(Long timeout) {
 		this.timeout = timeout;
+		return this;
+	}
+	
+	public Integer getTries() {
+		return tries;
+	}
+	
+	public CommandBuilder withTries(Integer tries) {
+		this.tries = tries;
 		return this;
 	}
 }

@@ -15,11 +15,13 @@ public class CommandBuilderTest {
 		CommandBuilder cmd = new CommandBuilder()
 			.withCommand("ls")
 			.withTimeout(1000L)
+			.withTries(3)
 			.withVerbose(true)
 			.withWorkingDir("/path/to/working/dir");
 		
 		assertEquals("ls", cmd.getCommand());
 		assertEquals(new Long(1000), cmd.getTimeout());
+		assertEquals(new Integer(3), cmd.getTries());
 		assertTrue(cmd.getVerbose());
 		assertEquals("/path/to/working/dir", cmd.getWorkingDir());
 	}
@@ -30,6 +32,7 @@ public class CommandBuilderTest {
 		
 		assertEquals("ls", cmd.getCommand());
 		assertEquals(new Long(1000), cmd.getTimeout());
+		assertEquals(new Integer(3), cmd.getTries());
 		assertTrue(cmd.getVerbose());
 		assertEquals("/path/to/working/dir", cmd.getWorkingDir());
 	}
@@ -40,6 +43,7 @@ public class CommandBuilderTest {
 		p.setCommand("ls");
 		p.setCwd("/path/to/working/dir");
 		p.setTimeout(1000L);
+		p.setTries(3);
 		p.setVerbose(true);
 		
 		return p;
