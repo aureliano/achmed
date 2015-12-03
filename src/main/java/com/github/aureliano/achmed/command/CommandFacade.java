@@ -15,6 +15,8 @@ import com.github.aureliano.achmed.resources.properties.ExecProperties;
 public final class CommandFacade {
 
 	private static final Logger logger = Logger.getLogger(CommandFacade.class);
+	private static final long ONE_SECOND = 1000;
+	public static final long DEFAULT_TIMEOUT_EXECUTION = 300 * ONE_SECOND;
 	
 	private CommandFacade() {
 		throw new InstantiationError(this.getClass().getName() + " cannot be instantiated.");

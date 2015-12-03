@@ -2,6 +2,7 @@ package com.github.aureliano.achmed.resources.properties;
 
 import java.io.File;
 
+import com.github.aureliano.achmed.command.CommandFacade;
 import com.github.aureliano.achmed.helper.BooleanHelper;
 import com.github.aureliano.achmed.helper.IntegerHelper;
 import com.github.aureliano.achmed.helper.LongHelper;
@@ -9,8 +10,6 @@ import com.github.aureliano.achmed.helper.StringHelper;
 
 public class ExecProperties extends ResourceProperties {
 
-	private static final long ONE_SECOND = 1000;
-	
 	private String command;
 	private String cwd;
 	private Boolean verbose;
@@ -22,7 +21,7 @@ public class ExecProperties extends ResourceProperties {
 	public ExecProperties() {
 		this.cwd = new File("").getAbsolutePath();
 		this.verbose = true;
-		this.timeout = 300 * ONE_SECOND;
+		this.timeout = CommandFacade.DEFAULT_TIMEOUT_EXECUTION;
 		this.tries = 1;
 	}
 	
