@@ -2,6 +2,7 @@ package com.github.aureliano.achmed.resources;
 
 import org.apache.log4j.Logger;
 
+import com.github.aureliano.achmed.exception.ExecResourceException;
 import com.github.aureliano.achmed.resources.exec.CommandFacade;
 import com.github.aureliano.achmed.resources.properties.ExecProperties;
 import com.github.aureliano.achmed.resources.properties.IResourceProperties;
@@ -34,6 +35,10 @@ public class ExecResource implements IResource {
 			logger.debug("Exit status code: " + exitStatusCode);
 			logger.debug("Tries: " + tries);
 		} while ((tries < this.properties.getTries()) && (exitStatusCode != 0));
+		
+		if (exitStatusCode != 0) {
+			throw new ExecResourceException(this.executionErrorMessage(exitStatusCode));
+		}
 	}
 	
 	public void setProperties(IResourceProperties properties) {
@@ -46,5 +51,13 @@ public class ExecResource implements IResource {
 
 	public ResourceType type() {
 		return ResourceType.EXEC;
+	}
+	
+	private String executionErrorMessage(int exitStatusCode) {
+		return String.format(
+			"Command [%s] exited with status code [%d]",
+			this.properties.getCommand(),
+			exitStatusCode
+		);
 	}
 }
