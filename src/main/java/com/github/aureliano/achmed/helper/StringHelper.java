@@ -1,6 +1,8 @@
 package com.github.aureliano.achmed.helper;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public final class StringHelper {
 
@@ -52,5 +54,12 @@ public final class StringHelper {
 	
 	public static boolean isNumeric(String value) {
 		return (value == null) ? false : value.matches(NUMBER_REGEX);
+	}
+	
+	public static String match(String regex, String target) {
+		Matcher matcher = Pattern.compile(regex).matcher(target);
+		matcher.find();
+		
+		return matcher.group();
 	}
 }

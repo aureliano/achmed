@@ -54,4 +54,13 @@ public class StringHelperTest {
 		assertTrue(StringHelper.isNumeric("-3365.8787"));
 		assertTrue(StringHelper.isNumeric("+3365.8787"));
 	}
+	
+	@Test
+	public void testMatch() {
+		assertEquals("Ubuntu", StringHelper.match("^Ubuntu", "Ubuntu 12.04.5 LTS \\n \\l"));
+		assertEquals("Debian", StringHelper.match("^Debian", "Debian GNU/Linux 6.0 \\n \\l"));
+		assertEquals("CentOS", StringHelper.match("^CentOS", "CentOS release 5.2 (Final)\nKernel \\r on an \\m\n"));
+		
+		assertEquals(" GNU/", StringHelper.match("\\sGNU/", "Debian GNU/Linux 6.0 \\n \\l"));
+	}
 }
