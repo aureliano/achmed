@@ -9,9 +9,14 @@ import com.github.aureliano.achmed.resources.properties.ExecProperties;
 
 public class ExecResourceTest {
 
-	@Test(expected = UnsupportedOperationException.class)
+	@Test
 	public void testApply() {
-		ExecResource r = new ExecResource();
+		ExecProperties p = new ExecProperties();
+		
+		p.setCommand("ls");
+		p.setTries(2);
+		
+		ExecResource r = new ExecResource(p);
 		r.apply();
 	}
 	
