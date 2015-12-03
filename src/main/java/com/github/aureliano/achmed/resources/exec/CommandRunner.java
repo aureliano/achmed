@@ -64,8 +64,9 @@ public class CommandRunner implements Callable<Integer> {
 		Scanner scanner = new Scanner(stream);
 		
 		while (scanner.hasNextLine()) {
+			String line = scanner.nextLine();
 			if (verbose) {
-				System.out.println(scanner.nextLine());
+				System.out.println(line);
 			}
 		}
 		
