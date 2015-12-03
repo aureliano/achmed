@@ -43,6 +43,4 @@ public class CommandBuilderTest {
 		
 		return p;
 	}
-	
-	// http://stackoverflow.com/questions/6811522/changing-the-working-directory-of-command-from-java
 }
