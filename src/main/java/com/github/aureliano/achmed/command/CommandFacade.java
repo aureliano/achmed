@@ -23,7 +23,7 @@ public final class CommandFacade {
 		throw new InstantiationError(this.getClass().getName() + " cannot be instantiated.");
 	}
 	
-	public static int executeCommand(String cmd) {
+	public static CommandResponse executeCommand(String cmd) {
 		CommandBuilder command = new CommandBuilder()
 			.withCommand(cmd)
 			.withTimeout(DEFAULT_TIMEOUT_EXECUTION)
@@ -34,31 +34,33 @@ public final class CommandFacade {
 		return executeCommand(command);
 	}
 	
-	public static int executeCommand(CommandBuilder command) {
+	public static CommandResponse executeCommand(CommandBuilder command) {
+		CommandResponse response = null;
 		int exitStatusCode = 0;
 		int tries = 0;
 		
 		do {
-			exitStatusCode = _executeCommand(command);
+			response = _executeCommand(command);
+			exitStatusCode = response.getExitStatusCode();
 			tries ++;
 			
 			logger.debug("Exit status code: " + exitStatusCode);
 			logger.debug("Tries: " + tries);
 		} while ((tries < command.getTries()) && (exitStatusCode != 0));
 		
-		return exitStatusCode;
+		return response;
 	}
 	
-	public static int executeCommand(ExecProperties properties) {
+	public static CommandResponse executeCommand(ExecProperties properties) {
 		return executeCommand(new CommandBuilder(properties));
 	}
 	
-	private static int _executeCommand(CommandBuilder command) {
+	private static CommandResponse _executeCommand(CommandBuilder command) {
 		boolean verbose = command.getVerbose() != null ? command.getVerbose() : true;
 		CommandRunner runner = new CommandRunner(command.getCommand(), command.getWorkingDir(), verbose);
 		
 		ExecutorService executor = Executors.newSingleThreadExecutor();
-		Future<Integer> future = executor.submit(runner);
+		Future<CommandResponse> future = executor.submit(runner);
 		
 		try {
 			return future.get(command.getTimeout(), TimeUnit.MILLISECONDS);

@@ -9,12 +9,11 @@ import java.util.concurrent.Callable;
 
 import com.github.aureliano.achmed.exception.ExecResourceException;
 
-public class CommandRunner implements Callable<Integer> {
+public class CommandRunner implements Callable<CommandResponse> {
 
 	private List<String> command;
 	private File workingDir;
 	private boolean verbose;
-	private int exitStatus;
 	
 	public CommandRunner(String command, String dir, boolean verbose) {
 		this.command = Arrays.asList(command.split("\\s+"));
@@ -22,54 +21,57 @@ public class CommandRunner implements Callable<Integer> {
 		this.verbose = verbose;
 	}
 	
-	public Integer call() throws Exception {
+	public CommandResponse call() throws Exception {
 		return this.execute();
 	}
 	
-	public int execute() {
+	public CommandResponse execute() {
 		ProcessBuilder builder = new ProcessBuilder(this.command);
 		builder.directory(this.workingDir);
 		
-		this.exitStatus = Integer.parseInt("1" + this.command.size());
+		int exitStatus = Integer.parseInt("1" + this.command.size());
 		Process process = null;
+		CommandResponse response = new CommandResponse();
 		
 		try {
 			process = builder.start();
-			this.scanCommand(process);
-			this.exitStatus = process.waitFor();
+			response.withOutput(this.scanCommand(process));
+			exitStatus = process.waitFor();
 		} catch (Exception ex) {
 			try {
-				this.readError(process);
+				response.withError(this.readError(process));
 			} catch (RuntimeException re) {
 				throw new ExecResourceException(re);
 			}
 		}
 		
-		return this.exitStatus;
+		return response.withExitStatusCode(exitStatus);
 	}
 	
-	public int getExitStatusCode() {
-		return this.exitStatus;
+	private String scanCommand(Process process) {
+		return this.consumeStream(process.getInputStream(), this.verbose);
 	}
 	
-	private void scanCommand(Process process) {
-		this.consumeStream(process.getInputStream(), this.verbose);
+	private String readError(Process process) {
+		return this.consumeStream(process.getErrorStream(), true);
 	}
 	
-	private void readError(Process process) {
-		this.consumeStream(process.getErrorStream(), true);
-	}
-	
-	private void consumeStream(InputStream stream, boolean verbose) {
+	private String consumeStream(InputStream stream, boolean verbose) {
 		Scanner scanner = new Scanner(stream);
+		StringBuilder builder = new StringBuilder();
 		
 		while (scanner.hasNextLine()) {
 			String line = scanner.nextLine();
+			builder.append(line).append("\n");
+			
 			if (verbose) {
 				System.out.println(line);
 			}
 		}
 		
+		builder.deleteCharAt(builder.length() - 1);
 		scanner.close();
+		
+		return builder.toString();
 	}
 }

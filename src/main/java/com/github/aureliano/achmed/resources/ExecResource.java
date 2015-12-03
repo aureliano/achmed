@@ -25,7 +25,7 @@ public class ExecResource implements IResource {
 		logger.info(" >>> Apply exec resource with command: " + this.properties.getCommand());
 		
 		this.properties.configureAttributes();
-		int exitStatusCode = CommandFacade.executeCommand(this.properties);
+		int exitStatusCode = CommandFacade.executeCommand(this.properties).getExitStatusCode();
 		
 		if (exitStatusCode != 0) {
 			String message = this.executionErrorMessage(exitStatusCode);
