@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed.resources.exec;
+package com.github.aureliano.achmed.command;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import com.github.aureliano.achmed.exception.ExecResourceException;
+import com.github.aureliano.achmed.resources.exec.CommandBuilder;
 import com.github.aureliano.achmed.resources.properties.ExecProperties;
 
 public final class CommandFacade {

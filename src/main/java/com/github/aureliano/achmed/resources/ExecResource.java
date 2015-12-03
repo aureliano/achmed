@@ -2,8 +2,8 @@ package com.github.aureliano.achmed.resources;
 
 import org.apache.log4j.Logger;
 
+import com.github.aureliano.achmed.command.CommandFacade;
 import com.github.aureliano.achmed.exception.ExecResourceException;
-import com.github.aureliano.achmed.resources.exec.CommandFacade;
 import com.github.aureliano.achmed.resources.properties.ExecProperties;
 import com.github.aureliano.achmed.resources.properties.IResourceProperties;
 
