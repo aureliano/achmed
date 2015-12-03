@@ -48,7 +48,10 @@ public final class CommandFacade {
 		
 		try {
 			return future.get(command.getTimeout(), TimeUnit.MILLISECONDS);
-		} catch (ExecutionException|TimeoutException|InterruptedException ex) {
+		} catch (TimeoutException ex) {
+			logger.warn("Execution timeout to command: " + command.getCommand());
+			throw new ExecResourceException(ex);
+		} catch (ExecutionException|InterruptedException ex) {
 			throw new ExecResourceException(ex);
 		}
 	}
