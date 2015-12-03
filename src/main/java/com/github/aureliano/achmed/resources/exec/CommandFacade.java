@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import com.github.aureliano.achmed.exception.ExecResourceException;
+import com.github.aureliano.achmed.resources.properties.ExecProperties;
 
 public final class CommandFacade {
 
@@ -27,5 +28,9 @@ public final class CommandFacade {
 		} catch (ExecutionException|TimeoutException|InterruptedException ex) {
 			throw new ExecResourceException(ex);
 		}
+	}
+	
+	public static int executeCommand(ExecProperties properties) {
+		return executeCommand(new CommandBuilder(properties));
 	}
 }
