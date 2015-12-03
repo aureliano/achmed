@@ -13,7 +13,7 @@ import com.github.aureliano.achmed.resources.properties.ExecProperties;
 public final class CommandFacade {
 
 	private CommandFacade() {
-		super();
+		throw new InstantiationError(this.getClass().getName() + " cannot be instantiated.");
 	}
 	
 	public static int executeCommand(CommandBuilder command) {
