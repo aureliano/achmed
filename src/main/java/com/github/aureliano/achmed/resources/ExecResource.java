@@ -29,7 +29,7 @@ public class ExecResource implements IResource {
 		int tries = 0;
 		
 		do {
-			exitStatusCode = CommandFacade.executeCommand(this.properties);
+			exitStatusCode = this.execute();
 			tries ++;
 			
 			logger.debug("Exit status code: " + exitStatusCode);
@@ -51,6 +51,14 @@ public class ExecResource implements IResource {
 
 	public ResourceType type() {
 		return ResourceType.EXEC;
+	}
+	
+	private int execute() {
+		try {
+			return CommandFacade.executeCommand(this.properties);
+		} catch (ExecResourceException ex) {
+			return 100;
+		}
 	}
 	
 	private String executionErrorMessage(int exitStatusCode) {
