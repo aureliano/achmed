@@ -1,10 +1,11 @@
-package com.github.aureliano.achmed.resources.exec;
+package com.github.aureliano.achmed.command;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import com.github.aureliano.achmed.command.CommandBuilder;
 import com.github.aureliano.achmed.resources.properties.ExecProperties;
 
 public class CommandBuilderTest {

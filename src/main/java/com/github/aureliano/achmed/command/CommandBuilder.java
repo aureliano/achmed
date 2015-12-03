@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed.resources.exec;
+package com.github.aureliano.achmed.command;
 
 import com.github.aureliano.achmed.resources.properties.ExecProperties;
 
