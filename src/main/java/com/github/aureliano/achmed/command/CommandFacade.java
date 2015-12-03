@@ -1,5 +1,6 @@
 package com.github.aureliano.achmed.command;
 
+import java.io.File;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -20,6 +21,17 @@ public final class CommandFacade {
 	
 	private CommandFacade() {
 		throw new InstantiationError(this.getClass().getName() + " cannot be instantiated.");
+	}
+	
+	public static int executeCommand(String cmd) {
+		CommandBuilder command = new CommandBuilder()
+			.withCommand(cmd)
+			.withTimeout(DEFAULT_TIMEOUT_EXECUTION)
+			.withTries(1)
+			.withVerbose(true)
+			.withWorkingDir(new File("").getAbsolutePath());
+		
+		return executeCommand(command);
 	}
 	
 	public static int executeCommand(CommandBuilder command) {
