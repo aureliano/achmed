@@ -5,34 +5,38 @@ import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.Callable;
 
 import com.github.aureliano.achmed.exception.ExecResourceException;
 
-public class CommandRunner implements Runnable {
+public class CommandRunner implements Callable<Integer> {
 
 	private List<String> command;
 	private File workingDir;
 	private boolean verbose;
+	private int exitStatus;
 	
-	public CommandRunner(String command) {
+	public CommandRunner(String command, String dir, boolean verbose) {
 		this.command = Arrays.asList(command.split("\\s+"));
+		this.workingDir = new File(dir);
+		this.verbose = verbose;
 	}
 	
-	public void run() {
-		this.execute();
+	public Integer call() throws Exception {
+		return this.execute();
 	}
 	
 	public int execute() {
 		ProcessBuilder builder = new ProcessBuilder(this.command);
 		builder.directory(this.workingDir);
 		
-		int exitStatus = Integer.parseInt("1" + this.command.size());
+		this.exitStatus = Integer.parseInt("1" + this.command.size());
 		Process process = null;
 		
 		try {
 			process = builder.start();
 			this.scanCommand(process);
-			exitStatus = process.waitFor();
+			this.exitStatus = process.waitFor();
 		} catch (Exception ex) {
 			try {
 				this.readError(process);
@@ -41,7 +45,11 @@ public class CommandRunner implements Runnable {
 			}
 		}
 		
-		return exitStatus;
+		return this.exitStatus;
+	}
+	
+	public int getExitStatusCode() {
+		return this.exitStatus;
 	}
 	
 	private void scanCommand(Process process) {
