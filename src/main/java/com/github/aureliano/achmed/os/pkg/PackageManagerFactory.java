@@ -14,6 +14,7 @@ public class PackageManagerFactory {
 			case APT : return new AptPackageManager();
 			case GEM : return new GemPackageManager();
 			case YUM : return new YumPackageManager();
+			case DPKG: return new DpkgPackageManager();
 			default : throw new UnsupportedPackageManagerException("There is no such package manager implementation to '" + pkg + "' type.");
 		}
 	}

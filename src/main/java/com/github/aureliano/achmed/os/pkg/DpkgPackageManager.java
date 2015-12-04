@@ -3,7 +3,7 @@ package com.github.aureliano.achmed.os.pkg;
 import com.github.aureliano.achmed.command.CommandResponse;
 import com.github.aureliano.achmed.resources.properties.PackageProperties;
 
-public class DpkgPackageManager {
+public class DpkgPackageManager implements IPackageManager {
 
 	private PackageProperties properties;
 	
