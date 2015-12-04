@@ -1,13 +1,21 @@
 package com.github.aureliano.achmed.os;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import com.github.aureliano.achmed.os.pkg.YumPackageManager;
 import com.github.aureliano.achmed.resources.types.OS;
 import com.github.aureliano.achmed.resources.types.OperatingSystemFamily;
 
 public class CentOSTest {
+	
+	@Test
+	public void testGetDefaultPackageManager() {
+		CentOS os = new CentOS();
+		assertTrue(os.getDefaultPackageManager() instanceof YumPackageManager);
+	}
 
 	@Test
 	public void testGetOperatingSystem() {
