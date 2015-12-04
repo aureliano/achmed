@@ -3,6 +3,7 @@ package com.github.aureliano.achmed.resources;
 import org.apache.log4j.Logger;
 
 import com.github.aureliano.achmed.command.CommandFacade;
+import com.github.aureliano.achmed.command.CommandResponse;
 import com.github.aureliano.achmed.exception.ExecResourceException;
 import com.github.aureliano.achmed.resources.properties.ExecProperties;
 import com.github.aureliano.achmed.resources.properties.IResourceProperties;
@@ -25,10 +26,10 @@ public class ExecResource implements IResource {
 		logger.info(" >>> Apply exec resource with command: " + this.properties.getCommand());
 		
 		this.properties.configureAttributes();
-		int exitStatusCode = CommandFacade.executeCommand(this.properties).getExitStatusCode();
+		CommandResponse res = CommandFacade.executeCommand(this.properties);
 		
-		if (exitStatusCode != 0) {
-			String message = this.executionErrorMessage(exitStatusCode);
+		if (!res.isOK()) {
+			String message = this.executionErrorMessage(res);
 			logger.warn(message);
 			
 			throw new ExecResourceException(message);
@@ -47,11 +48,12 @@ public class ExecResource implements IResource {
 		return ResourceType.EXEC;
 	}
 	
-	private String executionErrorMessage(int exitStatusCode) {
+	private String executionErrorMessage(CommandResponse res) {
 		return String.format(
-			"Command [%s] exited with status code [%d]",
+			"Command [%s] exited with status code [%d]. Detail: %s",
 			this.properties.getCommand(),
-			exitStatusCode
+			res.getExitStatusCode(),
+			res.getError()
 		);
 	}
 }
