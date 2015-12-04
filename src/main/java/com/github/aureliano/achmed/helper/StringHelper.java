@@ -56,10 +56,19 @@ public final class StringHelper {
 		return (value == null) ? false : value.matches(NUMBER_REGEX);
 	}
 	
-	public static String match(String regex, String target) {
+	public static String[] match(String regex, String target) {
 		Matcher matcher = Pattern.compile(regex).matcher(target);
-		matcher.find();
+		if (!matcher.find()) {
+			return null;
+		} else if (matcher.groupCount() == 0) {
+			return new String[] { matcher.group() };
+		}
 		
-		return matcher.group();
+		String[] groups = new String[matcher.groupCount() + 1];
+		for (int i = 0; i < groups.length; i++) {
+			groups[i] = matcher.group(i);
+		}
+		
+		return groups;
 	}
 }

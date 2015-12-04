@@ -22,7 +22,7 @@ public final class OperatingSystemFactory {
 	
 	protected static IOperatingSystem resolveLinux() {
 		String linux = CommandFacade.executeCommand("cat /etc/issue").getOutput();
-		linux = StringHelper.match("^\\w+", linux);
+		linux = StringHelper.match("^\\w+", linux)[0];
 		
 		return LinuxResolver.resolveLinux(linux);
 	}

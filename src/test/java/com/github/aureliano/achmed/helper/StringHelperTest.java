@@ -5,6 +5,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Arrays;
+
 import org.junit.Test;
 
 public class StringHelperTest {
@@ -57,10 +59,15 @@ public class StringHelperTest {
 	
 	@Test
 	public void testMatch() {
-		assertEquals("Ubuntu", StringHelper.match("^Ubuntu", "Ubuntu 12.04.5 LTS \\n \\l"));
-		assertEquals("Debian", StringHelper.match("^Debian", "Debian GNU/Linux 6.0 \\n \\l"));
-		assertEquals("CentOS", StringHelper.match("^CentOS", "CentOS release 5.2 (Final)\nKernel \\r on an \\m\n"));
+		assertEquals("Ubuntu", StringHelper.match("^Ubuntu", "Ubuntu 12.04.5 LTS \\n \\l")[0]);
+		assertEquals("Debian", StringHelper.match("^Debian", "Debian GNU/Linux 6.0 \\n \\l")[0]);
+		assertEquals("CentOS", StringHelper.match("^CentOS", "CentOS release 5.2 (Final)\nKernel \\r on an \\m\n")[0]);
 		
-		assertEquals(" GNU/", StringHelper.match("\\sGNU/", "Debian GNU/Linux 6.0 \\n \\l"));
+		assertEquals(" GNU/", StringHelper.match("\\sGNU/", "Debian GNU/Linux 6.0 \\n \\l")[0]);
+		
+		String[] s = StringHelper.match("Candidato:\\s+(\\S+)\\s", "python:\n  Instalado: 2.7.3-0ubuntu2.2\n  Candidato: 2.7.3-0ubuntu2.2\n Tabela de ");
+		System.out.println("\n\n********************************");
+		System.out.println(Arrays.toString(s));
+		System.out.println(s[1]);
 	}
 }
