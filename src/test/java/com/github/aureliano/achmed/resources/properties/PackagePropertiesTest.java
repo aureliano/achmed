@@ -9,6 +9,7 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
+import com.github.aureliano.achmed.resources.types.DebianConfigFilesStatus;
 import com.github.aureliano.achmed.resources.types.PackageProvider;
 
 public class PackagePropertiesTest {
@@ -18,6 +19,7 @@ public class PackagePropertiesTest {
 		PackageProperties pkg = (PackageProperties) new PackageProperties()
 			.put("name", "pkg")
 			.put("provider", PackageProvider.APT)
+			.put("configFiles", DebianConfigFilesStatus.REPLACE)
 			.put("ensure", "latest")
 			.put("installOptions", Arrays.asList("-i test"))
 			.put("uninstallOptions", Arrays.asList("-u test"))
@@ -26,6 +28,7 @@ public class PackagePropertiesTest {
 		
 		assertEquals("pkg", pkg.getName());
 		assertEquals(PackageProvider.APT, pkg.getProvider());
+		assertEquals(DebianConfigFilesStatus.REPLACE, pkg.getConfigFiles());
 		assertEquals("latest", pkg.getEnsure());
 		assertEquals(Arrays.asList("-i test"), pkg.getInstallOptions());
 		assertEquals(Arrays.asList("-u test"), pkg.getUninstallOptions());
@@ -36,6 +39,12 @@ public class PackagePropertiesTest {
 		
 		pkg.put("provider", "apt").configureAttributes();
 		assertEquals(PackageProvider.APT, pkg.getProvider());
+		
+		pkg.setConfigFiles(null);
+		assertNull(pkg.getConfigFiles());
+		
+		pkg.put("configfiles", "replace").configureAttributes();
+		assertEquals(DebianConfigFilesStatus.REPLACE, pkg.getConfigFiles());
 	}
 
 	@Test

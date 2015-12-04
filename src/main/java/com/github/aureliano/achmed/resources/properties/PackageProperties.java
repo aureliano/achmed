@@ -5,18 +5,21 @@ import java.util.Collection;
 import java.util.List;
 
 import com.github.aureliano.achmed.helper.StringHelper;
+import com.github.aureliano.achmed.resources.types.DebianConfigFilesStatus;
 import com.github.aureliano.achmed.resources.types.PackageProvider;
 
 public class PackageProperties extends ResourceProperties {
 
 	private String name;
 	private PackageProvider provider;
+	private DebianConfigFilesStatus configFiles;
 	private String ensure;
 	private List<String> installOptions;
 	private String source;
 	private List<String> uninstallOptions;
 	
 	public PackageProperties() {
+		this.configFiles = DebianConfigFilesStatus.KEEP;
 		this.installOptions = new ArrayList<>();
 		this.uninstallOptions = new ArrayList<>();
 	}
@@ -43,6 +46,14 @@ public class PackageProperties extends ResourceProperties {
 
 	public void setProvider(PackageProvider provider) {
 		this.provider = provider;
+	}
+	
+	public DebianConfigFilesStatus getConfigFiles() {
+		return configFiles;
+	}
+	
+	public void setConfigFiles(DebianConfigFilesStatus configFiles) {
+		this.configFiles = configFiles;
 	}
 
 	public String getEnsure() {
@@ -87,6 +98,13 @@ public class PackageProperties extends ResourceProperties {
 			} else {
 				String pkg = StringHelper.parse(value).toUpperCase();
 				this.provider = PackageProvider.valueOf(pkg);
+			};
+		} else if ("configfiles".equalsIgnoreCase(name)) {
+			if ((value != null) && (value instanceof DebianConfigFilesStatus)) {
+				this.configFiles = (DebianConfigFilesStatus) value;
+			} else {
+				String pkg = StringHelper.parse(value).toUpperCase();
+				this.configFiles = DebianConfigFilesStatus.valueOf(pkg);
 			};
 		} else if ("ensure".equalsIgnoreCase(name)) {
 			this.ensure = StringHelper.parse(value);
