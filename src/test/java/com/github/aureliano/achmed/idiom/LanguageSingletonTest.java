@@ -20,6 +20,19 @@ public class LanguageSingletonTest {
 	public void testGetValue() {
 		LanguageSingleton language = LanguageSingleton.instance();
 		
+		assertEquals("Install", language.getValue("resource.package.provider.install"));
+		
+		language.setDefaultLanguageCode(LanguageCode.EN_US);
+		assertEquals("Install", language.getValue("resource.package.provider.install"));
+		
+		language.setDefaultLanguageCode(LanguageCode.PT_BR);
+		assertEquals("Instalar", language.getValue("resource.package.provider.install"));
+	}
+	
+	@Test
+	public void testGetValueWithLanguageCode() {
+		LanguageSingleton language = LanguageSingleton.instance();
+		
 		assertEquals("Install", language.getValue(LanguageCode.EN_US, "resource.package.provider.install"));
 		assertEquals("Instalar", language.getValue(LanguageCode.PT_BR, "resource.package.provider.install"));
 	}

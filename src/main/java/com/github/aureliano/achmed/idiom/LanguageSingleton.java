@@ -9,9 +9,11 @@ public class LanguageSingleton {
 	private static LanguageSingleton instance;
 	
 	private Properties language;
+	private LanguageCode defaultLanguageCode;
 	
 	private LanguageSingleton() {
 		this.language = PropertyHelper.loadProperties("internationalization.properties");
+		this.defaultLanguageCode = LanguageCode.EN_US;
 	}
 	
 	public static LanguageSingleton instance() {
@@ -29,5 +31,21 @@ public class LanguageSingleton {
 			.toString();
 		
 		return this.language.getProperty(key);
+	}
+	
+	public String getValue(String key) {
+		if (this.defaultLanguageCode == null) {
+			this.defaultLanguageCode = LanguageCode.EN_US;
+		}
+		
+		return this.getValue(this.defaultLanguageCode, key);
+	}
+	
+	public LanguageCode getDefaultLanguageCode() {
+		return defaultLanguageCode;
+	}
+	
+	public void setDefaultLanguageCode(LanguageCode defaultLanguageCode) {
+		this.defaultLanguageCode = defaultLanguageCode;
 	}
 }
