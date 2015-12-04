@@ -65,9 +65,8 @@ public class StringHelperTest {
 		
 		assertEquals(" GNU/", StringHelper.match("\\sGNU/", "Debian GNU/Linux 6.0 \\n \\l")[0]);
 		
-		String[] s = StringHelper.match("Candidato:\\s+(\\S+)\\s", "python:\n  Instalado: 2.7.3-0ubuntu2.2\n  Candidato: 2.7.3-0ubuntu2.2\n Tabela de ");
-		System.out.println("\n\n********************************");
-		System.out.println(Arrays.toString(s));
-		System.out.println(s[1]);
+		String[] found = StringHelper.match("Candidato:\\s+(\\S+)\\s", "telnet:\n  Instalado: 0.17-36build1\n  Candidato: 0.17-36build1\n  Tabela de versão:");
+		assertTrue(found.length == 2);
+		assertEquals("0.17-36build1", found[1]);
 	}
 }
