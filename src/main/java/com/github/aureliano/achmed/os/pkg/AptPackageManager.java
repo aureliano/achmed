@@ -36,7 +36,17 @@ public class AptPackageManager implements IPackageManager {
 	}
 
 	public CommandResponse uninstall() {
-		throw new UnsupportedOperationException("Method not implemented yet.");
+		String cmd = this.buildUninstallCommand();
+		System.out.println("\n\n*****************\n" + cmd);
+		
+		/*CommandResponse res = CommandFacade.executeCommand(this.buildCommand(cmd));
+		
+		if (!res.isOK()) {
+			throw new PackageResourceException(res.getError());
+		}
+		
+		return res;*/
+		return null;
 	}
 
 	public String latest() {
@@ -88,6 +98,18 @@ public class AptPackageManager implements IPackageManager {
 		
 		cmd.add("install");
 		cmd.add(pkg);
+		
+		return StringHelper.join(cmd, " ");
+	}
+	
+	private String buildUninstallCommand() {
+		List<String> cmd = new ArrayList<String>();
+		
+		cmd.add(APT_GET);
+		cmd.add("-y");
+		cmd.add("-q");
+		cmd.add("remove");
+		cmd.add(this.properties.getName());
 		
 		return StringHelper.join(cmd, " ");
 	}
