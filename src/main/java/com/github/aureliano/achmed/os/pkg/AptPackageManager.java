@@ -37,16 +37,13 @@ public class AptPackageManager implements IPackageManager {
 
 	public CommandResponse uninstall() {
 		String cmd = this.buildUninstallCommand();
-		System.out.println("\n\n*****************\n" + cmd);
-		
-		/*CommandResponse res = CommandFacade.executeCommand(this.buildCommand(cmd));
+		CommandResponse res = CommandFacade.executeCommand(this.buildCommand(cmd));
 		
 		if (!res.isOK()) {
 			throw new PackageResourceException(res.getError());
 		}
 		
-		return res;*/
-		return null;
+		return res;
 	}
 
 	public String latest() {
