@@ -13,6 +13,7 @@ public class PackageProviderTest {
 	public void testOperatingSystemFamily() {
 		assertEquals(DEBIAN, APT.getOperatingSystemFamily());
 		assertEquals(RPM, YUM.getOperatingSystemFamily());
+		assertEquals(DEBIAN, DPKG.getOperatingSystemFamily());
 		assertEquals(APP, GEM.getOperatingSystemFamily());
 	}
 	
@@ -20,6 +21,7 @@ public class PackageProviderTest {
 	public void testPackageManagement() {
 		assertEquals("apt-get", APT.getPackageManagement());
 		assertEquals("yum", YUM.getPackageManagement());
+		assertEquals("dpkg", DPKG.getPackageManagement());
 		assertEquals("gem", GEM.getPackageManagement());
 	}
 }

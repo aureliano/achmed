@@ -4,6 +4,7 @@ public enum PackageProvider {
 
 	APT(OperatingSystemFamily.DEBIAN, "apt-get"),
 	YUM(OperatingSystemFamily.RPM, "yum"),
+	DPKG(OperatingSystemFamily.DEBIAN, "dpkg"),
 	GEM(OperatingSystemFamily.APP, "gem");
 	
 	private OperatingSystemFamily operatingSystemFamily;
