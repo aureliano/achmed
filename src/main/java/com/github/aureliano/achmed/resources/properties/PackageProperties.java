@@ -19,6 +19,7 @@ public class PackageProperties extends ResourceProperties {
 	private List<String> uninstallOptions;
 	
 	public PackageProperties() {
+		this.ensure = "install";
 		this.configFiles = DebianConfigFilesStatus.KEEP;
 		this.installOptions = new ArrayList<>();
 		this.uninstallOptions = new ArrayList<>();

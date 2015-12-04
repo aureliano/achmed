@@ -13,6 +13,16 @@ import com.github.aureliano.achmed.resources.types.DebianConfigFilesStatus;
 import com.github.aureliano.achmed.resources.types.PackageProvider;
 
 public class PackagePropertiesTest {
+	
+	@Test
+	public void testDefaultValues() {
+		PackageProperties pkg = new PackageProperties();
+		
+		assertEquals("install", pkg.getEnsure());
+		assertEquals(DebianConfigFilesStatus.KEEP, pkg.getConfigFiles());
+		assertTrue(pkg.getInstallOptions().isEmpty());
+		assertTrue(pkg.getUninstallOptions().isEmpty());
+	}
 
 	@Test
 	public void testConfigureAttributes() {
