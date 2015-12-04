@@ -10,12 +10,6 @@ import com.github.aureliano.achmed.resources.properties.PackageProperties;
 import com.github.aureliano.achmed.resources.types.PackageProvider;
 
 public class PackageResourceTest {
-
-	@Test(expected = UnsupportedOperationException.class)
-	public void testApply() {
-		PackageResource r = new PackageResource();
-		r.apply();
-	}
 	
 	@Test
 	public void testType() {
