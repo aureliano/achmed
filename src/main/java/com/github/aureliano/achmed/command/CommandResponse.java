@@ -36,4 +36,8 @@ public class CommandResponse {
 		this.error = error;
 		return this;
 	}
+	
+	public boolean isOK() {
+		return ((this.exitStatusCode != null) ? (this.exitStatusCode == 0) : true);
+	}
 }
