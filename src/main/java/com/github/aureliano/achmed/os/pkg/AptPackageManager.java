@@ -83,9 +83,16 @@ public class AptPackageManager implements IPackageManager {
 			}
 		}
 		
+		String version = null;
+		if (!(("present".equalsIgnoreCase(this.properties.getEnsure())) ||
+				("installed".equalsIgnoreCase(this.properties.getEnsure()))) ||
+				("absent".equalsIgnoreCase(this.properties.getEnsure()))) {
+			version = this.properties.getEnsure();
+		}
+		
 		String pkg = this.properties.getName();
-		if (!StringHelper.isEmpty(this.properties.getEnsure())) {
-			String version = (this.properties.getEnsure().equalsIgnoreCase("latest")) ? this.latest() : this.properties.getEnsure();
+		if (!StringHelper.isEmpty(version)) {
+			version = (version.equalsIgnoreCase("latest")) ? this.latest() : version;
 			pkg = String.format("%s=%s --force-yes", pkg, version);
 		}
 		
