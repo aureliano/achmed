@@ -2,7 +2,7 @@ package com.github.aureliano.achmed.resources.properties;
 
 import com.github.aureliano.achmed.helper.BooleanHelper;
 import com.github.aureliano.achmed.helper.StringHelper;
-import com.github.aureliano.achmed.resources.types.ServiceProvider;
+import com.github.aureliano.achmed.types.ServiceProvider;
 
 public class ServiceProperties extends ResourceProperties {
 

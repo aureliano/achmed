@@ -9,8 +9,8 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
-import com.github.aureliano.achmed.resources.types.DebianConfigFilesStatus;
-import com.github.aureliano.achmed.resources.types.PackageProvider;
+import com.github.aureliano.achmed.types.DebianConfigFilesStatus;
+import com.github.aureliano.achmed.types.PackageProvider;
 
 public class PackagePropertiesTest {
 	

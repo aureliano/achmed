@@ -7,7 +7,7 @@ import java.util.Arrays;
 import org.junit.Test;
 
 import com.github.aureliano.achmed.resources.properties.PackageProperties;
-import com.github.aureliano.achmed.resources.types.PackageProvider;
+import com.github.aureliano.achmed.types.PackageProvider;
 
 public class PackageResourceTest {
 	

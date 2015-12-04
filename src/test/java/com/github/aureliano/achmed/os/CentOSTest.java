@@ -6,8 +6,8 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import com.github.aureliano.achmed.os.pkg.YumPackageManager;
-import com.github.aureliano.achmed.resources.types.OS;
-import com.github.aureliano.achmed.resources.types.OperatingSystemFamily;
+import com.github.aureliano.achmed.types.OS;
+import com.github.aureliano.achmed.types.OperatingSystemFamily;
 
 public class CentOSTest {
 	

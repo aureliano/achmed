@@ -5,8 +5,8 @@ import java.util.Collection;
 import java.util.List;
 
 import com.github.aureliano.achmed.helper.StringHelper;
-import com.github.aureliano.achmed.resources.types.DebianConfigFilesStatus;
-import com.github.aureliano.achmed.resources.types.PackageProvider;
+import com.github.aureliano.achmed.types.DebianConfigFilesStatus;
+import com.github.aureliano.achmed.types.PackageProvider;
 
 public class PackageProperties extends ResourceProperties {
 

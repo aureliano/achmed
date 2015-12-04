@@ -13,7 +13,7 @@ public class ExecResourceTest {
 	public void testApply() {
 		ExecProperties p = new ExecProperties();
 		
-		p.setCommand("ls");
+		p.setCommand("echo \"Hello World!\"");
 		p.setTries(2);
 		
 		ExecResource r = new ExecResource(p);

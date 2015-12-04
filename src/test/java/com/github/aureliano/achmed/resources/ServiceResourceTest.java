@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import com.github.aureliano.achmed.resources.properties.ServiceProperties;
-import com.github.aureliano.achmed.resources.types.ServiceProvider;
+import com.github.aureliano.achmed.types.ServiceProvider;
 
 public class ServiceResourceTest {
 

@@ -2,8 +2,8 @@ package com.github.aureliano.achmed.resources.properties;
 
 import com.github.aureliano.achmed.helper.BooleanHelper;
 import com.github.aureliano.achmed.helper.StringHelper;
-import com.github.aureliano.achmed.resources.types.EnsureFileStatus;
-import com.github.aureliano.achmed.resources.types.LinkHandleMode;
+import com.github.aureliano.achmed.types.EnsureFileStatus;
+import com.github.aureliano.achmed.types.LinkHandleMode;
 
 public class FileProperties extends ResourceProperties {
 

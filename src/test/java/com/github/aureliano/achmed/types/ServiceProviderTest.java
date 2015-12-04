@@ -1,7 +1,7 @@
-package com.github.aureliano.achmed.resources.types;
+package com.github.aureliano.achmed.types;
 
-import static com.github.aureliano.achmed.resources.types.OperatingSystemFamily.*;
-import static com.github.aureliano.achmed.resources.types.ServiceProvider.*;
+import static com.github.aureliano.achmed.types.OperatingSystemFamily.*;
+import static com.github.aureliano.achmed.types.ServiceProvider.*;
 import static org.junit.Assert.*;
 
 import org.junit.Test;

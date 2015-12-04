@@ -7,8 +7,8 @@ import static org.junit.Assert.assertFalse;
 import org.junit.Test;
 
 import com.github.aureliano.achmed.resources.properties.FileProperties;
-import com.github.aureliano.achmed.resources.types.EnsureFileStatus;
-import com.github.aureliano.achmed.resources.types.LinkHandleMode;
+import com.github.aureliano.achmed.types.EnsureFileStatus;
+import com.github.aureliano.achmed.types.LinkHandleMode;
 
 public class FileResourceTest {
 

@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed.resources.types;
+package com.github.aureliano.achmed.types;
 
 public enum PackageProvider {
 

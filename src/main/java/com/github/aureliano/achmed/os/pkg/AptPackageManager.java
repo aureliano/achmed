@@ -11,7 +11,7 @@ import com.github.aureliano.achmed.exception.PackageResourceException;
 import com.github.aureliano.achmed.helper.StringHelper;
 import com.github.aureliano.achmed.idiom.LanguageSingleton;
 import com.github.aureliano.achmed.resources.properties.PackageProperties;
-import com.github.aureliano.achmed.resources.types.DebianConfigFilesStatus;
+import com.github.aureliano.achmed.types.DebianConfigFilesStatus;
 
 public class AptPackageManager implements IPackageManager {
 
