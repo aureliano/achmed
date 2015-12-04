@@ -13,11 +13,21 @@ public final class AppConfiguration {
 
 	private static final Logger logger = Logger.getLogger(AppConfiguration.class);
 	
+	private static AppConfiguration instance;
+	
 	private LanguageCode language;
 	private IOperatingSystem operatingSystem;
 	
-	public AppConfiguration() {
+	private AppConfiguration() {
 		this.applyConfiguration();
+	}
+	
+	public static AppConfiguration instance() {
+		if (instance == null) {
+			instance = new AppConfiguration();
+		}
+		
+		return instance;
 	}
 	
 	public void applyConfiguration() {
