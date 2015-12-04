@@ -4,6 +4,7 @@ import java.util.Locale;
 
 import org.apache.log4j.Logger;
 
+import com.github.aureliano.achmed.helper.StringHelper;
 import com.github.aureliano.achmed.idiom.LanguageCode;
 import com.github.aureliano.achmed.idiom.LanguageSingleton;
 import com.github.aureliano.achmed.os.IOperatingSystem;
@@ -64,7 +65,7 @@ public final class AppConfiguration {
 		logger.info(String.format(
 				"Using default locale to %s with language %s (%s).",
 				locale.getDisplayCountry(),
-				locale.getDisplayLanguage(),
+				StringHelper.capitalize(locale.getDisplayLanguage()),
 				code
 			)
 		);
