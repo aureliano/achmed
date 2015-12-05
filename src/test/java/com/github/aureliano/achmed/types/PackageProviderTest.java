@@ -12,7 +12,7 @@ public class PackageProviderTest {
 	@Test
 	public void testOperatingSystemFamily() {
 		assertEquals(DEBIAN, APT.getOperatingSystemFamily());
-		assertEquals(RPM, YUM.getOperatingSystemFamily());
+		assertEquals(RED_HAT, YUM.getOperatingSystemFamily());
 		assertEquals(DEBIAN, DPKG.getOperatingSystemFamily());
 		assertEquals(APP, GEM.getOperatingSystemFamily());
 	}

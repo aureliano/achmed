@@ -3,7 +3,7 @@ package com.github.aureliano.achmed.types;
 public enum PackageProvider {
 
 	APT(OperatingSystemFamily.DEBIAN, "apt-get"),
-	YUM(OperatingSystemFamily.RPM, "yum"),
+	YUM(OperatingSystemFamily.RED_HAT, "yum"),
 	DPKG(OperatingSystemFamily.DEBIAN, "dpkg"),
 	GEM(OperatingSystemFamily.APP, "gem");
 	

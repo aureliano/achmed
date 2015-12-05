@@ -4,7 +4,7 @@ public enum OperatingSystemFamily {
 
 	DEBIAN(OS.LINUX, null),
 	UBUNTU(OS.LINUX, DEBIAN),
-	RPM(OS.LINUX, null),
+	RED_HAT(OS.LINUX, null),
 	APP(null, null);
 	
 	private OS operatingSystem;

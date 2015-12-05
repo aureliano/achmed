@@ -26,6 +26,6 @@ public class CentOSTest {
 	@Test
 	public void testGetOperatingSystemFamily() {
 		CentOS os = new CentOS();
-		assertEquals(OperatingSystemFamily.RPM, os.getOperatingSystemFamily());
+		assertEquals(OperatingSystemFamily.RED_HAT, os.getOperatingSystemFamily());
 	}
 }

@@ -23,6 +23,6 @@ public class CentOS implements IOperatingSystem {
 	}
 
 	public OperatingSystemFamily getOperatingSystemFamily() {
-		return OperatingSystemFamily.RPM;
+		return OperatingSystemFamily.RED_HAT;
 	}
 }
