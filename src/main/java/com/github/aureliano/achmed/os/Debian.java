@@ -25,4 +25,8 @@ public class Debian implements IOperatingSystem {
 	public OperatingSystemFamily getOperatingSystemFamily() {
 		return OperatingSystemFamily.DEBIAN;
 	}
+	
+	public String getPsCommand() {
+		return "ps -ef";
+	}
 }

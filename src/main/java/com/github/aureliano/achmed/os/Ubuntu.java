@@ -25,4 +25,8 @@ public class Ubuntu implements IOperatingSystem {
 	public OperatingSystemFamily getOperatingSystemFamily() {
 		return OperatingSystemFamily.UBUNTU;
 	}
+	
+	public String getPsCommand() {
+		return "ps -ef";
+	}
 }

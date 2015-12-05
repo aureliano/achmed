@@ -11,4 +11,6 @@ public interface IOperatingSystem {
 	public abstract OS getOperatingSystem();
 	
 	public abstract OperatingSystemFamily getOperatingSystemFamily();
+	
+	public abstract String getPsCommand();
 }

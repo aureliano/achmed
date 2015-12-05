@@ -25,4 +25,8 @@ public class CentOS implements IOperatingSystem {
 	public OperatingSystemFamily getOperatingSystemFamily() {
 		return OperatingSystemFamily.RED_HAT;
 	}
+	
+	public String getPsCommand() {
+		return "ps -ef";
+	}
 }
