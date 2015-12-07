@@ -39,7 +39,14 @@ public class YumPackageManager implements IPackageManager {
 	}
 
 	public CommandResponse uninstall() {
-		throw new UnsupportedOperationException("Method not implemented yet.");
+		String cmd = this.buildUninstallCommand();
+		CommandResponse res = CommandFacade.executeCommand(this.buildCommand(cmd));
+		
+		if (!res.isOK()) {
+			throw new PackageResourceException(res.getError());
+		}
+		
+		return res;
 	}
 
 	public String latest() {
@@ -91,6 +98,23 @@ public class YumPackageManager implements IPackageManager {
 		
 		cmd.add("install");
 		cmd.add(pkg);
+		
+		return StringHelper.join(cmd, " ");
+	}
+	
+	private String buildUninstallCommand() {
+		List<String> cmd = new ArrayList<String>();
+		
+		cmd.add(YUM);
+		cmd.add("-y");
+		cmd.add("-q");
+		
+		if (!this.properties.getUninstallOptions().isEmpty()) {
+			cmd.add(StringHelper.join(this.properties.getUninstallOptions(), " "));
+		}
+		
+		cmd.add("erase");
+		cmd.add(this.properties.getName());
 		
 		return StringHelper.join(cmd, " ");
 	}
