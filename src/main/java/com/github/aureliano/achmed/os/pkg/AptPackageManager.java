@@ -112,6 +112,11 @@ public class AptPackageManager implements IPackageManager {
 		cmd.add(APT_GET);
 		cmd.add("-y");
 		cmd.add("-q");
+		
+		if (!this.properties.getUninstallOptions().isEmpty()) {
+			cmd.add(StringHelper.join(this.properties.getUninstallOptions(), " "));
+		}
+		
 		cmd.add("remove");
 		cmd.add(this.properties.getName());
 		
