@@ -5,9 +5,10 @@ public class CommandResponse {
 	private Integer exitStatusCode;
 	private String output;
 	private String error;
+	private String command;
 	
-	public CommandResponse() {
-		super();
+	public CommandResponse(String command) {
+		this.command = command;
 	}
 
 	public Integer getExitStatusCode() {
@@ -35,6 +36,10 @@ public class CommandResponse {
 	public CommandResponse withError(String error) {
 		this.error = error;
 		return this;
+	}
+	
+	public String getCommand() {
+		return command;
 	}
 	
 	public boolean isOK() {

@@ -10,11 +10,12 @@ public class CommandResponseTest {
 
 	@Test
 	public void testBuild() {
-		CommandResponse cmd = new CommandResponse()
+		CommandResponse cmd = new CommandResponse("input command")
 			.withExitStatusCode(0)
 			.withOutput("command output")
 			.withError("command error message");
 
+		assertEquals("input command", cmd.getCommand());
 		assertEquals(new Integer(0), cmd.getExitStatusCode());
 		assertEquals("command output", cmd.getOutput());
 		assertEquals("command error message", cmd.getError());
@@ -23,7 +24,7 @@ public class CommandResponseTest {
 	
 	@Test
 	public void testIsOK() {
-		CommandResponse cmd = new CommandResponse();
+		CommandResponse cmd = new CommandResponse("input command");
 		
 		assertTrue(cmd.isOK());
 		

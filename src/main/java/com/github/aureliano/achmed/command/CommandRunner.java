@@ -8,6 +8,7 @@ import java.util.Scanner;
 import java.util.concurrent.Callable;
 
 import com.github.aureliano.achmed.exception.ExecResourceException;
+import com.github.aureliano.achmed.helper.StringHelper;
 
 public class CommandRunner implements Callable<CommandResponse> {
 
@@ -31,7 +32,7 @@ public class CommandRunner implements Callable<CommandResponse> {
 		
 		int exitStatus = Integer.parseInt("1" + this.command.size());
 		Process process = null;
-		CommandResponse response = new CommandResponse();
+		CommandResponse response = new CommandResponse(StringHelper.join(this.command, " "));
 		
 		try {
 			process = builder.start();
