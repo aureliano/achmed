@@ -1,13 +1,12 @@
 package com.github.aureliano.achmed.os.pkg;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.github.aureliano.achmed.command.CommandBuilder;
 import com.github.aureliano.achmed.command.CommandFacade;
 import com.github.aureliano.achmed.command.CommandResponse;
 import com.github.aureliano.achmed.exception.PackageResourceException;
+import com.github.aureliano.achmed.helper.PkgManagerHelper;
 import com.github.aureliano.achmed.helper.StringHelper;
 import com.github.aureliano.achmed.idiom.LanguageSingleton;
 import com.github.aureliano.achmed.resources.properties.PackageProperties;
@@ -26,7 +25,7 @@ public class AptPackageManager implements IPackageManager {
 
 	public CommandResponse install() {
 		String cmd = this.buildInstallCommand();
-		CommandResponse res = CommandFacade.executeCommand(this.buildCommand(cmd));
+		CommandResponse res = CommandFacade.executeCommand(PkgManagerHelper.buildCommand(cmd));
 		
 		if (!res.isOK()) {
 			throw new PackageResourceException(res.getError());
@@ -37,7 +36,7 @@ public class AptPackageManager implements IPackageManager {
 
 	public CommandResponse uninstall() {
 		String cmd = this.buildUninstallCommand();
-		CommandResponse res = CommandFacade.executeCommand(this.buildCommand(cmd));
+		CommandResponse res = CommandFacade.executeCommand(PkgManagerHelper.buildCommand(cmd));
 		
 		if (!res.isOK()) {
 			throw new PackageResourceException(res.getError());
@@ -48,7 +47,7 @@ public class AptPackageManager implements IPackageManager {
 
 	public String latest() {
 		String cmd = String.format("%s policy %s", APT_CACHE, this.properties.getName());
-		CommandResponse res = CommandFacade.executeCommand(this.buildCommand(cmd));
+		CommandResponse res = CommandFacade.executeCommand(PkgManagerHelper.buildCommand(cmd));
 		
 		if (!res.isOK()) {
 			throw new PackageResourceException(res.getError());
@@ -121,14 +120,5 @@ public class AptPackageManager implements IPackageManager {
 		cmd.add(this.properties.getName());
 		
 		return StringHelper.join(cmd, " ");
-	}
-	
-	private CommandBuilder buildCommand(String cmd) {
-		return new CommandBuilder()
-			.withCommand(cmd)
-			.withVerbose(false)
-			.withWorkingDir(new File("").getAbsolutePath())
-			.withTries(1)
-			.withTimeout(10000L);
 	}
 }

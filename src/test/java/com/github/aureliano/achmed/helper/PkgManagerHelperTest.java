@@ -11,6 +11,8 @@ import java.util.Scanner;
 
 import org.junit.Test;
 
+import com.github.aureliano.achmed.command.CommandBuilder;
+
 public class PkgManagerHelperTest {
 
 	@Test
@@ -22,6 +24,17 @@ public class PkgManagerHelperTest {
 		List<String> expected = Arrays.asList("--disablerepo =  whatever", "--disableexcludes= test", "--enablerepo=defgh");
 		List<String> actual = PkgManagerHelper.scanRepositoryOptions(options);
 		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void testBuildCommand() {
+		CommandBuilder command = PkgManagerHelper.buildCommand("command_name");
+		
+		assertEquals("command_name", command.getCommand());
+		assertEquals(new Long(10000), command.getTimeout());
+		assertEquals(new Integer(1), command.getTries());
+		assertEquals(false, command.getVerbose());
+		assertEquals(new File("").getAbsolutePath(), command.getWorkingDir());
 	}
 	
 	@Test

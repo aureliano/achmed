@@ -1,5 +1,6 @@
 package com.github.aureliano.achmed.helper;
 
+import java.io.File;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -55,6 +56,15 @@ public final class PkgManagerHelper {
 			throw new PackageResourceException(
 				String.format("Could not check for updates, '%s' exited with %d.", res.getCommand(), res.getExitStatusCode()));
 		}
+	}
+	
+	public static CommandBuilder buildCommand(String cmd) {
+		return new CommandBuilder()
+			.withCommand(cmd)
+			.withVerbose(false)
+			.withWorkingDir(new File("").getAbsolutePath())
+			.withTries(1)
+			.withTimeout(10000L);
 	}
 	
 	protected static List<Map<String, String>> parseCheckUpdate(String output) {

@@ -1,13 +1,11 @@
 package com.github.aureliano.achmed.os.pkg;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
 
-import com.github.aureliano.achmed.command.CommandBuilder;
 import com.github.aureliano.achmed.command.CommandFacade;
 import com.github.aureliano.achmed.command.CommandResponse;
 import com.github.aureliano.achmed.exception.PackageResourceException;
@@ -29,7 +27,7 @@ public class YumPackageManager implements IPackageManager {
 
 	public CommandResponse install() {
 		String cmd = this.buildInstallCommand();
-		CommandResponse res = CommandFacade.executeCommand(this.buildCommand(cmd));
+		CommandResponse res = CommandFacade.executeCommand(PkgManagerHelper.buildCommand(cmd));
 		
 		if (!res.isOK()) {
 			throw new PackageResourceException(res.getError());
@@ -40,7 +38,7 @@ public class YumPackageManager implements IPackageManager {
 
 	public CommandResponse uninstall() {
 		String cmd = this.buildUninstallCommand();
-		CommandResponse res = CommandFacade.executeCommand(this.buildCommand(cmd));
+		CommandResponse res = CommandFacade.executeCommand(PkgManagerHelper.buildCommand(cmd));
 		
 		if (!res.isOK()) {
 			throw new PackageResourceException(res.getError());
@@ -117,14 +115,5 @@ public class YumPackageManager implements IPackageManager {
 		cmd.add(this.properties.getName());
 		
 		return StringHelper.join(cmd, " ");
-	}
-	
-	private CommandBuilder buildCommand(String cmd) {
-		return new CommandBuilder()
-			.withCommand(cmd)
-			.withVerbose(false)
-			.withWorkingDir(new File("").getAbsolutePath())
-			.withTries(1)
-			.withTimeout(10000L);
 	}
 }
