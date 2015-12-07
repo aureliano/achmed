@@ -11,6 +11,7 @@ import java.util.concurrent.TimeoutException;
 import org.apache.log4j.Logger;
 
 import com.github.aureliano.achmed.exception.ExecResourceException;
+import com.github.aureliano.achmed.helper.StringHelper;
 import com.github.aureliano.achmed.resources.properties.ExecProperties;
 
 public final class CommandFacade {
@@ -23,9 +24,9 @@ public final class CommandFacade {
 		throw new InstantiationError(this.getClass().getName() + " cannot be instantiated.");
 	}
 	
-	public static CommandResponse executeCommand(String cmd) {
+	public static CommandResponse executeCommand(String...cmd) {
 		CommandBuilder command = new CommandBuilder()
-			.withCommand(cmd)
+			.withCommand(StringHelper.join(cmd, " "))
 			.withTimeout(DEFAULT_TIMEOUT_EXECUTION)
 			.withTries(1)
 			.withVerbose(true)
