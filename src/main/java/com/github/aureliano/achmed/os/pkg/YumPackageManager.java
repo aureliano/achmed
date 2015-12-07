@@ -1,18 +1,25 @@
 package com.github.aureliano.achmed.os.pkg;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
 
+import com.github.aureliano.achmed.command.CommandBuilder;
+import com.github.aureliano.achmed.command.CommandFacade;
 import com.github.aureliano.achmed.command.CommandResponse;
+import com.github.aureliano.achmed.exception.PackageResourceException;
 import com.github.aureliano.achmed.helper.PkgManagerHelper;
+import com.github.aureliano.achmed.helper.StringHelper;
 import com.github.aureliano.achmed.resources.properties.PackageProperties;
 
 public class YumPackageManager implements IPackageManager {
 
 	private static final Logger logger = Logger.getLogger(YumPackageManager.class);
-	private static final String CHECK_UPDATE = "yum check-update";
+	private static final String YUM = "yum";
+	private static final String CHECK_UPDATE = YUM + " check-update";
 	
 	private PackageProperties properties;
 	
@@ -21,7 +28,14 @@ public class YumPackageManager implements IPackageManager {
 	}
 
 	public CommandResponse install() {
-		throw new UnsupportedOperationException("Method not implemented yet.");
+		String cmd = this.buildInstallCommand();
+		CommandResponse res = CommandFacade.executeCommand(this.buildCommand(cmd));
+		
+		if (!res.isOK()) {
+			throw new PackageResourceException(res.getError());
+		}
+		
+		return res;
 	}
 
 	public CommandResponse uninstall() {
@@ -51,5 +65,42 @@ public class YumPackageManager implements IPackageManager {
 
 	public PackageProperties getPackageProperties() {
 		return this.properties;
+	}
+	
+	private String buildInstallCommand() {
+		List<String> cmd = new ArrayList<>();
+		cmd.add(YUM);
+		cmd.add("-q -y");
+		
+		String version = null;
+		if (!(("present".equalsIgnoreCase(this.properties.getEnsure())) ||
+				("installed".equalsIgnoreCase(this.properties.getEnsure()))) ||
+				("absent".equalsIgnoreCase(this.properties.getEnsure()))) {
+			version = this.properties.getEnsure();
+		}
+		
+		String pkg = this.properties.getName();
+		if (!StringHelper.isEmpty(version)) {
+			version = (version.equalsIgnoreCase("latest")) ? this.latest() : version;
+			pkg = String.format("%s=%s", pkg, version);
+		}
+		
+		if (!this.properties.getInstallOptions().isEmpty()) {
+			cmd.add(StringHelper.join(this.properties.getInstallOptions(), " "));
+		}
+		
+		cmd.add("install");
+		cmd.add(pkg);
+		
+		return StringHelper.join(cmd, " ");
+	}
+	
+	private CommandBuilder buildCommand(String cmd) {
+		return new CommandBuilder()
+			.withCommand(cmd)
+			.withVerbose(false)
+			.withWorkingDir(new File("").getAbsolutePath())
+			.withTries(1)
+			.withTimeout(10000L);
 	}
 }
