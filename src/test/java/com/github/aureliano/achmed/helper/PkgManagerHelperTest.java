@@ -2,8 +2,12 @@ package com.github.aureliano.achmed.helper;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 
 import org.junit.Test;
 
@@ -18,5 +22,29 @@ public class PkgManagerHelperTest {
 		List<String> expected = Arrays.asList("--disablerepo =  whatever", "--disableexcludes= test", "--enablerepo=defgh");
 		List<String> actual = PkgManagerHelper.scanRepositoryOptions(options);
 		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void testParseCheckUpdate() throws FileNotFoundException {
+		Scanner s = new Scanner(new File("src/test/resources/os/pkg/yum-check-update"));
+		StringBuilder b = new StringBuilder();
+		
+		while (s.hasNextLine()) {
+			b.append(s.nextLine()).append("\n");
+		}
+		
+		List<Map<String, String>> list = PkgManagerHelper.parseCheckUpdate(b.toString());
+		assertEquals(194, list.size());
+	}
+	
+	@Test
+	public void testParseHash() {
+		Map<String, String> map = PkgManagerHelper.parseHash("perl-devel.x86_64", "4:5.10.1-141.el6_7.1");
+		
+		assertEquals("perl-devel", map.get("name"));
+		assertEquals("x86_64", map.get("arch"));
+		assertEquals("4", map.get("epoch"));
+		assertEquals("5.10.1", map.get("version"));
+		assertEquals("141.el6_7.1", map.get("release"));
 	}
 }
