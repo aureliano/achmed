@@ -1,8 +1,6 @@
 package com.github.aureliano.achmed.os.service;
 
 import com.github.aureliano.achmed.command.CommandResponse;
-import com.github.aureliano.achmed.exception.ServiceResourceException;
-import com.github.aureliano.achmed.helper.StringHelper;
 import com.github.aureliano.achmed.resources.properties.ServiceProperties;
 
 public abstract class BaseService implements IService {
@@ -35,13 +33,5 @@ public abstract class BaseService implements IService {
 
 	public ServiceProperties getServiceProperties() {
 		return this.properties;
-	}
-	
-	protected Integer getPid() {
-		if (StringHelper.isEmpty(this.properties.getPattern())) {
-			throw new ServiceResourceException("Cannot get process id. No pattern provided.");
-		}
-		
-		throw new UnsupportedOperationException("Not implemented yet.");
 	}
 }
