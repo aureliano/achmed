@@ -29,7 +29,7 @@ public abstract class Linux implements IOperatingSystem {
 		return this.matchPid(res.getOutput(), pattern);
 	}
 	
-	protected Integer matchPid(String processTable, String pattern) {
+	Integer matchPid(String processTable, String pattern) {
 		String[] lines = processTable.split("\n");
 		for (String line : lines) {
 			if (!line.matches(pattern)) {
