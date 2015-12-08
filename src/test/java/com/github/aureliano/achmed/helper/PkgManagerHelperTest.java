@@ -39,11 +39,15 @@ public class PkgManagerHelperTest {
 	
 	@Test
 	public void testParseCheckUpdate() throws FileNotFoundException {
-		Scanner s = new Scanner(new File("src/test/resources/os/pkg/yum-check-update"));
-		StringBuilder b = new StringBuilder();
-		
-		while (s.hasNextLine()) {
-			b.append(s.nextLine()).append("\n");
+		StringBuilder b = null;
+		try (Scanner s = new Scanner(new File("src/test/resources/os/pkg/yum-check-update"))) {
+			b = new StringBuilder();
+			
+			while (s.hasNextLine()) {
+				b.append(s.nextLine()).append("\n");
+			}
+		} catch (FileNotFoundException ex) {
+			throw new RuntimeException(ex);
 		}
 		
 		List<Map<String, String>> list = PkgManagerHelper.parseCheckUpdate(b.toString());
