@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import com.github.aureliano.achmed.exception.ServiceResourceException;
 import com.github.aureliano.achmed.os.pkg.IPackageManager;
 import com.github.aureliano.achmed.types.OS;
 import com.github.aureliano.achmed.types.OperatingSystemFamily;
@@ -25,6 +26,11 @@ public class LinuxTest {
 	public void testGetPsCommand() {
 		final String cmd = "ps -ef";
 		assertEquals(cmd, this.linux.getPsCommand());
+	}
+	
+	@Test(expected = ServiceResourceException.class)
+	public void testGetPidWithNullPattern() {
+		this.linux.getPid(null);
 	}
 	
 	private Linux createDefaultOs() {
