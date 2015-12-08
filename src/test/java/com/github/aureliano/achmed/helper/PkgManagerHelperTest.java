@@ -38,7 +38,7 @@ public class PkgManagerHelperTest {
 	}
 	
 	@Test
-	public void testParseCheckUpdate() throws FileNotFoundException {
+	public void testParseCheckUpdate() {
 		StringBuilder b = null;
 		try (Scanner s = new Scanner(new File("src/test/resources/os/pkg/yum-check-update"))) {
 			b = new StringBuilder();
