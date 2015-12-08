@@ -33,6 +33,11 @@ public class LinuxTest {
 		this.linux.getPid(null);
 	}
 	
+	@Test(expected = ServiceResourceException.class)
+	public void testGetPidWithEmptyPattern() {
+		this.linux.getPid("");
+	}
+	
 	private Linux createDefaultOs() {
 		return new Linux() {
 			
