@@ -13,4 +13,6 @@ public interface IOperatingSystem {
 	public abstract OperatingSystemFamily getOperatingSystemFamily();
 	
 	public abstract String getPsCommand();
+	
+	public abstract Integer getPid(String pattern);
 }
