@@ -2,6 +2,10 @@ package com.github.aureliano.achmed.os;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 import org.junit.Test;
 
 import com.github.aureliano.achmed.exception.ServiceResourceException;
@@ -36,6 +40,25 @@ public class LinuxTest {
 	@Test(expected = ServiceResourceException.class)
 	public void testGetPidWithEmptyPattern() {
 		this.linux.getPid("");
+	}
+	
+	@Test
+	public void testMatchPid() {
+		StringBuilder b = null;
+		try (Scanner s = new Scanner(new File("src/test/resources/os/process-table"))) {
+			b = new StringBuilder();
+			
+			while (s.hasNextLine()) {
+				b.append(s.nextLine()).append("\n");
+			}
+		} catch (FileNotFoundException ex) {
+			throw new RuntimeException(ex);
+		}
+		
+		String regex = "^\\d+\\s+\\d+\\s+\\d+\\s+\\d+\\s+\\S+\\s\\S+\\s+\\S+\\s+\\./eclipse$";
+		Integer pid = this.linux.matchPid(b.toString(), regex);
+		
+		assertEquals(new Integer(2586), pid);
 	}
 	
 	private Linux createDefaultOs() {

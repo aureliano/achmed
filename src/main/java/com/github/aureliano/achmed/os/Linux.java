@@ -1,5 +1,7 @@
 package com.github.aureliano.achmed.os;
 
+import com.github.aureliano.achmed.command.CommandFacade;
+import com.github.aureliano.achmed.command.CommandResponse;
 import com.github.aureliano.achmed.exception.ServiceResourceException;
 import com.github.aureliano.achmed.helper.StringHelper;
 import com.github.aureliano.achmed.types.OS;
@@ -19,6 +21,25 @@ public abstract class Linux implements IOperatingSystem {
 			throw new ServiceResourceException("Cannot get process id. No pattern provided.");
 		}
 		
-		throw new UnsupportedOperationException("Not implemented yet.");
+		CommandResponse res = CommandFacade.executeCommand(this.getPsCommand());
+		if (!res.isOK()) {
+			throw new ServiceResourceException(res.getError());
+		}
+		
+		return this.matchPid(res.getOutput(), pattern);
+	}
+	
+	protected Integer matchPid(String processTable, String pattern) {
+		String[] lines = processTable.split("\n");
+		for (String line : lines) {
+			if (!line.matches(pattern)) {
+				continue;
+			}
+			
+			String pid = line.trim().split("\\s+")[1];
+			return Integer.parseInt(pid);
+		}
+		
+		return null;
 	}
 }
