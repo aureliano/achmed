@@ -4,7 +4,7 @@ import com.github.aureliano.achmed.resources.properties.ServiceProperties;
 
 public abstract class BaseService implements IService {
 
-	private ServiceProperties properties;
+	protected ServiceProperties properties;
 	
 	public BaseService() {
 		super();
