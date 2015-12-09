@@ -39,7 +39,7 @@ public class PackageResource implements IResource {
 		
 		if (!res.isOK()) {
 			logger.warn(res.getError());
-			throw new PackageResourceException(res.getError());
+			throw new PackageResourceException(res);
 		}
 	}
 	

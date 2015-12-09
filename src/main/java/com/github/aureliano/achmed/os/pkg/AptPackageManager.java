@@ -28,7 +28,7 @@ public class AptPackageManager implements IPackageManager {
 		CommandResponse res = CommandFacade.executeCommand(PkgManagerHelper.buildCommand(cmd));
 		
 		if (!res.isOK()) {
-			throw new PackageResourceException(res.getError());
+			throw new PackageResourceException(res);
 		}
 		
 		return res;
@@ -39,7 +39,7 @@ public class AptPackageManager implements IPackageManager {
 		CommandResponse res = CommandFacade.executeCommand(PkgManagerHelper.buildCommand(cmd));
 		
 		if (!res.isOK()) {
-			throw new PackageResourceException(res.getError());
+			throw new PackageResourceException(res);
 		}
 		
 		return res;
@@ -50,7 +50,7 @@ public class AptPackageManager implements IPackageManager {
 		CommandResponse res = CommandFacade.executeCommand(PkgManagerHelper.buildCommand(cmd));
 		
 		if (!res.isOK()) {
-			throw new PackageResourceException(res.getError());
+			throw new PackageResourceException(res);
 		}
 		
 		String candidate = LanguageSingleton.instance().getValue("resource.package.apt.cache.latest_candidate_version");

@@ -59,7 +59,7 @@ public abstract class LinuxService extends BaseService {
 				return res;
 			}
 			
-			throw new ServiceResourceException(res.getError());
+			throw new ServiceResourceException(res);
 		}
 		
 		return CommandFacade.executeCommand(

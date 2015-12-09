@@ -23,7 +23,7 @@ public abstract class Linux implements IOperatingSystem {
 		
 		CommandResponse res = CommandFacade.executeCommand(this.getPsCommand());
 		if (!res.isOK()) {
-			throw new ServiceResourceException(res.getError());
+			throw new ServiceResourceException(res);
 		}
 		
 		return this.matchPid(res.getOutput(), pattern);

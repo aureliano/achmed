@@ -92,7 +92,7 @@ public class DebianService extends LinuxService {
 	public CommandResponse enableBootstrap() {
 		CommandResponse res = CommandFacade.executeCommand(UPDATE_RC, "-f", super.properties.getName(), "remove");
 		if (!res.isOK()) {
-			throw new ServiceResourceException(res.getError());
+			throw new ServiceResourceException(res);
 		}
 		
 		return CommandFacade.executeCommand(UPDATE_RC, super.properties.getName(), "defaults");
@@ -101,7 +101,7 @@ public class DebianService extends LinuxService {
 	public CommandResponse disableBootstrap() {
 		CommandResponse res = CommandFacade.executeCommand(UPDATE_RC, "-f", super.properties.getName(), "remove");
 		if (!res.isOK()) {
-			throw new ServiceResourceException(res.getError());
+			throw new ServiceResourceException(res);
 		}
 		
 		return CommandFacade.executeCommand(

@@ -1,6 +1,8 @@
 package com.github.aureliano.achmed.exception;
 
-public class ExecResourceException extends RuntimeException {
+import com.github.aureliano.achmed.command.CommandResponse;
+
+public class ExecResourceException extends ResourceException {
 
 	private static final long serialVersionUID = -1257837733015431140L;
 
@@ -18,5 +20,9 @@ public class ExecResourceException extends RuntimeException {
 
 	public ExecResourceException(String message, Throwable throwable) {
 		super(message, throwable);
+	}
+	
+	public ExecResourceException(CommandResponse response) {
+		super(response);
 	}
 }
