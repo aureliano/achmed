@@ -29,6 +29,14 @@ public abstract class Linux implements IOperatingSystem {
 		return this.matchPid(res.getOutput(), pattern);
 	}
 	
+	public CommandResponse kill(Integer pid) {
+		if (pid == null) {
+			throw new ServiceResourceException("Invalid pid: " + pid);
+		}
+		
+		return CommandFacade.executeCommand("kill " + pid);
+	}
+	
 	Integer matchPid(String processTable, String pattern) {
 		String[] lines = processTable.split("\n");
 		for (String line : lines) {
