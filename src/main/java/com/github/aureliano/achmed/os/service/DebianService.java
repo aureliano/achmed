@@ -30,6 +30,20 @@ public class DebianService extends LinuxService {
 	}
 	
 	@Override
+	public CommandResponse stop() {
+		if (!this.isRunning()) {
+			logger.debug("Service " + super.properties.getName() + " is not running.");
+			return null;
+		}
+		
+		if (StringHelper.isEmpty(super.properties.getBinary())) {
+			return CommandFacade.executeCommand(SERVICE_APP, super.properties.getName(), "stop");
+		}
+		
+		return super.stop();
+	}
+	
+	@Override
 	public boolean isRunning() {
 		if ((super.properties.getHasStatus() != null) && (super.properties.getHasStatus())) {
 			CommandResponse res = CommandFacade.executeCommand(SERVICE_APP, super.properties.getName(), "status");
