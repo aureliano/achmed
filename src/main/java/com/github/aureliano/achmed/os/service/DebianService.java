@@ -1,9 +1,21 @@
 package com.github.aureliano.achmed.os.service;
 
+import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.FileVisitResult;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.PathMatcher;
+import java.nio.file.Paths;
+import java.nio.file.SimpleFileVisitor;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.util.Arrays;
+
 import org.apache.log4j.Logger;
 
 import com.github.aureliano.achmed.command.CommandFacade;
 import com.github.aureliano.achmed.command.CommandResponse;
+import com.github.aureliano.achmed.exception.ServiceResourceException;
 import com.github.aureliano.achmed.helper.StringHelper;
 
 public class DebianService extends LinuxService {
@@ -65,7 +77,16 @@ public class DebianService extends LinuxService {
 	}
 	
 	public boolean isEnabledInBootstrap() {
-		throw new UnsupportedOperationException("Not implemented yet.");
+		CommandResponse res = CommandFacade.executeCommand(
+			INVOKE_RC, "--quiet", "--query", super.properties.getName(), "start");
+		
+		if (Arrays.asList(104, 106).contains(res.getExitStatusCode())) {
+			return true;
+		} else if (Arrays.asList(101, 105).contains(res.getExitStatusCode())) {
+			return (this.getStartLinkCount() >= 4);
+		} else {
+			return false;
+		}
 	}
 
 	public CommandResponse enableBootstrap() {
@@ -74,5 +95,44 @@ public class DebianService extends LinuxService {
 
 	public CommandResponse disableBootstrap() {
 		throw new UnsupportedOperationException("Not implemented yet.");
+	}
+	
+	private int getStartLinkCount() {
+		EtcFileVisitor matcherVisitor = new EtcFileVisitor();
+		
+		try {
+			Files.walkFileTree(Paths.get("/etc"), matcherVisitor);
+		} catch (IOException ex) {
+			throw new ServiceResourceException(ex);
+		}
+		
+		return matcherVisitor.getCounter();
+	}
+	
+	private class EtcFileVisitor extends SimpleFileVisitor<Path> {
+		
+		private PathMatcher matcher;
+		private int counter = 0;
+		
+		public EtcFileVisitor() {
+			String pattern = "glob:/etc/rc*.d/S??" + "nginx";
+			this.matcher = FileSystems.getDefault().getPathMatcher(pattern);
+		}
+		
+		public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+			if (matcher.matches(file)) {
+				System.out.println(file);
+			}
+			
+			return FileVisitResult.CONTINUE;
+		}
+		
+		public FileVisitResult visitFileFailed(Path file, IOException exc) throws IOException {
+			return FileVisitResult.CONTINUE;
+		}
+		
+		public int getCounter() {
+			return counter;
+		}
 	}
 }
