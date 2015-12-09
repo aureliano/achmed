@@ -50,10 +50,16 @@ public abstract class LinuxService extends BaseService {
 		if (StringHelper.isEmpty(super.properties.getBinary())) {
 			throw new ServiceResourceException(
 				"Binary file of service " + super.properties.getName() + " not provided.");
-		} else if (StringHelper.isEmpty(super.properties.getStop())) {
-			throw new ServiceResourceException(
-					"Stop command of service " + super.properties.getName() +
-					" was not provided to be used with binary command " + super.properties.getBinary());
+		}
+		
+		if (StringHelper.isEmpty(super.properties.getStop())) {
+			Integer pid = this.linux.getPid(super.properties.getPattern());
+			CommandResponse res = this.linux.kill(pid);
+			if (res.isOK()) {
+				return res;
+			}
+			
+			throw new ServiceResourceException(res.getError());
 		}
 		
 		return CommandFacade.executeCommand(
