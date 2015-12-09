@@ -10,6 +10,8 @@ public class DebianService extends LinuxService {
 
 	private static final Logger logger = Logger.getLogger(DebianService.class);
 	private static final String SERVICE = "/usr/sbin/service";
+	private static final String UPDATE_RC = "/usr/sbin/update-rc.d";
+	private static final String INVOKE_RC = "/usr/sbin/invoke-rc.d";
 	
 	public DebianService() {
 		super();
@@ -60,6 +62,10 @@ public class DebianService extends LinuxService {
 		}
 		
 		return super.isRunning();
+	}
+	
+	public boolean isEnabledInBootstrap() {
+		throw new UnsupportedOperationException("Not implemented yet.");
 	}
 
 	public CommandResponse enableBootstrap() {

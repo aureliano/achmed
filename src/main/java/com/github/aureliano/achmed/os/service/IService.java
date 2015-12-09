@@ -17,6 +17,8 @@ public interface IService {
 	
 	public abstract CommandResponse disableBootstrap();
 	
+	public abstract boolean isEnabledInBootstrap();
+	
 	public abstract void setServiceProperties(ServiceProperties properties);
 	
 	public abstract ServiceProperties getServiceProperties();
