@@ -2,18 +2,26 @@ package com.github.aureliano.achmed.os.service;
 
 import org.apache.log4j.Logger;
 
+import com.github.aureliano.achmed.command.CommandFacade;
 import com.github.aureliano.achmed.command.CommandResponse;
-import com.github.aureliano.achmed.os.Debian;
-import com.github.aureliano.achmed.os.Linux;
 
 public class DebianService extends LinuxService {
 
 	private static final Logger logger = Logger.getLogger(DebianService.class);
-	
-	private Linux linux;
+	private static final String SERVICE_APP = "service";
 	
 	public DebianService() {
-		this.linux = new Debian();
+		super();
+	}
+	
+	@Override
+	public boolean isRunning() {
+		if ((super.properties.getHasStatus() != null) && (super.properties.getHasStatus())) {
+			CommandResponse res = CommandFacade.executeCommand(SERVICE_APP, super.properties.getName(), "status");
+			return (res.getExitStatusCode() == 0);
+		}
+		
+		return super.isRunning();
 	}
 
 	public CommandResponse enableBootstrap() {
