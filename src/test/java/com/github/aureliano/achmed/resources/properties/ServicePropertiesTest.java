@@ -1,10 +1,10 @@
 package com.github.aureliano.achmed.resources.properties;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-
-import com.github.aureliano.achmed.types.ServiceProvider;
 
 public class ServicePropertiesTest {
 	
@@ -37,7 +37,6 @@ public class ServicePropertiesTest {
 			.put("hasRestart", false)
 			.put("hasStatus", true)
 			.put("pattern", "ng[a-z]+x")
-			.put("provider", ServiceProvider.SERVICE)
 			.put("restart", "restart")
 			.put("start", "cmd to start")
 			.put("status", "get status")
@@ -52,17 +51,10 @@ public class ServicePropertiesTest {
 		assertFalse(service.getHasRestart());
 		assertTrue(service.getHasStatus());
 		assertEquals("ng[a-z]+x", service.getPattern());
-		assertEquals(ServiceProvider.SERVICE, service.getProvider());
 		assertEquals("restart", service.getRestart());
 		assertEquals("cmd to start", service.getStart());
 		assertEquals("get status", service.getStatus());
 		assertEquals("cmd to stop", service.getStop());
-		
-		service.setProvider(null);
-		assertNull(service.getProvider());
-		
-		service.put("provider", "service").configureAttributes();
-		assertEquals(ServiceProvider.SERVICE, service.getProvider());
 	}
 
 	@Test

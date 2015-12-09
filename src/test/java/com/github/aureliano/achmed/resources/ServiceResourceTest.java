@@ -6,7 +6,6 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import com.github.aureliano.achmed.resources.properties.ServiceProperties;
-import com.github.aureliano.achmed.types.ServiceProvider;
 
 public class ServiceResourceTest {
 
@@ -47,7 +46,6 @@ public class ServiceResourceTest {
 		p.setHasStatus(true);
 		p.setName("nginx");
 		p.setPattern("ng[a-z]+x");
-		p.setProvider(ServiceProvider.SERVICE);
 		p.setRestart("restart");
 		p.setStart("cmd to start");
 		p.setStatus("get status");
@@ -65,7 +63,6 @@ public class ServiceResourceTest {
 		assertTrue(p.getHasStatus());
 		assertEquals("nginx", p.getName());
 		assertEquals("ng[a-z]+x", p.getPattern());
-		assertEquals(ServiceProvider.SERVICE, p.getProvider());
 		assertEquals("restart", p.getRestart());
 		assertEquals("cmd to start", p.getStart());
 		assertEquals("get status", p.getStatus());

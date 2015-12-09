@@ -2,7 +2,6 @@ package com.github.aureliano.achmed.resources.properties;
 
 import com.github.aureliano.achmed.helper.BooleanHelper;
 import com.github.aureliano.achmed.helper.StringHelper;
-import com.github.aureliano.achmed.types.ServiceProvider;
 
 public class ServiceProperties extends ResourceProperties {
 
@@ -14,7 +13,6 @@ public class ServiceProperties extends ResourceProperties {
 	private Boolean hasRestart;
 	private Boolean hasStatus;
 	private String pattern;
-	private ServiceProvider provider;
 	private String restart;
 	private String start;
 	private String status;
@@ -97,14 +95,6 @@ public class ServiceProperties extends ResourceProperties {
 		this.pattern = pattern;
 	}
 
-	public ServiceProvider getProvider() {
-		return provider;
-	}
-
-	public void setProvider(ServiceProvider provider) {
-		this.provider = provider;
-	}
-
 	public String getRestart() {
 		return restart;
 	}
@@ -154,13 +144,6 @@ public class ServiceProperties extends ResourceProperties {
 			this.hasStatus = BooleanHelper.parse(value);
 		} else if ("pattern".equalsIgnoreCase(name)) {
 			this.pattern = StringHelper.parse(value);
-		} else if ("provider".equalsIgnoreCase(name)) {
-			if ((value != null) && (value instanceof ServiceProvider)) {
-				this.provider = (ServiceProvider) value;
-			} else {
-				String pkg = StringHelper.parse(value).toUpperCase();
-				this.provider = ServiceProvider.valueOf(pkg);
-			};
 		} else if ("restart".equalsIgnoreCase(name)) {
 			this.restart = StringHelper.parse(value);
 		} else if ("start".equalsIgnoreCase(name)) {
