@@ -99,7 +99,13 @@ public class DebianService extends LinuxService {
 	}
 
 	public CommandResponse disableBootstrap() {
-		throw new UnsupportedOperationException("Not implemented yet.");
+		CommandResponse res = CommandFacade.executeCommand(UPDATE_RC, "-f", super.properties.getName(), "remove");
+		if (!res.isOK()) {
+			throw new ServiceResourceException(res.getError());
+		}
+		
+		return CommandFacade.executeCommand(
+			UPDATE_RC, super.properties.getName(), "stop", "00", "1", "2", "3", "4", "5", "6", ".");
 	}
 	
 	private int getStartLinkCount() {
