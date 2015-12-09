@@ -44,6 +44,15 @@ public class DebianService extends LinuxService {
 	}
 	
 	@Override
+	public CommandResponse restart() {
+		if ((super.properties.getHasRestart() != null) && (super.properties.getHasRestart())) {
+			return CommandFacade.executeCommand(SERVICE_APP, super.properties.getName(), "restart");
+		}
+		
+		return super.restart();
+	}
+	
+	@Override
 	public boolean isRunning() {
 		if ((super.properties.getHasStatus() != null) && (super.properties.getHasStatus())) {
 			CommandResponse res = CommandFacade.executeCommand(SERVICE_APP, super.properties.getName(), "status");
