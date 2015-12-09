@@ -9,7 +9,7 @@ import com.github.aureliano.achmed.helper.StringHelper;
 public class DebianService extends LinuxService {
 
 	private static final Logger logger = Logger.getLogger(DebianService.class);
-	private static final String SERVICE = "/usr/bin/service";
+	private static final String SERVICE = "/usr/sbin/service";
 	
 	public DebianService() {
 		super();
