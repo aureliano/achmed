@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.Callable;
 
-import com.github.aureliano.achmed.exception.ExecResourceException;
 import com.github.aureliano.achmed.helper.StringHelper;
 
 public class CommandRunner implements Callable<CommandResponse> {
@@ -39,11 +38,7 @@ public class CommandRunner implements Callable<CommandResponse> {
 			response.withOutput(this.scanCommand(process));
 			exitStatus = process.waitFor();
 		} catch (Exception ex) {
-			try {
-				response.withError(this.readError(process));
-			} catch (RuntimeException re) {
-				throw new ExecResourceException(re);
-			}
+			response.withError(this.readError(process));
 		}
 		
 		return response.withExitStatusCode(exitStatus);
