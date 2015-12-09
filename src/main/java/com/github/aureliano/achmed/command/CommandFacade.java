@@ -29,7 +29,7 @@ public final class CommandFacade {
 			.withCommand(StringHelper.join(cmd, " "))
 			.withTimeout(DEFAULT_TIMEOUT_EXECUTION)
 			.withTries(1)
-			.withVerbose(true)
+			.withVerbose(false)
 			.withWorkingDir(new File("").getAbsolutePath());
 		
 		return executeCommand(command);
