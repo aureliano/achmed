@@ -90,7 +90,12 @@ public class DebianService extends LinuxService {
 	}
 
 	public CommandResponse enableBootstrap() {
-		throw new UnsupportedOperationException("Not implemented yet.");
+		CommandResponse res = CommandFacade.executeCommand(UPDATE_RC, "-f", super.properties.getName(), "remove");
+		if (!res.isOK()) {
+			throw new ServiceResourceException(res.getError());
+		}
+		
+		return CommandFacade.executeCommand(UPDATE_RC, super.properties.getName(), "defaults");
 	}
 
 	public CommandResponse disableBootstrap() {
