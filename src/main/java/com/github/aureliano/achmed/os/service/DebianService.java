@@ -9,7 +9,7 @@ import com.github.aureliano.achmed.helper.StringHelper;
 public class DebianService extends LinuxService {
 
 	private static final Logger logger = Logger.getLogger(DebianService.class);
-	private static final String SERVICE_APP = "/usr/bin/service";
+	private static final String SERVICE = "/usr/bin/service";
 	
 	public DebianService() {
 		super();
@@ -23,7 +23,7 @@ public class DebianService extends LinuxService {
 		}
 		
 		if (StringHelper.isEmpty(super.properties.getBinary())) {
-			return CommandFacade.executeCommand(SERVICE_APP, super.properties.getName(), "start");
+			return CommandFacade.executeCommand(SERVICE, super.properties.getName(), "start");
 		}
 		
 		return super.start();
@@ -37,7 +37,7 @@ public class DebianService extends LinuxService {
 		}
 		
 		if (StringHelper.isEmpty(super.properties.getBinary())) {
-			return CommandFacade.executeCommand(SERVICE_APP, super.properties.getName(), "stop");
+			return CommandFacade.executeCommand(SERVICE, super.properties.getName(), "stop");
 		}
 		
 		return super.stop();
@@ -46,7 +46,7 @@ public class DebianService extends LinuxService {
 	@Override
 	public CommandResponse restart() {
 		if ((super.properties.getHasRestart() != null) && (super.properties.getHasRestart())) {
-			return CommandFacade.executeCommand(SERVICE_APP, super.properties.getName(), "restart");
+			return CommandFacade.executeCommand(SERVICE, super.properties.getName(), "restart");
 		}
 		
 		return super.restart();
@@ -55,7 +55,7 @@ public class DebianService extends LinuxService {
 	@Override
 	public boolean isRunning() {
 		if ((super.properties.getHasStatus() != null) && (super.properties.getHasStatus())) {
-			CommandResponse res = CommandFacade.executeCommand(SERVICE_APP, super.properties.getName(), "status");
+			CommandResponse res = CommandFacade.executeCommand(SERVICE, super.properties.getName(), "status");
 			return (res.getExitStatusCode() == 0);
 		}
 		
