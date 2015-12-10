@@ -1,20 +1,11 @@
 package com.github.aureliano.achmed.os;
 
-import com.github.aureliano.achmed.os.pkg.IPackageManager;
-import com.github.aureliano.achmed.os.pkg.PackageManagerFactory;
 import com.github.aureliano.achmed.types.OperatingSystemFamily;
-import com.github.aureliano.achmed.types.PackageProvider;
 
-public class CentOS extends Linux {
-
-	private IPackageManager packageManager;
+public class CentOS extends RedHat {
 	
 	public CentOS() {
-		this.packageManager = PackageManagerFactory.createPackageManager(PackageProvider.YUM);
-	}
-
-	public IPackageManager getDefaultPackageManager() {
-		return this.packageManager;
+		super();
 	}
 
 	public OperatingSystemFamily getOperatingSystemFamily() {
