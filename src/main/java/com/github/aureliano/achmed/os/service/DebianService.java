@@ -90,6 +90,11 @@ public class DebianService extends LinuxService {
 	}
 
 	public CommandResponse enableBootstrap() {
+		if (this.isEnabledInBootstrap()) {
+			logger.debug("Service " + super.properties.getName() + " is already enabled to initialize in bootstrap.");
+			return null;
+		}
+		
 		CommandResponse res = CommandFacade.executeCommand(UPDATE_RC, "-f", super.properties.getName(), "remove");
 		if (!res.isOK()) {
 			throw new ServiceResourceException(res);
@@ -99,6 +104,11 @@ public class DebianService extends LinuxService {
 	}
 
 	public CommandResponse disableBootstrap() {
+		if (!this.isEnabledInBootstrap()) {
+			logger.debug("Service " + super.properties.getName() + " is not enabled to initialize in bootstrap.");
+			return null;
+		}
+		
 		CommandResponse res = CommandFacade.executeCommand(UPDATE_RC, "-f", super.properties.getName(), "remove");
 		if (!res.isOK()) {
 			throw new ServiceResourceException(res);
