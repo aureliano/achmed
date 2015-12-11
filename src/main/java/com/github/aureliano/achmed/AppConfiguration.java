@@ -45,7 +45,7 @@ public final class AppConfiguration {
 	}
 	
 	public IOperatingSystem getOperatingSystem() {
-		return operatingSystem;
+		return operatingSystem.prototype();
 	}
 	
 	private void resolveOperatingSystem() {
