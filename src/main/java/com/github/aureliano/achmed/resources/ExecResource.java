@@ -71,10 +71,7 @@ public class ExecResource implements IResource {
 		CommandResponse res = CommandFacade.executeCommand(this.properties);
 		
 		if (!res.isOK()) {
-			String message = this.executionErrorMessage(res);
-			logger.warn(message);
-			
-			throw new ExecResourceException(message);
+			throw new ExecResourceException(res);
 		}
 	}
 	
@@ -83,14 +80,5 @@ public class ExecResource implements IResource {
 			.withCommand(command)
 			.withWorkingDir(this.properties.getCwd())
 			.withVerbose(this.properties.isVerbose());
-	}
-	
-	private String executionErrorMessage(CommandResponse res) {
-		return String.format(
-			"Command [%s] exited with status code [%d]. Detail: %s",
-			this.properties.getCommand(),
-			res.getExitStatusCode(),
-			res.getError()
-		);
 	}
 }
