@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 
 import com.github.aureliano.achmed.command.CommandFacade;
 import com.github.aureliano.achmed.command.CommandResponse;
+import com.github.aureliano.achmed.exception.ServiceResourceException;
 import com.github.aureliano.achmed.helper.StringHelper;
 
 public class RedHatService extends LinuxService {
@@ -65,7 +66,12 @@ public class RedHatService extends LinuxService {
 
 	@Override
 	public CommandResponse enableBootstrap() {
-		throw new UnsupportedOperationException("Not implemented yet.");
+		CommandResponse res = CommandFacade.executeCommand(CHKCONFIG, "--add", super.properties.getName());
+		if (!res.isOK()) {
+			throw new ServiceResourceException(res);
+		}
+		
+		return CommandFacade.executeCommand(CHKCONFIG, super.properties.getName(), "on");
 	}
 
 	@Override
