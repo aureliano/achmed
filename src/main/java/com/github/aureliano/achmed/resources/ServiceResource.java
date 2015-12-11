@@ -25,20 +25,11 @@ public class ServiceResource implements IResource {
 		logger.info(" >>> Apply service resource " + this.properties.getName());
 		
 		this.properties.configureAttributes();
-		 IService service = AppConfiguration.instance().getOperatingSystem().getDefaultServiceManager();
-		 service.setServiceProperties(this.properties);
+		IService service = AppConfiguration.instance().getOperatingSystem().getDefaultServiceManager();
+		service.setServiceProperties(this.properties);
 		
-		 if (this.properties.isEnsure()) {
-			if (!service.isRunning()) {
-				service.start();
-			}
-		} else {
-			if (service.isRunning()) {
-				service.stop();
-			}
-		}
-		
-		throw new UnsupportedOperationException("Not implemented yet.");
+		this.ensure(service);
+		this.configureBootstrap(service);
 	}
 	
 	public void setProperties(IResourceProperties properties) {
@@ -51,5 +42,27 @@ public class ServiceResource implements IResource {
 
 	public ResourceType type() {
 		return ResourceType.SERVICE;
+	}
+	
+	private void ensure(IService service) {
+		if (this.properties.isEnsure()) {
+			if (!service.isRunning()) {
+				service.start();
+			}
+		} else {
+			if (service.isRunning()) {
+				service.stop();
+			}
+		}
+	}
+	
+	private void configureBootstrap(IService service) {
+		if (this.properties.isEnable() == null) {
+			return; 
+		 } else if (this.properties.isEnable()) {
+			 service.enableBootstrap();
+		 } else {
+			 service.disableBootstrap();
+		 }
 	}
 }
