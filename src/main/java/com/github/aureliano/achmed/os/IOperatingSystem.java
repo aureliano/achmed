@@ -7,6 +7,8 @@ import com.github.aureliano.achmed.types.OS;
 import com.github.aureliano.achmed.types.OperatingSystemFamily;
 
 public interface IOperatingSystem {
+	
+	public abstract Linux prototype();
 
 	public abstract IPackageManager getDefaultPackageManager();
 	
