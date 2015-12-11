@@ -76,7 +76,7 @@ public class RedHatService extends LinuxService {
 
 	@Override
 	public CommandResponse disableBootstrap() {
-		throw new UnsupportedOperationException("Not implemented yet.");
+		return CommandFacade.executeCommand(CHKCONFIG, "--level", "0123456", super.properties.getName(), "off");
 	}
 
 	@Override
