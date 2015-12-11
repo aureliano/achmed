@@ -10,6 +10,7 @@ public class RedHatService extends LinuxService {
 
 	private static final Logger logger = Logger.getLogger(RedHatService.class);
 	private static final String SERVICE = "/sbin/service";
+	private static final String CHKCONFIG = "/sbin/chkconfig";
 	
 	public RedHatService() {
 		super();
@@ -74,6 +75,7 @@ public class RedHatService extends LinuxService {
 
 	@Override
 	public boolean isEnabledInBootstrap() {
-		throw new UnsupportedOperationException("Not implemented yet.");
+		CommandResponse res = CommandFacade.executeCommand(CHKCONFIG, super.properties.getName());
+		return res.isOK();
 	}
 }
