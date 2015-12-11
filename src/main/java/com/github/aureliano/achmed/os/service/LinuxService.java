@@ -92,6 +92,10 @@ public abstract class LinuxService extends BaseService {
 			public IPackageManager getDefaultPackageManager() {
 				return null;
 			}
+
+			public IService getDefaultServiceManager() {
+				return null;
+			}
 		};
 	}
 	

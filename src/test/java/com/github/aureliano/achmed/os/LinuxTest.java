@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import com.github.aureliano.achmed.exception.ServiceResourceException;
 import com.github.aureliano.achmed.os.pkg.IPackageManager;
+import com.github.aureliano.achmed.os.service.IService;
 import com.github.aureliano.achmed.types.OS;
 import com.github.aureliano.achmed.types.OperatingSystemFamily;
 
@@ -69,6 +70,10 @@ public class LinuxTest {
 			}
 			
 			public IPackageManager getDefaultPackageManager() {
+				return null;
+			}
+
+			public IService getDefaultServiceManager() {
 				return null;
 			}
 		};
