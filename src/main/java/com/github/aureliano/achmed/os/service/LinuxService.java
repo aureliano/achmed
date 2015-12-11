@@ -1,5 +1,9 @@
 package com.github.aureliano.achmed.os.service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.apache.log4j.Logger;
 
 import com.github.aureliano.achmed.command.CommandFacade;
@@ -8,6 +12,7 @@ import com.github.aureliano.achmed.exception.ServiceResourceException;
 import com.github.aureliano.achmed.helper.StringHelper;
 import com.github.aureliano.achmed.os.Linux;
 import com.github.aureliano.achmed.os.pkg.IPackageManager;
+import com.github.aureliano.achmed.resources.properties.ServiceProperties;
 import com.github.aureliano.achmed.types.OperatingSystemFamily;
 
 public abstract class LinuxService extends BaseService {
@@ -35,10 +40,7 @@ public abstract class LinuxService extends BaseService {
 					" was not provided to be used with binary command " + super.properties.getBinary());
 		}
 		
-		return CommandFacade.executeCommand(
-			super.properties.getBinary(),
-			super.properties.getStart()
-		);
+		return this.executeCommand(super.properties.getStart());
 	}
 
 	public CommandResponse stop() {
@@ -62,10 +64,7 @@ public abstract class LinuxService extends BaseService {
 			throw new ServiceResourceException(res);
 		}
 		
-		return CommandFacade.executeCommand(
-			super.properties.getBinary(),
-			super.properties.getStop()
-		);
+		return this.executeCommand(super.properties.getStop());
 	}
 
 	public CommandResponse restart() {
@@ -94,5 +93,27 @@ public abstract class LinuxService extends BaseService {
 				return null;
 			}
 		};
+	}
+	
+	private String[] buildCommand(String binary, String flags, String action) {
+		List<String> command = new ArrayList<>();
+		
+		command.add(binary);
+		if (!StringHelper.isEmpty(flags)) {
+			command.addAll(Arrays.asList(flags.split("\\s+")));
+		}
+		command.add(action);
+		
+		return command.toArray(new String[0]);
+	}
+	
+	private CommandResponse executeCommand(String action) {
+		return CommandFacade.executeCommand(
+			this.buildCommand(
+				super.properties.getBinary(),
+				super.properties.getFlags(),
+				action
+			)
+		);
 	}
 }
