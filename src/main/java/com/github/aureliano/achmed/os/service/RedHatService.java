@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 
 import com.github.aureliano.achmed.command.CommandFacade;
 import com.github.aureliano.achmed.command.CommandResponse;
+import com.github.aureliano.achmed.helper.StringHelper;
 
 public class RedHatService extends LinuxService {
 
@@ -12,6 +13,20 @@ public class RedHatService extends LinuxService {
 	
 	public RedHatService() {
 		super();
+	}
+	
+	@Override
+	public CommandResponse start() {
+		if (this.isRunning()) {
+			logger.debug("Service " + super.properties.getName() + " is already running.");
+			return null;
+		}
+		
+		if (StringHelper.isEmpty(super.properties.getBinary())) {
+			return CommandFacade.executeCommand(SERVICE, super.properties.getName(), "start");
+		}
+		
+		return super.start();
 	}
 	
 	@Override
