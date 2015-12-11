@@ -28,4 +28,14 @@ public class RedHat extends Linux {
 	public OperatingSystemFamily getOperatingSystemFamily() {
 		return OperatingSystemFamily.DEBIAN;
 	}
+	
+	@Override
+	public Linux prototype() {
+		RedHat os = new RedHat();
+		
+		os.packageManager = this.packageManager;
+		os.serviceManager = this.serviceManager;
+		
+		return os;
+	}
 }

@@ -28,4 +28,14 @@ public class Debian extends Linux {
 	public OperatingSystemFamily getOperatingSystemFamily() {
 		return OperatingSystemFamily.DEBIAN;
 	}
+	
+	@Override
+	public Linux prototype() {
+		Debian os = new Debian();
+		
+		os.packageManager = this.packageManager;
+		os.serviceManager = this.serviceManager;
+		
+		return os;
+	}
 }
