@@ -1,5 +1,8 @@
 package com.github.aureliano.achmed.os.fs;
 
+import com.github.aureliano.achmed.command.CommandFacade;
+import com.github.aureliano.achmed.command.CommandResponse;
+import com.github.aureliano.achmed.exception.FileResourceException;
 import com.github.aureliano.achmed.resources.properties.FileProperties;
 
 public class PosixFileProvider implements IFileProvider {
@@ -12,7 +15,12 @@ public class PosixFileProvider implements IFileProvider {
 
 	@Override
 	public void setFileMode() {
-		throw new UnsupportedOperationException("Not implemented yet.");
+		CommandResponse res = CommandFacade.executeCommand(
+			"chmod", this.properties.getMode(), this.properties.getPath());
+		
+		if (!res.isOK()) {
+			throw new FileResourceException(res);
+		}
 	}
 
 	@Override
