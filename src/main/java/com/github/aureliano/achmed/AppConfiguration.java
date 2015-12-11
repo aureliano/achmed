@@ -45,6 +45,7 @@ public final class AppConfiguration {
 	}
 	
 	public IOperatingSystem getOperatingSystem() {
+		logger.debug("Creating an operating system prototype from " + this.operatingSystem.getClass().getName());
 		return operatingSystem.prototype();
 	}
 	
