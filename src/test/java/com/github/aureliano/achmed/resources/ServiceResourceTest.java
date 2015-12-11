@@ -9,12 +9,6 @@ import com.github.aureliano.achmed.resources.properties.ServiceProperties;
 
 public class ServiceResourceTest {
 
-	@Test(expected = UnsupportedOperationException.class)
-	public void testApply() {
-		ServiceResource r = new ServiceResource();
-		r.apply();
-	}
-	
 	@Test
 	public void testType() {
 		ServiceResource r = new ServiceResource();
