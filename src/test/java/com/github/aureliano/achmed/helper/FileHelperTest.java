@@ -27,4 +27,28 @@ public class FileHelperTest {
 		assertTrue(destFile.exists());
 		assertTrue(destFile.isFile());
 	}
+	
+	@Test
+	public void testDelete() {
+		this.createDirectoryStructure();
+		
+		FileHelper.delete(new File("target/thrash"), true);
+		assertFalse(new File("target/thrash").exists());
+	}
+	
+	private void createDirectoryStructure() {
+		File sourceDir = new File("src/test/resources");
+		
+		for (File file : sourceDir.listFiles()) {
+			if (file.isFile()) {
+				FileHelper.copyFile(file, new File("target/thrash/" + file.getName()), true);
+			}
+		}
+		
+		for (File file : sourceDir.listFiles()) {
+			if (file.isFile()) {
+				FileHelper.copyFile(file, new File("target/thrash/level2/" + file.getName()), true);
+			}
+		}
+	}
 }

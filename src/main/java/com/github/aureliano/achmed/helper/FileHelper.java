@@ -15,20 +15,17 @@ public final class FileHelper {
 	}
 	
 	public static void copyFile(File sourceFile, File destFile) {
-		FileChannel source = null;
-		FileChannel destination = null;
-		
-		try {
+		try(
+			FileInputStream inputStream = new FileInputStream(sourceFile);
+			FileOutputStream outputStream = new FileOutputStream(destFile);
+		) {
 			if(!destFile.exists()) {
 				destFile.createNewFile();
 			}
 		
-			source = new FileInputStream(sourceFile).getChannel();
-			destination = new FileOutputStream(destFile).getChannel();
+			FileChannel source = inputStream.getChannel();
+			FileChannel destination = outputStream.getChannel();
 			destination.transferFrom(source, 0, source.size());
-			
-			source.close();
-			destination.close();
 		} catch (IOException ex) {
 			throw new AchmedException(ex);
 		}
@@ -45,5 +42,35 @@ public final class FileHelper {
 		}
 		
 		FileHelper.copyFile(sourceFile, destFile);
+	}
+	
+	public static void delete(File file) {
+		if (!file.delete()) {
+			throw new AchmedException("Could not delete file " + file.getPath());
+		}
+	}
+	
+	public static void delete(File file, boolean recursively) {
+		if (recursively) {
+			forceDelete(file);
+		} else {
+			delete(file);
+		}
+	}
+	
+	private static void forceDelete(File file) {
+		if (file.isDirectory()) {
+			File[] children = file.listFiles();
+			
+			if ((children != null) && (children.length > 0)) {
+				for (File child : children) {
+					forceDelete(child);
+				}
+			}
+		}
+		
+		if (!file.delete()) {
+			throw new AchmedException("Could not delete file " + file.getPath());
+		}
 	}
 }
