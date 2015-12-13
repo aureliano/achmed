@@ -1,6 +1,6 @@
 package com.github.aureliano.achmed.exception;
 
-public class NoSuchResourceException extends RuntimeException {
+public class NoSuchResourceException extends AchmedException {
 
 	private static final long serialVersionUID = 140440539843566483L;
 

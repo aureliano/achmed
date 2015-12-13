@@ -1,6 +1,6 @@
 package com.github.aureliano.achmed.exception;
 
-public class UnsupportedOperatingSystemException extends RuntimeException {
+public class UnsupportedOperatingSystemException extends AchmedException {
 
 	private static final long serialVersionUID = 4654066489822139408L;
 

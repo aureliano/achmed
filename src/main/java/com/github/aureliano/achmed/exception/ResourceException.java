@@ -2,7 +2,7 @@ package com.github.aureliano.achmed.exception;
 
 import com.github.aureliano.achmed.command.CommandResponse;
 
-public class ResourceException extends RuntimeException {
+public class ResourceException extends AchmedException {
 
 	private static final long serialVersionUID = 6266823647140894014L;
 

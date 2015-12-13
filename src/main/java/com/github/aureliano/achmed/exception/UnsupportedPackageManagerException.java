@@ -1,6 +1,6 @@
 package com.github.aureliano.achmed.exception;
 
-public class UnsupportedPackageManagerException extends RuntimeException {
+public class UnsupportedPackageManagerException extends AchmedException {
 
 	private static final long serialVersionUID = -4089891118124103597L;
 
