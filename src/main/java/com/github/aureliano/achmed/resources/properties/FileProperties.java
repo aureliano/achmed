@@ -3,7 +3,6 @@ package com.github.aureliano.achmed.resources.properties;
 import com.github.aureliano.achmed.helper.BooleanHelper;
 import com.github.aureliano.achmed.helper.StringHelper;
 import com.github.aureliano.achmed.types.EnsureFileStatus;
-import com.github.aureliano.achmed.types.LinkHandleMode;
 
 public class FileProperties extends ResourceProperties {
 
@@ -14,7 +13,6 @@ public class FileProperties extends ResourceProperties {
 	private Boolean force;
 	private String group;
 	private String ignore;
-	private LinkHandleMode links;
 	private String mode;
 	private String owner;
 	private Boolean purge;
@@ -25,7 +23,6 @@ public class FileProperties extends ResourceProperties {
 	public FileProperties() {
 		this.force = false;
 		this.purge = false;
-		this.links = LinkHandleMode.MANAGE;
 		this.replace = false;
 	}
 	
@@ -91,14 +88,6 @@ public class FileProperties extends ResourceProperties {
 
 	public void setIgnore(String ignore) {
 		this.ignore = ignore;
-	}
-
-	public LinkHandleMode getLinks() {
-		return links;
-	}
-
-	public void setLinks(LinkHandleMode links) {
-		this.links = links;
 	}
 
 	public String getMode() {
@@ -169,13 +158,6 @@ public class FileProperties extends ResourceProperties {
 			this.group = StringHelper.parse(value);
 		} else if ("ignore".equalsIgnoreCase(name)) {
 			this.ignore = StringHelper.parse(value);
-		} else if ("links".equalsIgnoreCase(name)) {
-			if ((value != null) && (value instanceof LinkHandleMode)) {
-				this.links = (LinkHandleMode) value;
-			} else {
-				String mode = StringHelper.parse(value).toUpperCase();
-				this.links = LinkHandleMode.valueOf(mode);
-			};
 		} else if ("mode".equalsIgnoreCase(name)) {
 			this.mode = StringHelper.parse(value);
 		} else if ("owner".equalsIgnoreCase(name)) {

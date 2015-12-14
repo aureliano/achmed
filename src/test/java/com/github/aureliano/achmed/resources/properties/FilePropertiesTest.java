@@ -7,7 +7,6 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import com.github.aureliano.achmed.types.EnsureFileStatus;
-import com.github.aureliano.achmed.types.LinkHandleMode;
 
 public class FilePropertiesTest {
 
@@ -17,7 +16,6 @@ public class FilePropertiesTest {
 		
 		assertFalse(file.isForce());
 		assertFalse(file.isPurge());
-		assertEquals(LinkHandleMode.MANAGE, file.getLinks());
 		assertFalse(file.isReplace());
 	}
 
@@ -31,7 +29,6 @@ public class FilePropertiesTest {
 			.put("force", false)
 			.put("group", "terrorist")
 			.put("ignore", "ignore")
-			.put("links", LinkHandleMode.IGNORE)
 			.put("mode", "0000")
 			.put("owner", "Achmed")
 			.put("purge", false)
@@ -48,7 +45,6 @@ public class FilePropertiesTest {
 		assertFalse(file.isForce());
 		assertEquals("terrorist", file.getGroup());
 		assertEquals("ignore", file.getIgnore());
-		assertEquals(LinkHandleMode.IGNORE, file.getLinks());
 		assertEquals("0000", file.getMode());
 		assertEquals("Achmed", file.getOwner());
 		assertFalse(file.isPurge());
@@ -58,9 +54,6 @@ public class FilePropertiesTest {
 		
 		file.put("ensure", "direcTory").configureAttributes();
 		assertEquals(EnsureFileStatus.DIRECTORY, file.getEnsure());
-		
-		file.put("links", "Follow").configureAttributes();
-		assertEquals(LinkHandleMode.FOLLOW, file.getLinks());
 	}
 
 	@Test

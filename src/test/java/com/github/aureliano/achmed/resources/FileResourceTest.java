@@ -1,14 +1,13 @@
 package com.github.aureliano.achmed.resources;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
 import com.github.aureliano.achmed.resources.properties.FileProperties;
 import com.github.aureliano.achmed.types.EnsureFileStatus;
-import com.github.aureliano.achmed.types.LinkHandleMode;
 
 public class FileResourceTest {
 
@@ -48,7 +47,6 @@ public class FileResourceTest {
 		p.setForce(false);
 		p.setGroup("terrorist");
 		p.setIgnore("ignore");
-		p.setLinks(LinkHandleMode.IGNORE);
 		p.setMode("0000");
 		p.setOwner("Achmed");
 		p.setPurge(false);
@@ -67,7 +65,6 @@ public class FileResourceTest {
 		assertFalse(p.isForce());
 		assertEquals("terrorist", p.getGroup());
 		assertEquals("ignore", p.getIgnore());
-		assertEquals(LinkHandleMode.IGNORE, p.getLinks());
 		assertEquals("0000", p.getMode());
 		assertEquals("Achmed", p.getOwner());
 		assertFalse(p.isPurge());
