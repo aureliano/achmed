@@ -166,7 +166,7 @@ public class PosixFileProvider implements IFileProvider {
 			logger.debug("Copy file " + source.getAbsolutePath() + " to " + target.getAbsolutePath());
 			FileHelper.copyFile(source, target);
 		} else {
-			String content = (this.properties.getSource() != null) ? this.properties.getSource() : "";
+			String content = (this.properties.getContent() != null) ? this.properties.getContent() : "";
 			try (
 				OutputStream stream = new FileOutputStream(target);
 				BufferedOutputStream bos = new BufferedOutputStream(stream);
