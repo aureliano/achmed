@@ -44,6 +44,39 @@ public final class FileHelper {
 		FileHelper.copyFile(sourceFile, destFile);
 	}
 	
+	public static void copyDirectory(File sourceDirectory, File destDirectory) {
+		final File[] srcFiles = sourceDirectory.listFiles();
+		if (srcFiles == null) {
+			throw new AchmedException("Failed to list contents of " + sourceDirectory);
+		}
+		
+		if (destDirectory.exists()) {
+			if (destDirectory.isDirectory() == false) {
+				throw new AchmedException("Destination '" + destDirectory + "' exists but is not a directory");
+			}
+		} else {
+			if (!destDirectory.mkdirs() && !destDirectory.isDirectory()) {
+				throw new AchmedException("Destination '" + destDirectory + "' directory cannot be created");
+			}
+		}
+		
+		if (destDirectory.canWrite() == false) {
+			throw new AchmedException("Destination '" + destDirectory + "' cannot be written to");
+		}
+		
+		for (final File srcFile : srcFiles) {
+			final File dstFile = new File(destDirectory, srcFile.getName());
+		
+			if (srcFile.isDirectory()) {
+				copyDirectory(srcFile, dstFile);
+			} else {
+				copyFile(srcFile, dstFile);
+			}
+		}
+	
+		destDirectory.setLastModified(sourceDirectory.lastModified());
+	}
+	
 	public static void delete(File file) {
 		if (!file.delete()) {
 			throw new AchmedException("Could not delete file " + file.getPath());

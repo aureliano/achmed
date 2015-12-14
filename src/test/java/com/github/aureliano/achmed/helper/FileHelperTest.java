@@ -1,5 +1,6 @@
 package com.github.aureliano.achmed.helper;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -54,6 +55,24 @@ public class FileHelperTest {
 	public void testAssertDirectoryExist() {
 		String path = "src/test/resources";
 		FileHelper.assertDirectoryExist(path);
+	}
+	
+	@Test
+	public void testCopyDirectory() {
+		this.createDirectoryStructure();
+		
+		File dir = new File("target/test-copy-directory");
+		if (dir.exists()) {
+			FileHelper.delete(dir, true);
+		}
+		
+		assertFalse(dir.exists());
+		
+		FileHelper.copyDirectory(new File("src/test/resources"), dir);
+		dir = new File(dir.getAbsolutePath());
+		assertTrue(dir.exists());
+		
+		assertEquals(3, dir.list().length);
 	}
 	
 	private void createDirectoryStructure() {
