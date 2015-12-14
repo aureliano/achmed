@@ -10,6 +10,7 @@ import com.github.aureliano.achmed.command.CommandResponse;
 import com.github.aureliano.achmed.exception.FileResourceException;
 import com.github.aureliano.achmed.helper.StringHelper;
 import com.github.aureliano.achmed.resources.properties.FileProperties;
+import com.github.aureliano.achmed.types.EnsureFileStatus;
 
 public class PosixFileProvider implements IFileProvider {
 
@@ -58,6 +59,13 @@ public class PosixFileProvider implements IFileProvider {
 			throw new FileResourceException(res);
 		}
 	}
+	
+	@Override
+	public void createFile() {
+		if (EnsureFileStatus.LINK.equals(this.properties.getEnsure())) {
+			this.createSymLink();
+		}
+	}
 
 	@Override
 	public void copyFile() {
@@ -77,5 +85,16 @@ public class PosixFileProvider implements IFileProvider {
 	@Override
 	public FileProperties getFileProperties() {
 		return this.properties;
+	}
+	
+	private void createSymLink() {
+		if (StringHelper.isEmpty(this.properties.getTarget())) {
+			throw new FileResourceException("Property 'target' not provided to symlink file.");
+		}
+		
+		CommandResponse res = CommandFacade.executeCommand("ln", "-s", this.properties.getPath(), this.properties.getTarget());
+		if (!res.isOK()) {
+			throw new FileResourceException(res);
+		}
 	}
 }
