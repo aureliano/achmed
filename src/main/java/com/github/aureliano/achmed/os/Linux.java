@@ -4,10 +4,22 @@ import com.github.aureliano.achmed.command.CommandFacade;
 import com.github.aureliano.achmed.command.CommandResponse;
 import com.github.aureliano.achmed.exception.ServiceResourceException;
 import com.github.aureliano.achmed.helper.StringHelper;
+import com.github.aureliano.achmed.os.fs.IFileProvider;
+import com.github.aureliano.achmed.os.fs.PosixFileProvider;
 import com.github.aureliano.achmed.types.OS;
 
 public abstract class Linux implements IOperatingSystem {
 
+	protected IFileProvider fileProvider;
+	
+	public Linux() {
+		this.fileProvider = new PosixFileProvider();
+	}
+	
+	public IFileProvider getDefaultFileProvider() {
+		return this.fileProvider;
+	}
+	
 	public OS getOperatingSystem() {
 		return OS.LINUX;
 	}
