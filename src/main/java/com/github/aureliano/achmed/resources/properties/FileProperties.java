@@ -12,7 +12,6 @@ public class FileProperties extends ResourceProperties {
 	private String content;
 	private Boolean force;
 	private String group;
-	private String ignore;
 	private String mode;
 	private String owner;
 	private Boolean replace;
@@ -80,14 +79,6 @@ public class FileProperties extends ResourceProperties {
 		this.group = group;
 	}
 
-	public String getIgnore() {
-		return ignore;
-	}
-
-	public void setIgnore(String ignore) {
-		this.ignore = ignore;
-	}
-
 	public String getMode() {
 		return mode;
 	}
@@ -146,8 +137,6 @@ public class FileProperties extends ResourceProperties {
 			this.force = BooleanHelper.parse(value);
 		} else if ("group".equalsIgnoreCase(name)) {
 			this.group = StringHelper.parse(value);
-		} else if ("ignore".equalsIgnoreCase(name)) {
-			this.ignore = StringHelper.parse(value);
 		} else if ("mode".equalsIgnoreCase(name)) {
 			this.mode = StringHelper.parse(value);
 		} else if ("owner".equalsIgnoreCase(name)) {

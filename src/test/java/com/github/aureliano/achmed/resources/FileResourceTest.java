@@ -46,7 +46,6 @@ public class FileResourceTest {
 		p.setContent("File content");
 		p.setForce(false);
 		p.setGroup("terrorist");
-		p.setIgnore("ignore");
 		p.setMode("0000");
 		p.setOwner("Achmed");
 		p.setReplace(true);
@@ -63,7 +62,6 @@ public class FileResourceTest {
 		assertEquals("File content", p.getContent());
 		assertFalse(p.isForce());
 		assertEquals("terrorist", p.getGroup());
-		assertEquals("ignore", p.getIgnore());
 		assertEquals("0000", p.getMode());
 		assertEquals("Achmed", p.getOwner());
 		assertTrue(p.isReplace());

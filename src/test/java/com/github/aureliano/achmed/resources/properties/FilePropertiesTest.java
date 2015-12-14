@@ -43,7 +43,6 @@ public class FilePropertiesTest {
 		assertEquals("File content", file.getContent());
 		assertFalse(file.isForce());
 		assertEquals("terrorist", file.getGroup());
-		assertEquals("ignore", file.getIgnore());
 		assertEquals("0000", file.getMode());
 		assertEquals("Achmed", file.getOwner());
 		assertTrue(file.isReplace());
