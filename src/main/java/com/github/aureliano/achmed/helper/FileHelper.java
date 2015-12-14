@@ -127,7 +127,7 @@ public final class FileHelper {
 	
 	public static void assertDirectoryDoesNotExist(String path) {
 		if (isDirectory(path)) {
-			throw new AchmedException("Directory " + path + " doesn't exist nor is a directory.");
+			throw new AchmedException("Directory " + path + " present when expected to doesn't exist.");
 		}
 	}
 	
