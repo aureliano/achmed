@@ -58,6 +58,23 @@ public final class FileHelper {
 		}
 	}
 	
+	public static void createDirectory(File file, boolean chain) {
+		if (file.exists()) {
+			return;
+		}
+		
+		AchmedException ex = new AchmedException("Could not create directory " + file.getPath());
+		if (chain) {
+			if (!file.mkdirs()) {
+				throw ex;
+			}
+		} else {
+			if (!file.mkdir()) {
+				throw ex;
+			}
+		}
+	}
+	
 	private static void forceDelete(File file) {
 		if (file.isDirectory()) {
 			File[] children = file.listFiles();
