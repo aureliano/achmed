@@ -120,22 +120,34 @@ public final class FileHelper {
 	}
 	
 	public static void assertDirectoryExist(String path) {
-		File dir = new File(path);
-		if (!dir.isDirectory()) {
+		if (!isDirectory(path)) {
 			throw new AchmedException("Directory " + path + " doesn't exist nor is a directory.");
 		}
 	}
 	
 	public static void assertSymbolicLinkExist(String path) {
-		if (!Files.isSymbolicLink(Paths.get(path))) {
+		if (!isSymbolicLink(path)) {
 			throw new AchmedException(path + " is not a symbolic link.");
 		}
 	}
 	
 	public static void assertRegularFileExist(String path) {
-		if (!Files.isRegularFile(Paths.get(path))) {
+		if (!isRegularFile(path)) {
 			throw new AchmedException(path + " is not a regular file.");
 		}
+	}
+	
+	private static boolean isRegularFile(String path) {
+		return Files.isRegularFile(Paths.get(path));
+	}
+	
+	private static boolean isSymbolicLink(String path) {
+		return Files.isSymbolicLink(Paths.get(path));
+	}
+	
+	private static boolean isDirectory(String path) {
+		File dir = new File(path);
+		return dir.isDirectory();
 	}
 	
 	private static void forceDelete(File file) {
