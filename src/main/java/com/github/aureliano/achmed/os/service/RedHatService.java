@@ -25,10 +25,16 @@ public class RedHatService extends LinuxService {
 		}
 		
 		if (StringHelper.isEmpty(super.properties.getBinary())) {
-			return CommandFacade.executeCommand(SERVICE, super.properties.getName(), "start");
+			CommandResponse res = CommandFacade.executeCommand(SERVICE, super.properties.getName(), "start");
+			super.assertServiceIsRunning();
+			
+			return res;
 		}
 		
-		return super.start();
+		CommandResponse res = super.start();
+		super.assertServiceIsRunning();
+		
+		return res;
 	}
 	
 	@Override
@@ -39,19 +45,31 @@ public class RedHatService extends LinuxService {
 		}
 		
 		if (StringHelper.isEmpty(super.properties.getBinary())) {
-			return CommandFacade.executeCommand(SERVICE, super.properties.getName(), "stop");
+			CommandResponse res = CommandFacade.executeCommand(SERVICE, super.properties.getName(), "stop");
+			super.assertServiceIsStopped();
+			
+			return res;
 		}
 		
-		return super.stop();
+		CommandResponse res = super.stop();
+		super.assertServiceIsStopped();
+		
+		return res;
 	}
 	
 	@Override
 	public CommandResponse restart() {
 		if ((super.properties.getHasRestart() != null) && (super.properties.getHasRestart())) {
-			return CommandFacade.executeCommand(SERVICE, super.properties.getName(), "restart");
+			CommandResponse res = CommandFacade.executeCommand(SERVICE, super.properties.getName(), "restart");
+			super.assertServiceIsRunning();
+			
+			return res;
 		}
 		
-		return super.restart();
+		CommandResponse res = super.restart();
+		super.assertServiceIsRunning();
+		
+		return res;
 	}
 	
 	@Override
@@ -71,12 +89,20 @@ public class RedHatService extends LinuxService {
 			throw new ServiceResourceException(res);
 		}
 		
-		return CommandFacade.executeCommand(CHKCONFIG, super.properties.getName(), "on");
+		res = CommandFacade.executeCommand(CHKCONFIG, super.properties.getName(), "on");
+		super.assertServiceIsEnabledInBootstrap();
+		
+		return res;
 	}
 
 	@Override
 	public CommandResponse disableBootstrap() {
-		return CommandFacade.executeCommand(CHKCONFIG, "--level", "0123456", super.properties.getName(), "off");
+		CommandResponse res = CommandFacade.executeCommand(
+			CHKCONFIG, "--level", "0123456", super.properties.getName(), "off"
+		);
+		super.assertServiceIsDisabledInBootstrap();
+		
+		return res;
 	}
 
 	@Override
