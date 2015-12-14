@@ -5,6 +5,9 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import org.junit.Test;
 
@@ -55,6 +58,30 @@ public class FileHelperTest {
 	public void testAssertDirectoryExist() {
 		String path = "src/test/resources";
 		FileHelper.assertDirectoryExist(path);
+	}
+	
+	@Test(expected = AchmedException.class)
+	public void testAssertSymbolicLinkEmpty() {
+		String path = "";
+		FileHelper.assertSymbolicLinkExist(path);
+	}
+	
+	@Test(expected = AchmedException.class)
+	public void testAssertSymbolicLinkDirectory() {
+		String path = "src/test/resources";
+		FileHelper.assertSymbolicLinkExist(path);
+	}
+	
+	@Test
+	public void testAssertSymbolicLink() throws IOException {
+		String path = "target/thrash/";
+		String symlink = "target/symlink";
+		new File(symlink).delete();
+		
+		Files.createSymbolicLink(Paths.get(symlink), Paths.get(path));
+		
+		FileHelper.assertSymbolicLinkExist(symlink);
+		new File(symlink).delete();
 	}
 	
 	@Test

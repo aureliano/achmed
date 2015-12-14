@@ -4,7 +4,18 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URI;
 import java.nio.channels.FileChannel;
+import java.nio.file.FileSystem;
+import java.nio.file.Files;
+import java.nio.file.LinkOption;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.WatchKey;
+import java.nio.file.WatchService;
+import java.nio.file.WatchEvent.Kind;
+import java.nio.file.WatchEvent.Modifier;
+import java.util.Iterator;
 
 import com.github.aureliano.achmed.exception.AchmedException;
 
@@ -112,6 +123,12 @@ public final class FileHelper {
 		File dir = new File(path);
 		if (!dir.isDirectory()) {
 			throw new AchmedException("Directory " + path + " doesn't exist nor is a directory.");
+		}
+	}
+	
+	public static void assertSymbolicLinkExist(String path) {
+		if (!Files.isSymbolicLink(Paths.get(path))) {
+			throw new AchmedException(path + " is not a symbolic link.");
 		}
 	}
 	
