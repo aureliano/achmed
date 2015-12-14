@@ -15,14 +15,12 @@ public class FileProperties extends ResourceProperties {
 	private String ignore;
 	private String mode;
 	private String owner;
-	private Boolean purge;
 	private Boolean replace;
 	private String source;
 	private String target;
 	
 	public FileProperties() {
 		this.force = false;
-		this.purge = false;
 		this.replace = false;
 	}
 	
@@ -106,14 +104,6 @@ public class FileProperties extends ResourceProperties {
 		this.owner = owner;
 	}
 
-	public Boolean isPurge() {
-		return purge;
-	}
-
-	public void setPurge(Boolean purge) {
-		this.purge = purge;
-	}
-
 	public Boolean isReplace() {
 		return replace;
 	}
@@ -162,8 +152,6 @@ public class FileProperties extends ResourceProperties {
 			this.mode = StringHelper.parse(value);
 		} else if ("owner".equalsIgnoreCase(name)) {
 			this.owner = StringHelper.parse(value);
-		} else if ("purge".equalsIgnoreCase(name)) {
-			this.purge = BooleanHelper.parse(value);
 		} else if ("replace".equalsIgnoreCase(name)) {
 			this.replace = BooleanHelper.parse(value);
 		} else if ("source".equalsIgnoreCase(name)) {

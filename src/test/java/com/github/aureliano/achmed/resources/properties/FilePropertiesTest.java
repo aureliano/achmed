@@ -15,7 +15,6 @@ public class FilePropertiesTest {
 		FileProperties file = new FileProperties();
 		
 		assertFalse(file.isForce());
-		assertFalse(file.isPurge());
 		assertFalse(file.isReplace());
 	}
 
@@ -47,7 +46,6 @@ public class FilePropertiesTest {
 		assertEquals("ignore", file.getIgnore());
 		assertEquals("0000", file.getMode());
 		assertEquals("Achmed", file.getOwner());
-		assertFalse(file.isPurge());
 		assertTrue(file.isReplace());
 		assertEquals("/path/to/source/file", file.getSource());
 		assertEquals("/path/to/target", file.getTarget());
