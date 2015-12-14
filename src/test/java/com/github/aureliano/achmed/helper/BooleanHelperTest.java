@@ -11,7 +11,8 @@ public class BooleanHelperTest {
 	@Test
 	public void testParse() {
 		assertNull(BooleanHelper.parse(null));
-		assertFalse(BooleanHelper.parse(""));
+		assertNull(BooleanHelper.parse(""));
+		assertNull(BooleanHelper.parse("Invalid"));
 		
 		assertTrue(BooleanHelper.parse(true));
 		assertFalse(BooleanHelper.parse(false));

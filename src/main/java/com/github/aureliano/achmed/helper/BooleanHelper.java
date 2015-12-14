@@ -12,7 +12,11 @@ public final class BooleanHelper {
 		} else if (object instanceof Boolean) {
 			return (Boolean) object;
 		} else {
-			return Boolean.parseBoolean(object.toString());
+			if (object.toString().toLowerCase().matches("(true|false)")) {
+				return Boolean.parseBoolean(object.toString());
+			} else {
+				return null;
+			}
 		}
 	}
 }
