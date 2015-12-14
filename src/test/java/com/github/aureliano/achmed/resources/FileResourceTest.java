@@ -52,7 +52,6 @@ public class FileResourceTest {
 		p.setMode("0000");
 		p.setOwner("Achmed");
 		p.setPurge(false);
-		p.setRecurse(false);
 		p.setReplace(true);
 		p.setSource("/path/to/source/file");
 		p.setTarget("/path/to/target");
@@ -72,7 +71,6 @@ public class FileResourceTest {
 		assertEquals("0000", p.getMode());
 		assertEquals("Achmed", p.getOwner());
 		assertFalse(p.isPurge());
-		assertFalse(p.isRecurse());
 		assertTrue(p.isReplace());
 		assertEquals("/path/to/source/file", p.getSource());
 		assertEquals("/path/to/target", p.getTarget());

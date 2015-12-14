@@ -18,7 +18,6 @@ public class FilePropertiesTest {
 		assertFalse(file.isForce());
 		assertFalse(file.isPurge());
 		assertEquals(LinkHandleMode.MANAGE, file.getLinks());
-		assertFalse(file.isRecurse());
 		assertFalse(file.isReplace());
 	}
 
@@ -53,7 +52,6 @@ public class FilePropertiesTest {
 		assertEquals("0000", file.getMode());
 		assertEquals("Achmed", file.getOwner());
 		assertFalse(file.isPurge());
-		assertFalse(file.isRecurse());
 		assertTrue(file.isReplace());
 		assertEquals("/path/to/source/file", file.getSource());
 		assertEquals("/path/to/target", file.getTarget());
