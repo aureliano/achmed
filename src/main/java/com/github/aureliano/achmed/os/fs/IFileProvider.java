@@ -8,6 +8,8 @@ public interface IFileProvider {
 	
 	public abstract void setFileOwner();
 	
+	public abstract void createFile();
+	
 	public abstract void copyFile();
 	
 	public abstract void copyFolder();
