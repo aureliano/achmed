@@ -34,6 +34,7 @@ public class PosixFileProvider implements IFileProvider {
 		CommandResponse res = CommandFacade.executeCommand(
 			"chmod", this.properties.getMode(), this.properties.getPath());
 		
+		logger.debug(res.getCommand());
 		if (!res.isOK()) {
 			throw new FileResourceException(res);
 		}
@@ -62,6 +63,7 @@ public class PosixFileProvider implements IFileProvider {
 		ownerAndGroup.add(0, "chown");
 		CommandResponse res = CommandFacade.executeCommand(ownerAndGroup.toArray(new String[0]));
 		
+		logger.debug(res.getCommand());
 		if (!res.isOK()) {
 			throw new FileResourceException(res);
 		}
