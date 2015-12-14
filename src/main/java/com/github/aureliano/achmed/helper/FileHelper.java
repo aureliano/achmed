@@ -143,6 +143,12 @@ public final class FileHelper {
 		}
 	}
 	
+	public static void assertFileDoesNotExist(String path) {
+		if (new File(path).exists()) {
+			throw new AchmedException(path + " exist when expected to does not exist.");
+		}
+	}
+	
 	private static boolean isRegularFile(String path) {
 		return Files.isRegularFile(Paths.get(path));
 	}

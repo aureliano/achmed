@@ -130,6 +130,18 @@ public class FileHelperTest {
 		FileHelper.assertRegularFileExist(path);
 	}
 	
+	@Test(expected = AchmedException.class)
+	public void testAssertFileDoesNotExistError() {
+		String path = "src/test/resources/simple_file";
+		FileHelper.assertFileDoesNotExist(path);
+	}
+	
+	@Test
+	public void testAssertFileDoesNotExist() {
+		String path = "src/test/resources/nonexistent";
+		FileHelper.assertFileDoesNotExist(path);
+	}
+	
 	@Test
 	public void testCopyDirectory() {
 		this.createDirectoryStructure();
