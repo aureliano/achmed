@@ -8,9 +8,9 @@ public interface IFileProvider {
 	
 	public abstract void setFileOwner();
 	
-	public abstract void createFile();
+	public abstract void ensureFilePresence();
 	
-	public abstract void deleteFile();
+	public abstract void ensureFileAbsence();
 	
 	public abstract void copyFile();
 	

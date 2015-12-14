@@ -68,7 +68,7 @@ public class PosixFileProvider implements IFileProvider {
 	}
 	
 	@Override
-	public void createFile() {
+	public void ensureFilePresence() {
 		if (EnsureFileStatus.DIRECTORY.equals(this.properties.getEnsure())) {
 			this.createDirectory();
 		} else if (EnsureFileStatus.LINK.equals(this.properties.getEnsure())) {
@@ -81,7 +81,7 @@ public class PosixFileProvider implements IFileProvider {
 	}
 	
 	@Override
-	public void deleteFile() {
+	public void ensureFileAbsence() {
 		if (!EnsureFileStatus.ABSENT.equals(this.properties.getEnsure())) {
 			throw new FileResourceException("Cannot delete file with a different status absent.");
 		}
