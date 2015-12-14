@@ -70,6 +70,18 @@ public class FileHelperTest {
 	}
 	
 	@Test(expected = AchmedException.class)
+	public void testAssertDirectoryDoesNotExistError() {
+		String path = "src/test/resources";
+		FileHelper.assertDirectoryDoesNotExist(path);
+	}
+	
+	@Test
+	public void testAssertDirectoryDoesNotExist() {
+		String path = "src/test/resources/nonexistent";
+		FileHelper.assertDirectoryDoesNotExist(path);
+	}
+	
+	@Test(expected = AchmedException.class)
 	public void testAssertSymbolicLinkEmpty() {
 		String path = "";
 		FileHelper.assertSymbolicLinkExist(path);

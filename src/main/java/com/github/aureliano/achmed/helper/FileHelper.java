@@ -125,6 +125,12 @@ public final class FileHelper {
 		}
 	}
 	
+	public static void assertDirectoryDoesNotExist(String path) {
+		if (isDirectory(path)) {
+			throw new AchmedException("Directory " + path + " doesn't exist nor is a directory.");
+		}
+	}
+	
 	public static void assertSymbolicLinkExist(String path) {
 		if (!isSymbolicLink(path)) {
 			throw new AchmedException(path + " is not a symbolic link.");
