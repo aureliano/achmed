@@ -97,16 +97,6 @@ public class PosixFileProvider implements IFileProvider {
 	}
 
 	@Override
-	public void copyFile() {
-		throw new UnsupportedOperationException("Not implemented yet.");
-	}
-
-	@Override
-	public void copyFolder() {
-		throw new UnsupportedOperationException("Not implemented yet.");
-	}
-
-	@Override
 	public void setFileProperties(FileProperties properties) {
 		this.properties = properties;
 	}

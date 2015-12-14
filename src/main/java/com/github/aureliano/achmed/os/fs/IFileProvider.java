@@ -12,10 +12,6 @@ public interface IFileProvider {
 	
 	public abstract void ensureFileAbsence();
 	
-	public abstract void copyFile();
-	
-	public abstract void copyFolder();
-	
 	public abstract void setFileProperties(FileProperties properties);
 	
 	public abstract FileProperties getFileProperties();
