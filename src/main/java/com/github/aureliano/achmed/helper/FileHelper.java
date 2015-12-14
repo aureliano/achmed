@@ -75,6 +75,13 @@ public final class FileHelper {
 		}
 	}
 	
+	public static void assertDirectoryExist(String path) {
+		File dir = new File(path);
+		if (!dir.isDirectory()) {
+			throw new AchmedException("Directory " + path + " doesn't exist nor is a directory.");
+		}
+	}
+	
 	private static void forceDelete(File file) {
 		if (file.isDirectory()) {
 			File[] children = file.listFiles();

@@ -7,6 +7,8 @@ import java.io.File;
 
 import org.junit.Test;
 
+import com.github.aureliano.achmed.exception.AchmedException;
+
 public class FileHelperTest {
 
 	@Test
@@ -34,6 +36,24 @@ public class FileHelperTest {
 		
 		FileHelper.delete(new File("target/thrash"), true);
 		assertFalse(new File("target/thrash").exists());
+	}
+	
+	@Test(expected = AchmedException.class)
+	public void testAssertDirectoryExistEmpty() {
+		String path = "";
+		FileHelper.assertDirectoryExist(path);
+	}
+	
+	@Test(expected = AchmedException.class)
+	public void testAssertDirectoryExistFile() {
+		String path = "src/test/resources/simple_file";
+		FileHelper.assertDirectoryExist(path);
+	}
+	
+	@Test
+	public void testAssertDirectoryExist() {
+		String path = "src/test/resources";
+		FileHelper.assertDirectoryExist(path);
 	}
 	
 	private void createDirectoryStructure() {
