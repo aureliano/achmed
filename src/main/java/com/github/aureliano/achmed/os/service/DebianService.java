@@ -37,10 +37,16 @@ public class DebianService extends LinuxService {
 		}
 		
 		if (StringHelper.isEmpty(super.properties.getBinary())) {
-			return CommandFacade.executeCommand(SERVICE, super.properties.getName(), "start");
+			CommandResponse res = CommandFacade.executeCommand(SERVICE, super.properties.getName(), "start");
+			super.assertServiceIsRunning();
+			
+			return res;
 		}
 		
-		return super.start();
+		CommandResponse res = super.start();
+		super.assertServiceIsRunning();
+		
+		return res;
 	}
 	
 	@Override
@@ -51,19 +57,31 @@ public class DebianService extends LinuxService {
 		}
 		
 		if (StringHelper.isEmpty(super.properties.getBinary())) {
-			return CommandFacade.executeCommand(SERVICE, super.properties.getName(), "stop");
+			CommandResponse res = CommandFacade.executeCommand(SERVICE, super.properties.getName(), "stop");
+			super.assertServiceIsStopped();
+			
+			return res;
 		}
 		
-		return super.stop();
+		CommandResponse res = super.stop();
+		super.assertServiceIsStopped();
+		
+		return res;
 	}
 	
 	@Override
 	public CommandResponse restart() {
 		if ((super.properties.getHasRestart() != null) && (super.properties.getHasRestart())) {
-			return CommandFacade.executeCommand(SERVICE, super.properties.getName(), "restart");
+			CommandResponse res = CommandFacade.executeCommand(SERVICE, super.properties.getName(), "restart");
+			super.assertServiceIsRunning();
+			
+			return res;
 		}
 		
-		return super.restart();
+		CommandResponse res = super.restart();
+		super.assertServiceIsRunning();
+		
+		return res;
 	}
 	
 	@Override
@@ -100,7 +118,10 @@ public class DebianService extends LinuxService {
 			throw new ServiceResourceException(res);
 		}
 		
-		return CommandFacade.executeCommand(UPDATE_RC, super.properties.getName(), "defaults");
+		res = CommandFacade.executeCommand(UPDATE_RC, super.properties.getName(), "defaults");
+		super.assertServiceIsEnabledInBootstrap();
+		
+		return res;
 	}
 
 	public CommandResponse disableBootstrap() {
@@ -114,8 +135,11 @@ public class DebianService extends LinuxService {
 			throw new ServiceResourceException(res);
 		}
 		
-		return CommandFacade.executeCommand(
+		res = CommandFacade.executeCommand(
 			UPDATE_RC, super.properties.getName(), "stop", "00", "1", "2", "3", "4", "5", "6", ".");
+		super.assertServiceIsDisabledInBootstrap();
+		
+		return res;
 	}
 	
 	private int getStartLinkCount() {

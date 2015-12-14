@@ -10,12 +10,6 @@ import com.github.aureliano.achmed.resources.properties.FileProperties;
 import com.github.aureliano.achmed.types.EnsureFileStatus;
 
 public class FileResourceTest {
-
-	@Test(expected = UnsupportedOperationException.class)
-	public void testApply() {
-		FileResource r = new FileResource();
-		r.apply();
-	}
 	
 	@Test
 	public void testType() {
