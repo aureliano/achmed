@@ -10,6 +10,8 @@ public interface IFileProvider {
 	
 	public abstract void createFile();
 	
+	public abstract void deleteFile();
+	
 	public abstract void copyFile();
 	
 	public abstract void copyFolder();
