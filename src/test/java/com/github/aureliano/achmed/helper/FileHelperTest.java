@@ -9,11 +9,20 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import org.junit.After;
 import org.junit.Test;
 
 import com.github.aureliano.achmed.exception.AchmedException;
 
 public class FileHelperTest {
+	
+	private static final String SYMLINK_PATH = "target/symlink";
+	
+	@After
+	public void tearDown() {
+		String symlink = SYMLINK_PATH;
+		new File(symlink).delete();
+	}
 
 	@Test
 	public void testCopyFile() {
@@ -76,12 +85,37 @@ public class FileHelperTest {
 	public void testAssertSymbolicLink() throws IOException {
 		String path = "target/thrash/";
 		String symlink = "target/symlink";
-		new File(symlink).delete();
+		
+		Files.createSymbolicLink(Paths.get(symlink), Paths.get(path));
+		FileHelper.assertSymbolicLinkExist(symlink);
+	}
+	
+	@Test(expected = AchmedException.class)
+	public void testAssertRegularFileExistEmpty() {
+		String path = "";
+		FileHelper.assertRegularFileExist(path);
+	}
+	
+	@Test(expected = AchmedException.class)
+	public void testAssertRegularFileExistDirectory() {
+		String path = "src/test/resources";
+		FileHelper.assertRegularFileExist(path);
+	}
+	
+	@Test(expected = AchmedException.class)
+	public void testAssertRegularFileExistSymlink() throws IOException {
+		String path = "target/thrash/";
+		String symlink = "target/symlink";
 		
 		Files.createSymbolicLink(Paths.get(symlink), Paths.get(path));
 		
-		FileHelper.assertSymbolicLinkExist(symlink);
-		new File(symlink).delete();
+		FileHelper.assertRegularFileExist(symlink);
+	}
+	
+	@Test
+	public void testAssertRegularFileExist() {
+		String path = "src/test/resources/simple_file";
+		FileHelper.assertRegularFileExist(path);
 	}
 	
 	@Test

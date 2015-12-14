@@ -132,6 +132,12 @@ public final class FileHelper {
 		}
 	}
 	
+	public static void assertRegularFileExist(String path) {
+		if (!Files.isRegularFile(Paths.get(path))) {
+			throw new AchmedException(path + " is not a regular file.");
+		}
+	}
+	
 	private static void forceDelete(File file) {
 		if (file.isDirectory()) {
 			File[] children = file.listFiles();
