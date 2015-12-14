@@ -79,6 +79,22 @@ public class PosixFileProvider implements IFileProvider {
 			this.ensureFile();
 		}
 	}
+	
+	@Override
+	public void deleteFile() {
+		if (!EnsureFileStatus.ABSENT.equals(this.properties.getEnsure())) {
+			throw new FileResourceException("Cannot delete file with a different status absent.");
+		}
+		
+		File target = new File(this.properties.getPath());
+		if (target.isDirectory()) {
+			this.deleteDirectory();
+			FileHelper.assertDirectoryDoesNotExist(this.properties.getPath());
+		} else {
+			FileHelper.delete(target);
+			FileHelper.assertFileDoesNotExist(this.properties.getPath());
+		}
+	}
 
 	@Override
 	public void copyFile() {
@@ -125,9 +141,22 @@ public class PosixFileProvider implements IFileProvider {
 			if (shouldReplace) {
 				this.writeContent(target);
 			}
+			
+			logger.debug("Ignore file replacing.");
 		} else {
 			this.writeContent(target);
 		}
+		
+		FileHelper.assertRegularFileExist(this.properties.getPath());
+	}
+	
+	private void deleteDirectory() {
+		if ((this.properties.isForce() == null) || (!this.properties.isForce())) {
+			throw new FileResourceException("Cannot recreate directory " + this.properties.getPath() + " when force property isn't true.");
+		}
+		
+		File target = new File(this.properties.getPath());
+		FileHelper.delete(target, true);
 	}
 	
 	private void writeContent(File target) {
@@ -173,6 +202,7 @@ public class PosixFileProvider implements IFileProvider {
 		}
 		
 		FileHelper.copyDirectory(sourceDir, targetDir);
+		FileHelper.assertDirectoryExist(this.properties.getPath());
 	}
 	
 	private void createSymLink() {
@@ -185,5 +215,7 @@ public class PosixFileProvider implements IFileProvider {
 		if (!res.isOK()) {
 			throw new FileResourceException(res);
 		}
+		
+		FileHelper.assertSymbolicLinkExist(this.properties.getTarget());
 	}
 }
