@@ -13,7 +13,7 @@ import com.github.aureliano.achmed.helper.PkgManagerHelper;
 import com.github.aureliano.achmed.helper.StringHelper;
 import com.github.aureliano.achmed.resources.properties.PackageProperties;
 
-public class YumPackageManager implements IPackageManager {
+public class YumPackageManager extends RpmPackageManager {
 
 	private static final Logger logger = Logger.getLogger(YumPackageManager.class);
 	private static final String YUM = "yum";
