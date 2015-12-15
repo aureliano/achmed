@@ -3,6 +3,7 @@ package com.github.aureliano.achmed;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.aureliano.achmed.annotation.Max;
 import com.github.aureliano.achmed.annotation.Min;
 import com.github.aureliano.achmed.annotation.NotEmpty;
 import com.github.aureliano.achmed.annotation.NotNull;
@@ -21,6 +22,7 @@ public class Model {
 	@NotEmpty
 	@Pattern(value = "[\\d\\w]{3,5}")
 	@Min(value = 3)
+	@Max(value = 5)
 	public String getId() {
 		return this.id;
 	}
@@ -36,6 +38,7 @@ public class Model {
 	}
 
 	@Min(value = 1)
+	@Max(value = 1)
 	public List<String> getExceptions() {
 		return this.exceptions;
 	}
