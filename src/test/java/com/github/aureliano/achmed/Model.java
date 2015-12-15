@@ -1,6 +1,8 @@
 package com.github.aureliano.achmed;
 
+import com.github.aureliano.achmed.annotation.NotEmpty;
 import com.github.aureliano.achmed.annotation.NotNull;
+import com.github.aureliano.achmed.annotation.Pattern;
 
 public class Model {
 
@@ -11,6 +13,8 @@ public class Model {
 	}
 
 	@NotNull
+	@NotEmpty
+	@Pattern(value = "[\\d\\w]{3,5}")
 	public String getId() {
 		return this.id;
 	}
