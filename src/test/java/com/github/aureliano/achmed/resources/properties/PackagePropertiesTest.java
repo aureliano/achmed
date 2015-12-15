@@ -18,7 +18,7 @@ public class PackagePropertiesTest {
 	public void testDefaultValues() {
 		PackageProperties pkg = new PackageProperties();
 		
-		assertEquals("install", pkg.getEnsure());
+		assertEquals("installed", pkg.getEnsure());
 		assertEquals(DebianConfigFilesStatus.KEEP, pkg.getConfigFiles());
 		assertTrue(pkg.getInstallOptions().isEmpty());
 		assertTrue(pkg.getUninstallOptions().isEmpty());
