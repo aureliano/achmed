@@ -12,7 +12,7 @@ import com.github.aureliano.achmed.idiom.LanguageSingleton;
 import com.github.aureliano.achmed.resources.properties.PackageProperties;
 import com.github.aureliano.achmed.types.DebianConfigFilesStatus;
 
-public class AptPackageManager implements IPackageManager {
+public class AptPackageManager extends DpkgPackageManager {
 
 	private static final String APT_GET = "/usr/bin/apt-get";
 	private static final String APT_CACHE = "/usr/bin/apt-cache";
