@@ -159,7 +159,7 @@ public class FileHelperTest {
 		dir = new File(dir.getAbsolutePath());
 		assertTrue(dir.exists());
 		
-		assertEquals(3, dir.list().length);
+		assertEquals(4, dir.list().length);
 	}
 	
 	@Test
