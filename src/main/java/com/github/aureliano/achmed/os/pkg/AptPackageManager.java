@@ -31,6 +31,10 @@ public class AptPackageManager extends DpkgPackageManager {
 			throw new PackageResourceException(res);
 		}
 		
+		if (!super.isInstalled()) {
+			throw new PackageResourceException("Expected package " + this.properties.getName() + " was installed, but it doesn't.");
+		}
+		
 		return res;
 	}
 
@@ -40,6 +44,10 @@ public class AptPackageManager extends DpkgPackageManager {
 		
 		if (!res.isOK()) {
 			throw new PackageResourceException(res);
+		}
+		
+		if (super.isInstalled()) {
+			throw new PackageResourceException("Expected package " + this.properties.getName() + " was not installed, but it is.");
 		}
 		
 		return res;
