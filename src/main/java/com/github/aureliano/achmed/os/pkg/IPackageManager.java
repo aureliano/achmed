@@ -11,6 +11,8 @@ public interface IPackageManager {
 	
 	public abstract String latest();
 	
+	public abstract boolean isInstalled();
+	
 	public abstract void setPackageProperties(PackageProperties properties);
 	
 	public abstract PackageProperties getPackageProperties();
