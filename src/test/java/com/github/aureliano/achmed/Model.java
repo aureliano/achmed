@@ -8,6 +8,7 @@ import com.github.aureliano.achmed.annotation.Min;
 import com.github.aureliano.achmed.annotation.NotEmpty;
 import com.github.aureliano.achmed.annotation.NotNull;
 import com.github.aureliano.achmed.annotation.Pattern;
+import com.github.aureliano.achmed.annotation.Size;
 
 public class Model {
 
@@ -23,6 +24,7 @@ public class Model {
 	@Pattern(value = "[\\d\\w]{3,5}")
 	@Min(value = 3)
 	@Max(value = 5)
+	@Size(min = 3, max = 5)
 	public String getId() {
 		return this.id;
 	}
@@ -39,6 +41,7 @@ public class Model {
 
 	@Min(value = 1)
 	@Max(value = 1)
+	@Size(min = 1, max = 1)
 	public List<String> getExceptions() {
 		return this.exceptions;
 	}
