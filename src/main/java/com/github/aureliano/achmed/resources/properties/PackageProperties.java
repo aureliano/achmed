@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import com.github.aureliano.achmed.annotation.NotEmpty;
 import com.github.aureliano.achmed.helper.StringHelper;
 import com.github.aureliano.achmed.types.DebianConfigFilesStatus;
 import com.github.aureliano.achmed.types.PackageProvider;
@@ -33,6 +34,7 @@ public class PackageProperties extends ResourceProperties {
 		return this;
 	}
 
+	@NotEmpty
 	public String getName() {
 		return name;
 	}
@@ -57,6 +59,7 @@ public class PackageProperties extends ResourceProperties {
 		this.configFiles = configFiles;
 	}
 
+	@NotEmpty(message = "Expected to find a not null value for field ensure. Accept only [ INSTALLED, PRESENT, ABSENT, LATEST, version-value ]")
 	public String getEnsure() {
 		return ensure;
 	}

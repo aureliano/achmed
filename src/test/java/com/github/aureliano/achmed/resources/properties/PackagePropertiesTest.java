@@ -6,11 +6,14 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
+import java.util.Set;
 
 import org.junit.Test;
 
 import com.github.aureliano.achmed.types.DebianConfigFilesStatus;
 import com.github.aureliano.achmed.types.PackageProvider;
+import com.github.aureliano.achmed.validation.ConstraintViolation;
+import com.github.aureliano.achmed.validation.ObjectValidator;
 
 public class PackagePropertiesTest {
 	
@@ -95,5 +98,36 @@ public class PackagePropertiesTest {
 		
 		p2.setProvider(PackageProvider.APT);
 		assertTrue(p1.equals(p2));
+	}
+	
+	@Test
+	public void testValidation() {
+		PackageProperties p = new PackageProperties();
+		p.setName(null);
+		p.setEnsure("present");
+		
+		Set<ConstraintViolation> violations = ObjectValidator.instance().validate(p);
+		assertEquals(1, violations.size());
+		assertEquals(
+			"Expected to find a not empty text for field name.",
+			violations.iterator().next().getMessage()
+		);
+		
+		p.setName("");
+		violations = ObjectValidator.instance().validate(p);
+		assertEquals(1, violations.size());
+		assertEquals(
+			"Expected to find a not empty text for field name.",
+			violations.iterator().next().getMessage()
+		);
+		
+		p.setName("pkg_name");
+		p.setEnsure(null);
+		violations = ObjectValidator.instance().validate(p);
+		assertEquals(1, violations.size());
+		assertEquals(
+			"Expected to find a not null value for field ensure. Accept only [ INSTALLED, PRESENT, ABSENT, LATEST, version-value ]",
+			violations.iterator().next().getMessage()
+		);
 	}
 }
