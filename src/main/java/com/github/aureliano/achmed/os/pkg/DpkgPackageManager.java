@@ -39,6 +39,10 @@ public class DpkgPackageManager implements IPackageManager {
 			throw new PackageResourceException(res);
 		}
 		
+		if (res.getOutput().split("\n").length > 1) {
+			throw new PackageResourceException("Found more than one package installed to " + res.getCommand());
+		}
+		
 		String[] match = StringHelper.match("^(\\S+)\\s+(\\S+)\\s+(\\S+)\\s+(\\S*)$", res.getOutput());
 		if (match == null) {
 			throw new PackageResourceException("Failed to match dpkg-query " + res.getCommand());
