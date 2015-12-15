@@ -32,12 +32,12 @@ public class PackageResource implements IResource {
 		CommandResponse res = null;
 		
 		if ("absent".equalsIgnoreCase(this.properties.getEnsure())) {
-			res = packageManager.uninstall();
+			res = this.uninstall(packageManager);
 		} else {
-			res = packageManager.install();
+			res = this.install(packageManager);
 		}
 		
-		if (!res.isOK()) {
+		if ((res != null) && (!res.isOK())) {
 			throw new PackageResourceException(res);
 		}
 	}
@@ -53,6 +53,24 @@ public class PackageResource implements IResource {
 		
 		packageManager.setPackageProperties(this.properties);
 		return packageManager;
+	}
+	
+	private CommandResponse install(IPackageManager packageManager) {
+		if (packageManager.isInstalled()) {
+			logger.info("Package " + this.properties.getName() + " is already installed. Skipping!");
+			return null;
+		}
+		
+		return packageManager.install();
+	}
+	
+	private CommandResponse uninstall(IPackageManager packageManager) {
+		if (!packageManager.isInstalled()) {
+			logger.info("Package " + this.properties.getName() + " is not installed. Skipping!");
+			return null;
+		}
+		
+		return packageManager.uninstall();
 	}
 	
 	public void setProperties(IResourceProperties properties) {
