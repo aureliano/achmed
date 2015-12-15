@@ -10,6 +10,14 @@ public final class ReflectionHelper {
 		throw new InstantiationError(this.getClass().getName() + " cannot be instantiated.");
 	}
     
+    public static Object newInstance(Class<?> clazz) {
+    	try {
+    		return clazz.newInstance();
+    	} catch (Exception ex) {
+    		throw new AchmedException(ex);
+    	}
+    }
+    
     public static Object callMethod(Object object, String methodName, Class<?>[] parametersType, Object[] methodParameters) {
     	Class<?> clazz = object.getClass();
     	try {
