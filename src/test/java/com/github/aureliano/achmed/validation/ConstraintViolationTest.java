@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import com.sun.istack.internal.NotNull;
+import com.github.aureliano.achmed.annotation.NotNull;
 
 public class ConstraintViolationTest {
 
