@@ -1,5 +1,7 @@
 package com.github.aureliano.achmed;
 
+import com.github.aureliano.achmed.helper.FileHelper;
+
 public class Application {
 
 	public Application() {
@@ -32,7 +34,8 @@ public class Application {
 	}
 
 	protected void printHelp() {
-		throw new UnsupportedOperationException("Not implemented yet");
+		String help = FileHelper.readResource("meta/help");
+		System.out.println(help);
 	}
 	
 	protected void printVersion() {
