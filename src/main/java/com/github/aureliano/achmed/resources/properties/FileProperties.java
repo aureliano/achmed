@@ -1,5 +1,7 @@
 package com.github.aureliano.achmed.resources.properties;
 
+import com.github.aureliano.achmed.annotation.NotEmpty;
+import com.github.aureliano.achmed.annotation.NotNull;
 import com.github.aureliano.achmed.helper.BooleanHelper;
 import com.github.aureliano.achmed.helper.StringHelper;
 import com.github.aureliano.achmed.types.EnsureFileStatus;
@@ -31,6 +33,7 @@ public class FileProperties extends ResourceProperties {
 		return this;
 	}
 
+	@NotEmpty
 	public String getPath() {
 		return path;
 	}
@@ -39,6 +42,7 @@ public class FileProperties extends ResourceProperties {
 		this.path = path;
 	}
 
+	@NotNull(message = "Expected to find a not null value for field ensure. Accept only [ PRESENT, ABSENT, FILE, DIRECTORY, LINK ]")
 	public EnsureFileStatus getEnsure() {
 		return ensure;
 	}
@@ -123,7 +127,9 @@ public class FileProperties extends ResourceProperties {
 		if ("path".equalsIgnoreCase(name)) {
 			this.path = StringHelper.parse(value);
 		} else if ("ensure".equalsIgnoreCase(name)) {
-			if ((value != null) && (value instanceof EnsureFileStatus)) {
+			if (value == null) {
+				this.ensure = null;
+			} else if ((value != null) && (value instanceof EnsureFileStatus)) {
 				this.ensure = (EnsureFileStatus) value;
 			} else {
 				String status = StringHelper.parse(value).toUpperCase();

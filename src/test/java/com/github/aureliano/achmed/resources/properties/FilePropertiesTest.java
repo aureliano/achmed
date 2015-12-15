@@ -4,9 +4,13 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Set;
+
 import org.junit.Test;
 
 import com.github.aureliano.achmed.types.EnsureFileStatus;
+import com.github.aureliano.achmed.validation.ConstraintViolation;
+import com.github.aureliano.achmed.validation.ObjectValidator;
 
 public class FilePropertiesTest {
 
@@ -91,5 +95,36 @@ public class FilePropertiesTest {
 
 		f2.setPath("/path/to/file");
 		assertTrue(f1.equals(f2));
+	}
+	
+	@Test
+	public void testValidation() {
+		FileProperties f = new FileProperties();
+		f.setPath(null);
+		f.setEnsure(EnsureFileStatus.ABSENT);
+		
+		Set<ConstraintViolation> violations = ObjectValidator.instance().validate(f);
+		assertEquals(1, violations.size());
+		assertEquals(
+			"Expected to find a not empty text for field path.",
+			violations.iterator().next().getMessage()
+		);
+		
+		f.setPath("");
+		violations = ObjectValidator.instance().validate(f);
+		assertEquals(1, violations.size());
+		assertEquals(
+			"Expected to find a not empty text for field path.",
+			violations.iterator().next().getMessage()
+		);
+		
+		f.setPath("/path/to/some/file");
+		f.setEnsure(null);
+		violations = ObjectValidator.instance().validate(f);
+		assertEquals(1, violations.size());
+		assertEquals(
+			"Expected to find a not null value for field ensure. Accept only [ PRESENT, ABSENT, FILE, DIRECTORY, LINK ]",
+			violations.iterator().next().getMessage()
+		);
 	}
 }
