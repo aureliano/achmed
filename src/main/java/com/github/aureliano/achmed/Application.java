@@ -1,6 +1,9 @@
 package com.github.aureliano.achmed;
 
+import java.util.Properties;
+
 import com.github.aureliano.achmed.helper.FileHelper;
+import com.github.aureliano.achmed.helper.PropertyHelper;
 
 public class Application {
 
@@ -39,7 +42,17 @@ public class Application {
 	}
 	
 	protected void printVersion() {
-		throw new UnsupportedOperationException("Not implemented yet");
+		Properties properties = PropertyHelper.loadProperties("meta/version.properties");
+		StringBuilder builder = new StringBuilder("achmed")
+			.append(" ")
+			.append(properties.get("version"))
+			.append(":")
+			.append(properties.get("release"))
+			.append(" (")
+			.append(properties.get("date"))
+			.append(")");
+		
+		System.out.println(builder);
 	}
 	
 	private void printError(String[] args) {
