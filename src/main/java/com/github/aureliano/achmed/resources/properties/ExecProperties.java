@@ -2,6 +2,8 @@ package com.github.aureliano.achmed.resources.properties;
 
 import java.io.File;
 
+import com.github.aureliano.achmed.annotation.Min;
+import com.github.aureliano.achmed.annotation.NotEmpty;
 import com.github.aureliano.achmed.command.CommandFacade;
 import com.github.aureliano.achmed.helper.BooleanHelper;
 import com.github.aureliano.achmed.helper.IntegerHelper;
@@ -33,6 +35,7 @@ public class ExecProperties extends ResourceProperties {
 		return this;
 	}
 
+	@NotEmpty
 	public String getCommand() {
 		return command;
 	}
@@ -81,6 +84,7 @@ public class ExecProperties extends ResourceProperties {
 		this.timeout = timeout;
 	}
 
+	@Min(1)
 	public Integer getTries() {
 		return tries;
 	}

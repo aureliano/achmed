@@ -5,8 +5,12 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
+import java.util.Set;
 
 import org.junit.Test;
+
+import com.github.aureliano.achmed.validation.ConstraintViolation;
+import com.github.aureliano.achmed.validation.ObjectValidator;
 
 public class ExecPropertiesTest {
 	
@@ -79,5 +83,36 @@ public class ExecPropertiesTest {
 		
 		e2.setCwd("dir");
 		assertTrue(e1.equals(e2));
+	}
+	
+	@Test
+	public void testValidation() {
+		ExecProperties e = new ExecProperties();
+		e.setCommand(null);
+		e.setTries(1);
+		
+		Set<ConstraintViolation> violations = ObjectValidator.instance().validate(e);
+		assertEquals(1, violations.size());
+		assertEquals(
+			"Expected to find a not empty text for field command.",
+			violations.iterator().next().getMessage()
+		);
+		
+		e.setCommand("");
+		violations = ObjectValidator.instance().validate(e);
+		assertEquals(1, violations.size());
+		assertEquals(
+			"Expected to find a not empty text for field command.",
+			violations.iterator().next().getMessage()
+		);
+		
+		e.setCommand("ls -la");
+		e.setTries(0);
+		violations = ObjectValidator.instance().validate(e);
+		assertEquals(1, violations.size());
+		assertEquals(
+			"Expected a minimum value of 1 for field tries but got 0.",
+			violations.iterator().next().getMessage()
+		);
 	}
 }
