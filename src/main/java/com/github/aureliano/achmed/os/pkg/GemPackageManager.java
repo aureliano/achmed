@@ -22,6 +22,10 @@ public class GemPackageManager implements IPackageManager {
 	public String latest() {
 		throw new UnsupportedOperationException("Method not implemented yet.");
 	}
+	
+	public boolean isInstalled() {
+		throw new UnsupportedOperationException("Method not implemented yet.");
+	}
 
 	public void setPackageProperties(PackageProperties properties) {
 		this.properties = properties;
