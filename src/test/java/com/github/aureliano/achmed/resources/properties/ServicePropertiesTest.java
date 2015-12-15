@@ -4,7 +4,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Set;
+
 import org.junit.Test;
+
+import com.github.aureliano.achmed.validation.ConstraintViolation;
+import com.github.aureliano.achmed.validation.ObjectValidator;
 
 public class ServicePropertiesTest {
 	
@@ -107,5 +112,36 @@ public class ServicePropertiesTest {
 		
 		s2.setName("service");
 		assertTrue(s1.equals(s2));
+	}
+	
+	@Test
+	public void testValidation() {
+		ServiceProperties s = new ServiceProperties();
+		s.setName(null);
+		s.setEnsure(true);
+		
+		Set<ConstraintViolation> violations = ObjectValidator.instance().validate(s);
+		assertEquals(1, violations.size());
+		assertEquals(
+			"Expected to find a not empty text for field name.",
+			violations.iterator().next().getMessage()
+		);
+		
+		s.setName("");
+		violations = ObjectValidator.instance().validate(s);
+		assertEquals(1, violations.size());
+		assertEquals(
+			"Expected to find a not empty text for field name.",
+			violations.iterator().next().getMessage()
+		);
+		
+		s.setName("service_name");
+		s.setEnsure(null);
+		violations = ObjectValidator.instance().validate(s);
+		assertEquals(1, violations.size());
+		assertEquals(
+			"Expected to find a not null value for field ensure.",
+			violations.iterator().next().getMessage()
+		);
 	}
 }

@@ -1,5 +1,7 @@
 package com.github.aureliano.achmed.resources.properties;
 
+import com.github.aureliano.achmed.annotation.NotEmpty;
+import com.github.aureliano.achmed.annotation.NotNull;
 import com.github.aureliano.achmed.helper.BooleanHelper;
 import com.github.aureliano.achmed.helper.StringHelper;
 
@@ -31,6 +33,7 @@ public class ServiceProperties extends ResourceProperties {
 		return this;
 	}
 
+	@NotEmpty
 	public String getName() {
 		return name;
 	}
@@ -39,6 +42,7 @@ public class ServiceProperties extends ResourceProperties {
 		this.name = name;
 	}
 
+	@NotNull
 	public Boolean isEnsure() {
 		return ensure;
 	}
