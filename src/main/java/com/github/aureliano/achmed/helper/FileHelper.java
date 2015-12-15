@@ -1,21 +1,15 @@
 package com.github.aureliano.achmed.helper;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.URI;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.channels.FileChannel;
-import java.nio.file.FileSystem;
 import java.nio.file.Files;
-import java.nio.file.LinkOption;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.WatchKey;
-import java.nio.file.WatchService;
-import java.nio.file.WatchEvent.Kind;
-import java.nio.file.WatchEvent.Modifier;
-import java.util.Iterator;
 
 import com.github.aureliano.achmed.exception.AchmedException;
 
@@ -147,6 +141,46 @@ public final class FileHelper {
 		if (new File(path).exists()) {
 			throw new AchmedException(path + " exist when expected to does not exist.");
 		}
+	}
+	
+	public static String readFile(String path) {
+		return readFile(new File(path));
+	}
+	
+	
+	public static String readFile(File file) {
+		try {
+			return readFile(new FileInputStream(file));
+		} catch (IOException ex) {
+			throw new AchmedException(ex);
+		}
+	}
+	
+	public static String readFile(InputStream stream) {
+		StringBuilder builder = new StringBuilder();
+		
+		try (
+			InputStreamReader inputReader = new InputStreamReader(stream);
+			BufferedReader reader = new BufferedReader(inputReader);
+		) {
+			String line = null;
+			
+			while ((line = reader.readLine()) != null) {
+				if (builder.length() > 0) {
+					builder.append("\n");
+				}
+				builder.append(line);
+			}
+		} catch (IOException ex) {
+			throw new AchmedException(ex);
+		}
+		
+		return builder.toString();
+	}
+	
+	public static String readResource(String resourceName) {
+		InputStream stream = ClassLoader.getSystemResourceAsStream(resourceName);
+		return FileHelper.readFile(stream);
 	}
 	
 	private static boolean isRegularFile(String path) {

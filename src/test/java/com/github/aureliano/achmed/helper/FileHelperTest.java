@@ -5,6 +5,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -158,6 +160,24 @@ public class FileHelperTest {
 		assertTrue(dir.exists());
 		
 		assertEquals(3, dir.list().length);
+	}
+	
+	@Test
+	public void testReadFile() throws FileNotFoundException {
+		String path = "src/test/resources/simple_file";
+		String expected = "Ecce quam bonum et quam icundum habitare fratres in unum.";
+		
+		assertEquals(expected, FileHelper.readFile(path));
+		assertEquals(expected, FileHelper.readFile(new File(path)));
+		assertEquals(expected, FileHelper.readFile(new FileInputStream(new File(path))));
+	}
+	
+	@Test
+	public void testReadResource() {
+		String resourceName = "simple_file";
+		String expected = "Ecce quam bonum et quam icundum habitare fratres in unum.";
+		
+		assertEquals(expected, FileHelper.readResource(resourceName));
 	}
 	
 	private void createDirectoryStructure() {
