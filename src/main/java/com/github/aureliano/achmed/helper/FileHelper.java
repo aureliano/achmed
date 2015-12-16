@@ -10,6 +10,10 @@ import java.io.InputStreamReader;
 import java.nio.channels.FileChannel;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.regex.Pattern;
 
 import com.github.aureliano.achmed.exception.AchmedException;
 
@@ -181,6 +185,35 @@ public final class FileHelper {
 	public static String readResource(String resourceName) {
 		InputStream stream = ClassLoader.getSystemResourceAsStream(resourceName);
 		return FileHelper.readFile(stream);
+	}
+	
+	public static String amendFilePath(String path) {
+		String newPath = null;
+		
+		if (path.startsWith("~")) {
+			String home = System.getenv("HOME");
+			newPath = path.replaceFirst("^~", home.replaceAll("/$", ""));
+		}
+		
+		if (newPath == null) {
+			newPath = path;
+		}
+		
+		String[] tokens = newPath.split(File.separator);
+		List<String> paths = new ArrayList<String>();
+		
+		for (String token : tokens) {
+			if (token.isEmpty()) {
+				continue;
+			} else if (token.matches("^\\$[\\w\\d]+")) {
+				String var = System.getenv(token.replaceFirst("^\\$", ""));
+				paths.add(var);
+			} else {
+				paths.add(token);
+			}
+		}
+		
+		return StringHelper.join(paths, File.separator);
 	}
 	
 	private static boolean isRegularFile(String path) {
