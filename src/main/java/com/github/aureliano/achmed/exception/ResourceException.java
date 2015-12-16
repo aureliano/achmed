@@ -21,7 +21,7 @@ public class ResourceException extends AchmedException {
 
 	public ResourceException(String message, Throwable throwable) {
 		super(message, throwable);
-		super.code = StatusCode.RESOURCE_EXECUTION_ERROR.getCode();
+		super.code = StatusCode.RESOURCE_EXECUTION_ERROR;
 	}
 
 	public ResourceException(CommandResponse response) {

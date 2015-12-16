@@ -20,6 +20,6 @@ public class UnsupportedPackageManagerException extends AchmedException {
 
 	public UnsupportedPackageManagerException(String message, Throwable throwable) {
 		super(message, throwable);
-		super.code = StatusCode.UNSUPPORTED_PACKAGE_MANAGER_ERROR.getCode();
+		super.code = StatusCode.UNSUPPORTED_PACKAGE_MANAGER_ERROR;
 	}
 }

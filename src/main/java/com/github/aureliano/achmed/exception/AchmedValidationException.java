@@ -20,6 +20,6 @@ public class AchmedValidationException extends AchmedException {
 
 	public AchmedValidationException(String message, Throwable throwable) {
 		super(message, throwable);
-		super.code = StatusCode.VALIDATION_ERROR.getCode();
+		super.code = StatusCode.VALIDATION_ERROR;
 	}
 }

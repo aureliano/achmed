@@ -5,7 +5,7 @@ import com.github.aureliano.achmed.types.StatusCode;
 public class AchmedException extends RuntimeException {
 
 	private static final long serialVersionUID = 3113079107744700883L;
-	protected int code;
+	protected StatusCode code;
 
 	public AchmedException() {
 		this(null, null);
@@ -21,10 +21,10 @@ public class AchmedException extends RuntimeException {
 
 	public AchmedException(String message, Throwable throwable) {
 		super(message, throwable);
-		this.code = StatusCode.COMMON_EXECUTION_ERROR.getCode();
+		this.code = StatusCode.COMMON_EXECUTION_ERROR;
 	}
 	
-	public int getCode() {
+	public StatusCode getCode() {
 		return code;
 	}
 }

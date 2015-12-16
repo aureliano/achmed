@@ -20,6 +20,6 @@ public class NoSuchResourceException extends AchmedException {
 
 	public NoSuchResourceException(String message, Throwable throwable) {
 		super(message, throwable);
-		super.code = StatusCode.RESOURCE_RESOLVING_ERROR.getCode();
+		super.code = StatusCode.RESOURCE_RESOLVING_ERROR;
 	}
 }

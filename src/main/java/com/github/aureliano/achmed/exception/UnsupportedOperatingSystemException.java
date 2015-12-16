@@ -20,6 +20,6 @@ public class UnsupportedOperatingSystemException extends AchmedException {
 
 	public UnsupportedOperatingSystemException(String message, Throwable throwable) {
 		super(message, throwable);
-		super.code = StatusCode.UNSUPPORTED_OPERATING_SYSTEM_ERROR.getCode();
+		super.code = StatusCode.UNSUPPORTED_OPERATING_SYSTEM_ERROR;
 	}
 }
