@@ -25,4 +25,8 @@ public final class EasterEggHelper {
 		
 		return "Good " + greetingMessage + "... Infidel!";
 	}
+	
+	public static String hello() {
+		return "Hey, I just met you and this is crazy. But I will kill you, so silence maybe.";
+	}
 }
