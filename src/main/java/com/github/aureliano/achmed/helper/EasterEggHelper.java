@@ -34,7 +34,7 @@ public final class EasterEggHelper {
 		return "SILENCE...! I kill you!";
 	}
 	
-	public static String yourAreDead() {
+	public static String youAreDead() {
 		return "I'm dead?! But I just got my flu shot!";
 	}
 }
