@@ -16,7 +16,7 @@ public class FileResource implements IResource {
 	private FileProperties properties;
 	
 	public FileResource() {
-		super();
+		this.properties = new FileProperties();
 	}
 
 	public FileResource(FileProperties properties) {

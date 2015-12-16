@@ -14,7 +14,7 @@ public class ServiceResource implements IResource {
 	private ServiceProperties properties;
 	
 	public ServiceResource() {
-		super();
+		this.properties = new ServiceProperties();
 	}
 	
 	public ServiceResource(ServiceProperties properties) {
