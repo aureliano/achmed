@@ -3,6 +3,7 @@ package com.github.aureliano.achmed.resources;
 import org.apache.log4j.Logger;
 
 import com.github.aureliano.achmed.AppConfiguration;
+import com.github.aureliano.achmed.helper.FileHelper;
 import com.github.aureliano.achmed.helper.StringHelper;
 import com.github.aureliano.achmed.os.fs.IFileProvider;
 import com.github.aureliano.achmed.resources.properties.FileProperties;
@@ -27,6 +28,8 @@ public class FileResource implements IResource {
 		logger.info(" >>> Apply file resource to " + this.properties.getPath());
 		
 		this.properties.configureAttributes();
+		this.amendPaths();
+		
 		IFileProvider provider = AppConfiguration.instance().getOperatingSystem().getDefaultFileProvider();
 		provider.setFileProperties(this.properties);
 		
@@ -44,6 +47,12 @@ public class FileResource implements IResource {
 
 	public ResourceType type() {
 		return ResourceType.FILE;
+	}
+	
+	private void amendPaths() {
+		this.properties.setPath(FileHelper.amendFilePath(this.properties.getPath()));
+		this.properties.setSource(FileHelper.amendFilePath(this.properties.getSource()));
+		this.properties.setTarget(FileHelper.amendFilePath(this.properties.getTarget()));
 	}
 	
 	private void applyFilePermissions(IFileProvider provider) {
