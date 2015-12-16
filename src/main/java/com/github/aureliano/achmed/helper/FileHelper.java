@@ -204,7 +204,7 @@ public final class FileHelper {
 		
 		for (String token : tokens) {
 			if (token.isEmpty()) {
-				continue;
+				paths.add(File.separator);
 			} else if (token.matches("^\\$[\\w\\d]+")) {
 				String var = System.getenv(token.replaceFirst("^\\$", ""));
 				paths.add(var);
@@ -213,7 +213,10 @@ public final class FileHelper {
 			}
 		}
 		
-		return StringHelper.join(paths, File.separator);
+		newPath = StringHelper.join(paths, File.separator);
+		String doubleSeparatorRegex = Pattern.quote(File.separator + File.separator);
+		
+		return newPath.replaceAll(doubleSeparatorRegex, File.separator);
 	}
 	
 	private static boolean isRegularFile(String path) {
