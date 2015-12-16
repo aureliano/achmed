@@ -36,6 +36,11 @@ public class Agent {
 	}
 	
 	public void apply() {
+		if (this.resources.isEmpty()) {
+			logger.info("There isn't any resource to apply.");
+			return;
+		}
+		
 		logger.info("Preparing to apply " + this.resources.size() + " resources.");
 		logger.info("Applying resource validations.");
 		
