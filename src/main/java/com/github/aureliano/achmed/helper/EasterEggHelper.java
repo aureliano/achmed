@@ -29,4 +29,8 @@ public final class EasterEggHelper {
 	public static String hello() {
 		return "Hey, I just met you and this is crazy. But I will kill you, so silence maybe.";
 	}
+	
+	public static String silence() {
+		return "SILENCE...! I kill you!";
+	}
 }

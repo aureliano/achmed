@@ -25,4 +25,17 @@ public final class ApplicationHelper {
 			.append(")")
 			.toString();
 	}
+	
+	public static String error(String[] args) {
+		String param = StringHelper.join(args, " ");
+		if ("".equals(param)) {
+			return EasterEggHelper.silence();
+		} else if ("greeting".equalsIgnoreCase(param)) {
+			return EasterEggHelper.greeting();
+		} else if ("hello".equalsIgnoreCase(param)) {
+			return EasterEggHelper.hello();
+		} else {
+			return "Don't know how to handle such command: " + param;
+		}
+	}
 }
