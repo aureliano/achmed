@@ -45,4 +45,8 @@ public final class EasterEggHelper {
 	public static String binLadenIsDead() {
 		return "Let me tell you something about Osama's death. There was not 72 virgins waiting for him. That was a misunderstood. Indeed he got a 72 years old lady.";
 	}
+	
+	public static String jingleBombs() {
+		return FileHelper.readResource("eastereggs/jingle-bombs");
+	}
 }
