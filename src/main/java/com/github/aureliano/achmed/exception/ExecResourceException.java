@@ -7,15 +7,15 @@ public class ExecResourceException extends ResourceException {
 	private static final long serialVersionUID = -1257837733015431140L;
 
 	public ExecResourceException() {
-		super();
+		this(null, null);
 	}
 
 	public ExecResourceException(String message) {
-		super(message);
+		this(message, null);
 	}
 
 	public ExecResourceException(Throwable throwable) {
-		super(throwable);
+		this(null, throwable);
 	}
 
 	public ExecResourceException(String message, Throwable throwable) {

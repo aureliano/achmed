@@ -7,15 +7,15 @@ public class ServiceResourceException extends ResourceException {
 	private static final long serialVersionUID = 892406933885019778L;
 
 	public ServiceResourceException() {
-		super();
+		this(null, null);
 	}
 
 	public ServiceResourceException(String message) {
-		super(message);
+		this(message, null);
 	}
 
 	public ServiceResourceException(Throwable throwable) {
-		super(throwable);
+		this(null, throwable);
 	}
 
 	public ServiceResourceException(String message, Throwable throwable) {

@@ -7,15 +7,15 @@ public class PackageResourceException extends ResourceException {
 	private static final long serialVersionUID = -1257837733015431140L;
 
 	public PackageResourceException() {
-		super();
+		this(null, null);
 	}
 
 	public PackageResourceException(String message) {
-		super(message);
+		this(message, null);
 	}
 
 	public PackageResourceException(Throwable throwable) {
-		super(throwable);
+		this(null, throwable);
 	}
 
 	public PackageResourceException(String message, Throwable throwable) {

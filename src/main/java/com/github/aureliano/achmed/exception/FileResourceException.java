@@ -7,15 +7,15 @@ public class FileResourceException extends ResourceException {
 	private static final long serialVersionUID = 6809095978112185723L;
 
 	public FileResourceException() {
-		super();
+		this(null, null);
 	}
 
 	public FileResourceException(String message) {
-		super(message);
+		this(message, null);
 	}
 
 	public FileResourceException(Throwable throwable) {
-		super(throwable);
+		this(null, throwable);
 	}
 
 	public FileResourceException(String message, Throwable throwable) {

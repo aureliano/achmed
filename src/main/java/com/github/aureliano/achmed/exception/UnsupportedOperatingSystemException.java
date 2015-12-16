@@ -1,22 +1,25 @@
 package com.github.aureliano.achmed.exception;
 
+import com.github.aureliano.achmed.types.StatusCode;
+
 public class UnsupportedOperatingSystemException extends AchmedException {
 
 	private static final long serialVersionUID = 4654066489822139408L;
 
 	public UnsupportedOperatingSystemException() {
-		super();
+		this(null, null);
 	}
 
 	public UnsupportedOperatingSystemException(String message) {
-		super(message);
+		this(message, null);
 	}
 
 	public UnsupportedOperatingSystemException(Throwable throwable) {
-		super(throwable);
+		this(null, throwable);
 	}
 
 	public UnsupportedOperatingSystemException(String message, Throwable throwable) {
 		super(message, throwable);
+		super.code = StatusCode.UNSUPPORTED_OPERATING_SYSTEM_ERROR.getCode();
 	}
 }

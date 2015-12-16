@@ -1,22 +1,30 @@
 package com.github.aureliano.achmed.exception;
 
+import com.github.aureliano.achmed.types.StatusCode;
+
 public class AchmedException extends RuntimeException {
 
 	private static final long serialVersionUID = 3113079107744700883L;
+	protected int code;
 
 	public AchmedException() {
-		super();
+		this(null, null);
 	}
 
 	public AchmedException(String message) {
-		super(message);
+		this(message, null);
 	}
 
 	public AchmedException(Throwable throwable) {
-		super(throwable);
+		this(null, throwable);
 	}
 
 	public AchmedException(String message, Throwable throwable) {
 		super(message, throwable);
+		this.code = StatusCode.COMMON_EXECUTION_ERROR.getCode();
+	}
+	
+	public int getCode() {
+		return code;
 	}
 }

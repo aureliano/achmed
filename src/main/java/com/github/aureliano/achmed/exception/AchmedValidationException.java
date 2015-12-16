@@ -1,22 +1,25 @@
 package com.github.aureliano.achmed.exception;
 
+import com.github.aureliano.achmed.types.StatusCode;
+
 public class AchmedValidationException extends AchmedException {
 
 	private static final long serialVersionUID = -1185214958887450988L;
 
 	public AchmedValidationException() {
-		super();
+		this(null, null);
 	}
 
 	public AchmedValidationException(String message) {
-		super(message);
+		this(message, null);
 	}
 
 	public AchmedValidationException(Throwable throwable) {
-		super(throwable);
+		this(null, throwable);
 	}
 
 	public AchmedValidationException(String message, Throwable throwable) {
 		super(message, throwable);
+		super.code = StatusCode.VALIDATION_ERROR.getCode();
 	}
 }
