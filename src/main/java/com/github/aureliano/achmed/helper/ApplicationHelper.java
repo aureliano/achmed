@@ -35,6 +35,10 @@ public final class ApplicationHelper {
 		
 		resources.addAll(buildResources(map));
 		List<Map<String, Object>> children = (List<Map<String,Object>>) map.get("includes");
+		if (children == null) {
+			return resources;
+		}
+		
 		for (Map<String, Object> child : children) {
 			resources.addAll(buildResources(child));
 		}
