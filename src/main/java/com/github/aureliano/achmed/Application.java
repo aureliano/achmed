@@ -2,6 +2,7 @@ package com.github.aureliano.achmed;
 
 import java.util.Properties;
 
+import com.github.aureliano.achmed.helper.ApplicationHelper;
 import com.github.aureliano.achmed.helper.FileHelper;
 import com.github.aureliano.achmed.helper.PropertyHelper;
 
@@ -37,22 +38,11 @@ public class Application {
 	}
 
 	protected void printHelp() {
-		String help = FileHelper.readResource("meta/help");
-		System.out.println(help);
+		System.out.println(ApplicationHelper.help());
 	}
 	
 	protected void printVersion() {
-		Properties properties = PropertyHelper.loadProperties("meta/version.properties");
-		StringBuilder builder = new StringBuilder("achmed")
-			.append(" ")
-			.append(properties.get("version"))
-			.append(":")
-			.append(properties.get("release"))
-			.append(" (")
-			.append(properties.get("date"))
-			.append(")");
-		
-		System.out.println(builder);
+		System.out.println(ApplicationHelper.version());
 	}
 	
 	private void printError(String[] args) {
