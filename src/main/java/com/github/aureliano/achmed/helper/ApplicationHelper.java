@@ -38,6 +38,8 @@ public final class ApplicationHelper {
 			return EasterEggHelper.youAreDead();
 		} else if ("do you like jews?".equalsIgnoreCase(param)) {
 			return EasterEggHelper.doYouLikeJews();
+		} else if ("bin laden is dead".equalsIgnoreCase(param)) {
+			return EasterEggHelper.binLadenIsDead();
 		} else {
 			return "Don't know how to handle such command: " + param;
 		}

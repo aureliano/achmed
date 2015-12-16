@@ -41,4 +41,8 @@ public final class EasterEggHelper {
 	public static String doYouLikeJews() {
 		return "Well, what if I kill the Jews? I would not kill the Jews, no. I would toss a penny in between them and watch them fight untill the death!";
 	}
+	
+	public static String binLadenIsDead() {
+		return "Let me tell you something about Osama's death. There was not 72 virgins waiting for him. That was a misunderstood. Indeed he got a 72 years old lady.";
+	}
 }
