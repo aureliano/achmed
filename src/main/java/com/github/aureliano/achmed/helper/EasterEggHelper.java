@@ -37,4 +37,8 @@ public final class EasterEggHelper {
 	public static String youAreDead() {
 		return "I'm dead?! But I just got my flu shot!";
 	}
+	
+	public static String doYouLikeJews() {
+		return "Well, what if I kill the Jews? I would not kill the Jews, no. I would toss a penny in between them and watch them fight untill the death!";
+	}
 }

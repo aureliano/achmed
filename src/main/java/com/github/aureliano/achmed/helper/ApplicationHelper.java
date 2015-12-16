@@ -35,7 +35,9 @@ public final class ApplicationHelper {
 		} else if ("hello".equalsIgnoreCase(param)) {
 			return EasterEggHelper.hello();
 		} else if ("you are dead".equalsIgnoreCase(param)) {
-			return EasterEggHelper.yourAreDead();
+			return EasterEggHelper.youAreDead();
+		} else if ("do you like hews?".equalsIgnoreCase(param)) {
+			return EasterEggHelper.doYouLikeJews();
 		} else {
 			return "Don't know how to handle such command: " + param;
 		}
