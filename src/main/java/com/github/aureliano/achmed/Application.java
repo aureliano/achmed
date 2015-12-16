@@ -49,7 +49,8 @@ public class Application {
 			System.out.println(ApplicationHelper.error(new String[0]));
 			System.exit(1);
 		}
-		throw new UnsupportedOperationException("Not implemented yet");
+		
+		ApplicationHelper.execute(path);
 	}
 
 	protected void printHelp() {
