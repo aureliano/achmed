@@ -51,8 +51,12 @@ public class FileResource implements IResource {
 	
 	private void amendPaths() {
 		this.properties.setPath(FileHelper.amendFilePath(this.properties.getPath()));
-		this.properties.setSource(FileHelper.amendFilePath(this.properties.getSource()));
-		this.properties.setTarget(FileHelper.amendFilePath(this.properties.getTarget()));
+		if (!StringHelper.isEmpty(this.properties.getSource())) {
+			this.properties.setSource(FileHelper.amendFilePath(this.properties.getSource()));
+		}
+		if (!StringHelper.isEmpty(this.properties.getTarget())) {
+			this.properties.setTarget(FileHelper.amendFilePath(this.properties.getTarget()));
+		}
 	}
 	
 	private void applyFilePermissions(IFileProvider provider) {
