@@ -1,10 +1,8 @@
 package com.github.aureliano.achmed;
 
-import java.util.Properties;
-
+import com.github.aureliano.achmed.exception.AchmedException;
 import com.github.aureliano.achmed.helper.ApplicationHelper;
-import com.github.aureliano.achmed.helper.FileHelper;
-import com.github.aureliano.achmed.helper.PropertyHelper;
+import com.github.aureliano.achmed.helper.StringHelper;
 
 public class Application {
 
@@ -27,13 +25,30 @@ public class Application {
 		} else if ((args[0].equals("-v")) || (args[0].equals("--version")) || (args[0].equals("version"))) {
 			this.printVersion();
 		} else if (args[0].equals("burst")) {
-			this.prepareExecution(args[1]);
+			this.handleExecution(args);
 		} else {
 			this.printError(args);
+			System.exit(1);
+		}
+		
+		System.exit(0);
+	}
+	
+	protected void handleExecution(String[] args) {
+		if (args.length == 1) {
+			this.prepareExecution(null);
+		} else if (args.length != 2) {
+			throw new AchmedException("Invalid arguments. You can pass just one file path after burst command.");
+		} else {
+			this.prepareExecution(args[1]);
 		}
 	}
 
-	protected void prepareExecution(String string) {
+	protected void prepareExecution(String path) {
+		if (StringHelper.isEmpty(path)) {
+			System.out.println(ApplicationHelper.error(new String[0]));
+			System.exit(1);
+		}
 		throw new UnsupportedOperationException("Not implemented yet");
 	}
 
@@ -46,6 +61,6 @@ public class Application {
 	}
 	
 	private void printError(String[] args) {
-		throw new UnsupportedOperationException("Not implemented yet");
+		System.out.println(ApplicationHelper.error(args));
 	}
 }
