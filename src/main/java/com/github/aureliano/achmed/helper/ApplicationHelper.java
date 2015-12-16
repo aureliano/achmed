@@ -42,6 +42,8 @@ public final class ApplicationHelper {
 			return EasterEggHelper.binLadenIsDead();
 		} else if ("jingle bombs".equalsIgnoreCase(param)) {
 			return EasterEggHelper.jingleBombs();
+		} else if ("joker".equalsIgnoreCase(param)) {
+			return EasterEggHelper.tellMeanJewishJoke();
 		} else {
 			return "Don't know how to handle such command: " + param;
 		}

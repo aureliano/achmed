@@ -1,6 +1,8 @@
 package com.github.aureliano.achmed.helper;
 
 import java.util.Calendar;
+import java.util.Properties;
+import java.util.Random;
 
 public final class EasterEggHelper {
 
@@ -48,5 +50,14 @@ public final class EasterEggHelper {
 	
 	public static String jingleBombs() {
 		return FileHelper.readResource("eastereggs/jingle-bombs");
+	}
+	
+	public static String tellMeanJewishJoke() {
+		Properties jokes = PropertyHelper.loadProperties("eastereggs/jokes.properties");
+		
+		Random rand = new Random(System.currentTimeMillis());
+		String key = String.valueOf(rand.nextInt(jokes.size() - 1));
+		
+		return jokes.getProperty(key);
 	}
 }
