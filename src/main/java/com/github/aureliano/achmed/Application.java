@@ -1,7 +1,9 @@
 package com.github.aureliano.achmed;
 
+import com.github.aureliano.achmed.exception.AchmedException;
 import com.github.aureliano.achmed.helper.ApplicationHelper;
 import com.github.aureliano.achmed.helper.StringHelper;
+import com.github.aureliano.achmed.types.StatusCode;
 
 public class Application {
 
@@ -19,7 +21,7 @@ public class Application {
 			return;
 		}
 		
-		int status = 0;
+		StatusCode status = null;
 		if ((args[0].equals("-h")) || (args[0].equals("--help")) || (args[0].equals("help"))) {
 			status = this.printHelp();
 		} else if ((args[0].equals("-v")) || (args[0].equals("--version")) || (args[0].equals("version"))) {
@@ -30,49 +32,54 @@ public class Application {
 			status = this.printError(args);
 		}
 		
-		System.exit(status);
+		System.exit(status.getCode());
 	}
 	
-	protected int handleExecution(String[] args) {
+	protected StatusCode handleExecution(String[] args) {
 		if (args.length == 1) {
 			return this.prepareExecution(null);
 		} else if (args.length != 2) {
 			System.err.println("Invalid arguments. You can pass just one file path after burst command.");
-			return 1;
+			return StatusCode.CLI_PARAMETERS_ERROR;
 		} else {
 			return this.prepareExecution(args[1]);
 		}
 	}
 
-	protected int prepareExecution(String path) {
+	protected StatusCode prepareExecution(String path) {
 		if (StringHelper.isEmpty(path)) {
 			System.out.println(ApplicationHelper.error(new String[0]));
-			return 1;
+			return StatusCode.CLI_PARAMETERS_ERROR;
 		}
 		
 		try {
 			ApplicationHelper.execute(path);
-			return 0;
+			return StatusCode.SUCCESS;
+		} catch (AchmedException ex) {
+			System.err.println(ex.getMessage());
+			ex.printStackTrace();
+			
+			return ex.getCode();
 		} catch (Exception ex) {
 			System.err.println(ex.getMessage());
 			ex.printStackTrace();
 			
-			return 2;
+			return StatusCode.COMMON_EXECUTION_ERROR;
 		}
 	}
 
-	protected int printHelp() {
+	protected StatusCode printHelp() {
 		System.out.println(ApplicationHelper.help());
-		return 0;
+		return StatusCode.SUCCESS;
 	}
 	
-	protected int printVersion() {
+	protected StatusCode printVersion() {
 		System.out.println(ApplicationHelper.version());
-		return 0;
+		return StatusCode.SUCCESS;
 	}
 	
-	private int printError(String[] args) {
+	private StatusCode printError(String[] args) {
 		System.out.println(ApplicationHelper.error(args));
-		return 1;
+		return StatusCode.CLI_PARAMETERS_ERROR;
 	}
 }
