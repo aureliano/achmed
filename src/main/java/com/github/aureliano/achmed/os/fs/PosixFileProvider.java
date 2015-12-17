@@ -47,12 +47,9 @@ public class PosixFileProvider implements IFileProvider {
 			ownerAndGroup.add(this.properties.getOwner());
 		}
 		
-		if ((!StringHelper.isEmpty(this.properties.getOwner())) && (!StringHelper.isEmpty(this.properties.getGroup()))) {
-			ownerAndGroup.add(":");
-		}
-		
 		if (!StringHelper.isEmpty(this.properties.getGroup())) {
-			ownerAndGroup.add(this.properties.getOwner());
+			ownerAndGroup.add(":");
+			ownerAndGroup.add(this.properties.getGroup());
 		}
 		
 		if (ownerAndGroup.isEmpty()) {
@@ -60,8 +57,9 @@ public class PosixFileProvider implements IFileProvider {
 			return;
 		}
 		
-		ownerAndGroup.add(0, "chown");
-		CommandResponse res = CommandFacade.executeCommand(ownerAndGroup.toArray(new String[0]));
+		CommandResponse res = CommandFacade.executeCommand(
+			"chown", StringHelper.join(ownerAndGroup.toArray()), this.properties.getPath()
+		);
 		
 		logger.debug(res.getCommand());
 		if (!res.isOK()) {
