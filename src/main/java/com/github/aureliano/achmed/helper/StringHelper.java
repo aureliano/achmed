@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.github.aureliano.achmed.exception.AchmedException;
+
 public final class StringHelper {
 
 	public static final String EMPTY = "";
@@ -70,5 +72,23 @@ public final class StringHelper {
 		}
 		
 		return groups;
+	}
+	
+	public static String amendEnvVars(String text) {
+		String[] match = StringHelper.match("(\\$[\\w\\d]+)", text);
+		if (match == null) {
+			return text;
+		}
+		
+		for (byte i = 1; i < match.length; i++) {
+			String regex = Pattern.quote(match[i]);
+			String var = System.getenv(match[i].replaceFirst("^\\$", ""));
+			if (var == null) {
+				throw new AchmedException("Could not find any environment variable with name " + match[i]);
+			}
+			text = text.replaceFirst(regex, var);
+		}
+		
+		return text;
 	}
 }
