@@ -25,17 +25,17 @@ public class FileResource implements IResource {
 	}
 	
 	public void apply() {
-		logger.info(" >>> Apply file resource to " + this.properties.getPath());
-		
 		this.properties.configureAttributes();
+		logger.info(" >>> Apply file resource to " + this.properties.getPath());
 		this.amendPaths();
+		
 		this.amendTexts();
 		
 		IFileProvider provider = AppConfiguration.instance().getOperatingSystem().getDefaultFileProvider();
 		provider.setFileProperties(this.properties);
 		
-		this.applyFilePermissions(provider);
 		this.ensure(provider);
+		this.applyFilePermissions(provider);
 	}
 
 	public void setProperties(IResourceProperties properties) {
