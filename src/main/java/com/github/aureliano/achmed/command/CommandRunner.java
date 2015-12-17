@@ -65,7 +65,9 @@ public class CommandRunner implements Callable<CommandResponse> {
 			}
 		}
 		
-		builder.deleteCharAt(builder.length() - 1);
+		if (builder.length() > 0) {
+			builder.deleteCharAt(builder.length() - 1);
+		}
 		scanner.close();
 		
 		return builder.toString();
