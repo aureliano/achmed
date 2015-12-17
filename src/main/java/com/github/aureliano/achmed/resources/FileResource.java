@@ -29,6 +29,7 @@ public class FileResource implements IResource {
 		
 		this.properties.configureAttributes();
 		this.amendPaths();
+		this.amendTexts();
 		
 		IFileProvider provider = AppConfiguration.instance().getOperatingSystem().getDefaultFileProvider();
 		provider.setFileProperties(this.properties);
@@ -56,6 +57,16 @@ public class FileResource implements IResource {
 		}
 		if (!StringHelper.isEmpty(this.properties.getTarget())) {
 			this.properties.setTarget(FileHelper.amendFilePath(this.properties.getTarget()));
+		}
+	}
+	
+	private void amendTexts() {
+		if (!StringHelper.isEmpty(this.properties.getGroup())) {
+			this.properties.setGroup(StringHelper.amendEnvVars(this.properties.getGroup()));
+		}
+		
+		if (!StringHelper.isEmpty(this.properties.getOwner())) {
+			this.properties.setOwner(StringHelper.amendEnvVars(this.properties.getOwner()));
 		}
 	}
 	
