@@ -25,9 +25,8 @@ public class ExecResource implements IResource {
 	}
 
 	public void apply() {
-		logger.info(" >>> Apply exec resource with command: " + this.properties.getCommand());
-		
 		this.properties.configureAttributes();
+		logger.info(" >>> Apply exec resource with command: " + this.properties.getCommand());
 		
 		if (this.canExecute()) {
 			this.execute();

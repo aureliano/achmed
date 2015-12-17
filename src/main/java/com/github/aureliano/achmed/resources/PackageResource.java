@@ -25,9 +25,9 @@ public class PackageResource implements IResource {
 	}
 	
 	public void apply() {
+		this.properties.configureAttributes();
 		logger.info(" >>> Apply package resource to: " + this.properties.getName());
 		
-		this.properties.configureAttributes();
 		IPackageManager packageManager = this.resolvePackageManager();
 		CommandResponse res = null;
 		

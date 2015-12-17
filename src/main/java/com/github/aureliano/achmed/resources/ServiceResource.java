@@ -22,9 +22,9 @@ public class ServiceResource implements IResource {
 	}
 	
 	public void apply() {
+		this.properties.configureAttributes();
 		logger.info(" >>> Apply service resource " + this.properties.getName());
 		
-		this.properties.configureAttributes();
 		IService service = AppConfiguration.instance().getOperatingSystem().getDefaultServiceManager();
 		service.setServiceProperties(this.properties);
 		
