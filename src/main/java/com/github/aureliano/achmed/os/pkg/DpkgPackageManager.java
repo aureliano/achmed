@@ -37,7 +37,7 @@ public class DpkgPackageManager implements IPackageManager {
 		CommandResponse res = CommandFacade.executeCommand(DPKG_QUERY, "-s", this.properties.getName());
 		
 		if (!res.isOK()) {
-			logger.warn("Command [ " + res.getCommand() + " ] returned non zero status: " + res.getExitStatusCode() + " Error message: " + res.getError());
+			// query exits with no zero status when package is not found.
 			return false;
 		}
 		
