@@ -72,7 +72,6 @@ public class FileResource implements IResource {
 	
 	private void applyFilePermissions(IFileProvider provider) {
 		if (!StringHelper.isEmpty(this.properties.getMode())) {
-			logger.info("Setting file mode " + this.properties.getMode() + " to " + this.properties.getPath());
 			provider.setFileMode();
 		}
 		

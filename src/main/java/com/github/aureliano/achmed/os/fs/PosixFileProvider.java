@@ -31,8 +31,11 @@ public class PosixFileProvider implements IFileProvider {
 
 	@Override
 	public void setFileMode() {
+		String filePath = (EnsureFileStatus.LINK.equals(this.properties.getEnsure())) ? this.properties.getTarget() : this.properties.getPath();
+		logger.info("Setting file mode " + this.properties.getMode() + " to " + filePath);
+		
 		CommandResponse res = CommandFacade.executeCommand(
-			"chmod", this.properties.getMode(), this.properties.getPath());
+			"chmod", this.properties.getMode(), filePath);
 		
 		logger.debug(res.getCommand());
 		if (!res.isOK()) {
@@ -64,8 +67,9 @@ public class PosixFileProvider implements IFileProvider {
 			commands.add("-R");
 		}
 		
+		String filePath = (EnsureFileStatus.LINK.equals(this.properties.getEnsure())) ? this.properties.getTarget() : this.properties.getPath();
 		commands.add(StringHelper.join(ownerAndGroup.toArray()));
-		commands.add(this.properties.getPath());
+		commands.add(filePath);
 		
 		CommandResponse res = CommandFacade.executeCommand(commands.toArray(new String[0]));
 		
@@ -213,8 +217,8 @@ public class PosixFileProvider implements IFileProvider {
 			throw new FileResourceException("Property 'target' not provided to symlink file.");
 		}
 		
-		if (FileHelper.isSymbolicLink(this.properties.getPath())) {
-			logger.warn("Symbolic link " + this.properties.getPath() + " already exist. Skipping!");
+		if (FileHelper.isSymbolicLink(this.properties.getTarget())) {
+			logger.warn("Symbolic link " + this.properties.getTarget() + " already exist. Skipping!");
 			return;
 		}
 		
