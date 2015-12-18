@@ -36,7 +36,7 @@ public class DpkgPackageManager implements IPackageManager {
 		);
 		
 		if (!res.isOK()) {
-			throw new PackageResourceException(res);
+			return false;
 		}
 		
 		if (res.getOutput().split("\n").length > 1) {
