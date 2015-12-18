@@ -1,7 +1,5 @@
 package com.github.aureliano.achmed.os.pkg;
 
-import org.apache.log4j.Logger;
-
 import com.github.aureliano.achmed.command.CommandFacade;
 import com.github.aureliano.achmed.command.CommandResponse;
 import com.github.aureliano.achmed.exception.PackageResourceException;
@@ -9,9 +7,7 @@ import com.github.aureliano.achmed.helper.StringHelper;
 import com.github.aureliano.achmed.resources.properties.PackageProperties;
 
 public class DpkgPackageManager implements IPackageManager {
-	
-	private static final Logger logger = Logger.getLogger(DpkgPackageManager.class);
-	
+
 	private static final String DPKG_QUERY = "/usr/bin/dpkg-query";
 
 	protected PackageProperties properties;
