@@ -1,5 +1,7 @@
 package com.github.aureliano.achmed.os.pkg;
 
+import org.apache.log4j.Logger;
+
 import com.github.aureliano.achmed.command.CommandFacade;
 import com.github.aureliano.achmed.command.CommandResponse;
 import com.github.aureliano.achmed.exception.PackageResourceException;
@@ -8,8 +10,9 @@ import com.github.aureliano.achmed.resources.properties.PackageProperties;
 
 public class DpkgPackageManager implements IPackageManager {
 	
+	private static final Logger logger = Logger.getLogger(DpkgPackageManager.class);
+	
 	private static final String DPKG_QUERY = "/usr/bin/dpkg-query";
-	private static final String QUERY_FORMAT = "'${status} ${version}\\n'";
 
 	protected PackageProperties properties;
 	
@@ -30,25 +33,20 @@ public class DpkgPackageManager implements IPackageManager {
 	}
 	
 	public boolean isInstalled() {
-		final String desiredStatus = "installed";
-		CommandResponse res = CommandFacade.executeCommand(
-			DPKG_QUERY, "-W", "-f", QUERY_FORMAT, this.properties.getName()
-		);
+		final String desiredStatus = "install ok installed";
+		CommandResponse res = CommandFacade.executeCommand(DPKG_QUERY, "-s", this.properties.getName());
 		
 		if (!res.isOK()) {
+			logger.warn("Command [ " + res.getCommand() + " ] returned non zero status: " + res.getExitStatusCode() + " Error message: " + res.getError());
 			return false;
 		}
 		
-		if (res.getOutput().split("\n").length > 1) {
-			throw new PackageResourceException("Found more than one package installed to " + res.getCommand());
-		}
-		
-		String[] match = StringHelper.match("^(\\S+)\\s+(\\S+)\\s+(\\S+)\\s+(\\S*)$", res.getOutput());
+		String[] match = StringHelper.match("Status:\\s(\\S+\\s\\S+\\s\\S+)", res.getOutput());
 		if (match == null) {
-			throw new PackageResourceException("Failed to match dpkg-query " + res.getCommand());
+			throw new PackageResourceException("Failed to match dpkg-query [" + res.getOutput() + "]");
 		}
 		
-		return desiredStatus.equalsIgnoreCase(match[3]);
+		return desiredStatus.equalsIgnoreCase(match[1]);
 	}
 
 	public void setPackageProperties(PackageProperties properties) {
