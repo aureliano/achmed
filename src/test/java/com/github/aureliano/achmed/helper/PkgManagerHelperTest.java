@@ -12,6 +12,7 @@ import java.util.Scanner;
 import org.junit.Test;
 
 import com.github.aureliano.achmed.command.CommandBuilder;
+import com.github.aureliano.achmed.command.CommandFacade;
 
 public class PkgManagerHelperTest {
 
@@ -31,7 +32,7 @@ public class PkgManagerHelperTest {
 		CommandBuilder command = PkgManagerHelper.buildCommand("command_name");
 		
 		assertEquals("command_name", command.getCommand());
-		assertEquals(new Long(10000), command.getTimeout());
+		assertEquals(new Long(CommandFacade.DEFAULT_TIMEOUT_EXECUTION), command.getTimeout());
 		assertEquals(new Integer(1), command.getTries());
 		assertEquals(false, command.getVerbose());
 		assertEquals(new File("").getAbsolutePath(), command.getWorkingDir());

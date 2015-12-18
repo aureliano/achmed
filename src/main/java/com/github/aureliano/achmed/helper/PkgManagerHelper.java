@@ -64,7 +64,7 @@ public final class PkgManagerHelper {
 			.withVerbose(false)
 			.withWorkingDir(new File("").getAbsolutePath())
 			.withTries(1)
-			.withTimeout(10000L);
+			.withTimeout(CommandFacade.DEFAULT_TIMEOUT_EXECUTION);
 	}
 	
 	protected static List<Map<String, String>> parseCheckUpdate(String output) {
