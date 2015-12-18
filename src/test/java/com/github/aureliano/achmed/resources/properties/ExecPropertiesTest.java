@@ -19,7 +19,7 @@ public class ExecPropertiesTest {
 		ExecProperties exec = new ExecProperties();
 		
 		assertEquals(new File("").getAbsolutePath(), exec.getCwd());
-		assertEquals(true, exec.isVerbose());
+		assertEquals(true, exec.getVerbose());
 		assertEquals(new Long(300000), exec.getTimeout());
 		assertEquals(new Integer(1), exec.getTries());
 	}
@@ -38,7 +38,7 @@ public class ExecPropertiesTest {
 		
 		assertEquals("echo something", exec.getCommand());
 		assertEquals("/path/to/some/directory", exec.getCwd());
-		assertTrue(exec.isVerbose());
+		assertTrue(exec.getVerbose());
 		assertEquals("another command", exec.getOnlyIf());
 		assertEquals("any other command", exec.getUnless());
 		assertEquals(new Long(10000), exec.getTimeout());

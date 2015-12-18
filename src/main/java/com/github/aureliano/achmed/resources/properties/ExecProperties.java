@@ -52,7 +52,7 @@ public class ExecProperties extends ResourceProperties {
 		this.cwd = cwd;
 	}
 
-	public Boolean isVerbose() {
+	public Boolean getVerbose() {
 		return verbose;
 	}
 

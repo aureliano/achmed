@@ -61,6 +61,6 @@ public class ExecResourceTest {
 		assertEquals(new Long(5000), p.getTimeout());
 		assertEquals(new Integer(2), p.getTries());
 		assertEquals("unless command success", p.getUnless());
-		assertTrue(p.isVerbose());
+		assertTrue(p.getVerbose());
 	}
 }

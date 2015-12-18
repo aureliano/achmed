@@ -80,7 +80,7 @@ public class ExecResource implements IResource {
 		return new CommandBuilder()
 			.withCommand(command)
 			.withWorkingDir(this.properties.getCwd())
-			.withVerbose(this.properties.isVerbose())
+			.withVerbose(this.properties.getVerbose())
 			.withTimeout(CommandFacade.DEFAULT_TIMEOUT_EXECUTION)
 			.withTries(1);
 	}

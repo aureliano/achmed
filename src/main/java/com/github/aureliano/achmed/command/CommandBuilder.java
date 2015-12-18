@@ -18,7 +18,7 @@ public class CommandBuilder {
 		this
 			.withCommand(properties.getCommand())
 			.withWorkingDir(properties.getCwd())
-			.withVerbose(properties.isVerbose())
+			.withVerbose(properties.getVerbose())
 			.withTimeout(properties.getTimeout())
 			.withTries(properties.getTries());
 	}
