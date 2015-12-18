@@ -82,11 +82,10 @@ public class FileResource implements IResource {
 	}
 	
 	private void ensure(IFileProvider provider) {
+		logger.info("Ensure " + this.properties.getEnsure() + " about " + this.properties.getPath());
 		if (EnsureFileStatus.ABSENT.equals(this.properties.getEnsure())) {
-			logger.info("Apply file absence to " + this.properties.getPath());
 			provider.ensureFileAbsence();
 		} else {
-			logger.info("Apply file presence to " + this.properties.getPath());
 			provider.ensureFilePresence();
 		}
 	}
