@@ -99,6 +99,11 @@ public class PosixFileProvider implements IFileProvider {
 		}
 		
 		File target = new File(this.properties.getPath());
+		if (!target.exists()) {
+			logger.warn("Directory " + target.getPath() + " does not exist. Skip deleting!");
+			return;
+		}
+			
 		if (target.isDirectory()) {
 			this.deleteDirectory();
 			FileHelper.assertDirectoryDoesNotExist(this.properties.getPath());
