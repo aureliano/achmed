@@ -41,7 +41,11 @@ public class CommandRunner implements Callable<CommandResponse> {
 			
 			exitStatus = process.waitFor();
 		} catch (Exception ex) {
-			response.withError(this.readError(process));
+			if (process != null) {
+				response.withError(this.readError(process));
+			} else {
+				response.withError("Program '" + this.command.get(0) + "' may not exist in your environment.");
+			}
 		}
 		
 		return response.withExitStatusCode(exitStatus);
