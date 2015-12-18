@@ -60,6 +60,7 @@ public class ExecResource implements IResource {
 	}
 	
 	private boolean shouldExecute(boolean queryCase, String cmd) {
+		cmd = StringHelper.amendEnvVars(cmd);
 		CommandBuilder commandBuilder = this.createCommandBuilder(cmd);
 		CommandResponse res = CommandFacade.executeCommand(commandBuilder);
 		
@@ -67,6 +68,7 @@ public class ExecResource implements IResource {
 	}
 	
 	private void execute() {
+		this.properties.setCommand(StringHelper.amendEnvVars(this.properties.getCommand()));
 		CommandResponse res = CommandFacade.executeCommand(this.properties);
 		
 		if (!res.isOK()) {
