@@ -1,12 +1,14 @@
 package com.github.aureliano.achmed.command;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 import java.util.concurrent.Callable;
 
+import com.github.aureliano.achmed.exception.AchmedException;
 import com.github.aureliano.achmed.helper.StringHelper;
 
 public class CommandRunner implements Callable<CommandResponse> {
@@ -36,6 +38,7 @@ public class CommandRunner implements Callable<CommandResponse> {
 		try {
 			process = builder.start();
 			response.withOutput(this.scanCommand(process));
+			
 			exitStatus = process.waitFor();
 		} catch (Exception ex) {
 			response.withError(this.readError(process));
@@ -53,23 +56,25 @@ public class CommandRunner implements Callable<CommandResponse> {
 	}
 	
 	private String consumeStream(InputStream stream, boolean verbose) {
-		Scanner scanner = new Scanner(stream);
-		StringBuilder builder = new StringBuilder();
-		
-		while (scanner.hasNextLine()) {
-			String line = scanner.nextLine();
-			builder.append(line).append("\n");
+		try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(stream))) {
+			StringBuilder builder = new StringBuilder();
 			
-			if (verbose) {
-				System.out.println(line);
+			String line = null;
+			while ((line = bufferedReader.readLine()) != null) {
+				builder.append(line).append("\n");
+				
+				if (verbose) {
+					System.out.println(line);
+				}
 			}
+			
+			if (builder.length() > 0) {
+				builder.deleteCharAt(builder.length() - 1);
+			}
+			
+			return builder.toString();
+		} catch (Exception ex) {
+			throw new AchmedException(ex);
 		}
-		
-		if (builder.length() > 0) {
-			builder.deleteCharAt(builder.length() - 1);
-		}
-		scanner.close();
-		
-		return builder.toString();
 	}
 }
