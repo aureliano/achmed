@@ -219,15 +219,15 @@ public final class FileHelper {
 		return newPath.replaceAll(doubleSeparatorRegex, File.separator);
 	}
 	
-	private static boolean isRegularFile(String path) {
+	public static boolean isRegularFile(String path) {
 		return Files.isRegularFile(Paths.get(path));
 	}
 	
-	private static boolean isSymbolicLink(String path) {
+	public static boolean isSymbolicLink(String path) {
 		return Files.isSymbolicLink(Paths.get(path));
 	}
 	
-	private static boolean isDirectory(String path) {
+	public static boolean isDirectory(String path) {
 		File dir = new File(path);
 		return dir.isDirectory();
 	}
