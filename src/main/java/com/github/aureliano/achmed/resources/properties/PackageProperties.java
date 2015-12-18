@@ -104,7 +104,9 @@ public class PackageProperties extends ResourceProperties {
 				this.provider = PackageProvider.valueOf(pkg);
 			};
 		} else if ("configfiles".equalsIgnoreCase(name)) {
-			if ((value != null) && (value instanceof DebianConfigFilesStatus)) {
+			if (value == null) {
+				this.configFiles = null;
+			} else if ((value != null) && (value instanceof DebianConfigFilesStatus)) {
 				this.configFiles = (DebianConfigFilesStatus) value;
 			} else {
 				String pkg = StringHelper.parse(value).toUpperCase();
@@ -113,18 +115,22 @@ public class PackageProperties extends ResourceProperties {
 		} else if ("ensure".equalsIgnoreCase(name)) {
 			this.ensure = StringHelper.parse(value);
 		} else if ("installOptions".equalsIgnoreCase(name)) {
-			try {
-				this.installOptions = new ArrayList<>((Collection) value);
-			} catch (Exception ex) {
-				this.installOptions.add(StringHelper.parse(value));
+			if (value != null) {
+				try {
+					this.installOptions = new ArrayList<>((Collection) value);
+				} catch (Exception ex) {
+					this.installOptions.add(StringHelper.parse(value));
+				}
 			}
 		} else if ("source".equalsIgnoreCase(name)) {
 			this.source = StringHelper.parse(value);
 		} else if ("uninstallOptions".equalsIgnoreCase(name)) {
-			try {
-				this.uninstallOptions = new ArrayList<>((Collection) value);
-			} catch (Exception ex) {
-				this.uninstallOptions.add(StringHelper.parse(value));
+			if (value != null) {
+				try {
+					this.uninstallOptions = new ArrayList<>((Collection) value);
+				} catch (Exception ex) {
+					this.uninstallOptions.add(StringHelper.parse(value));
+				}
 			}
 		}
 	}
