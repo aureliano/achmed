@@ -114,7 +114,7 @@ public class PosixFileProvider implements IFileProvider {
 				logger.info("Ensured that file " + this.properties.getPath() + " is present. Nothing to do.");
 			}
 			
-			boolean shouldReplace = ((this.properties.isReplace() != null) && (this.properties.isReplace()));
+			boolean shouldReplace = ((this.properties.getReplace() != null) && (this.properties.getReplace()));
 			if (!StringHelper.isEmpty(this.properties.getBackup()) && (shouldReplace)) {
 				Boolean shouldMakeBackup = BooleanHelper.parse(this.properties.getBackup());
 				String backupPath = null;

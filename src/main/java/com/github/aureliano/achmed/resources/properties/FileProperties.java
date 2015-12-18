@@ -99,7 +99,7 @@ public class FileProperties extends ResourceProperties {
 		this.owner = owner;
 	}
 
-	public Boolean isReplace() {
+	public Boolean getReplace() {
 		return replace;
 	}
 

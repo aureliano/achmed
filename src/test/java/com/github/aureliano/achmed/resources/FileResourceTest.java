@@ -58,7 +58,7 @@ public class FileResourceTest {
 		assertEquals("terrorist", p.getGroup());
 		assertEquals("0000", p.getMode());
 		assertEquals("Achmed", p.getOwner());
-		assertTrue(p.isReplace());
+		assertTrue(p.getReplace());
 		assertEquals("/path/to/source/file", p.getSource());
 		assertEquals("/path/to/target", p.getTarget());
 	}

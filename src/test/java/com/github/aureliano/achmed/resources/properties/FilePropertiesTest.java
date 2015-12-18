@@ -19,7 +19,7 @@ public class FilePropertiesTest {
 		FileProperties file = new FileProperties();
 		
 		assertFalse(file.getForce());
-		assertFalse(file.isReplace());
+		assertFalse(file.getReplace());
 	}
 
 	@Test
@@ -49,7 +49,7 @@ public class FilePropertiesTest {
 		assertEquals("terrorist", file.getGroup());
 		assertEquals("0000", file.getMode());
 		assertEquals("Achmed", file.getOwner());
-		assertTrue(file.isReplace());
+		assertTrue(file.getReplace());
 		assertEquals("/path/to/source/file", file.getSource());
 		assertEquals("/path/to/target", file.getTarget());
 		
