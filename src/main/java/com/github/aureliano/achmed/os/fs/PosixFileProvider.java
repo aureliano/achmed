@@ -177,7 +177,8 @@ public class PosixFileProvider implements IFileProvider {
 		File targetDir = new File(this.properties.getPath());
 		
 		if ((targetDir.exists()) && ((this.properties.isForce() == null || !this.properties.isForce()))) {
-			throw new FileResourceException("Cannot recreate directory " + this.properties.getPath() + " when force property isn't true.");
+			logger.warn("Directory " + this.properties.getPath() + " already exist. Skipping!");
+			return;
 		} else if (targetDir.isDirectory()) {
 			FileHelper.delete(targetDir, true);
 		}
@@ -204,7 +205,12 @@ public class PosixFileProvider implements IFileProvider {
 			throw new FileResourceException("Property 'target' not provided to symlink file.");
 		}
 		
-		logger.debug(String.format("Create symbolik link '%s' => '%s'", this.properties.getPath(), this.properties.getTarget()));
+		if (FileHelper.isSymbolicLink(this.properties.getPath())) {
+			logger.warn("Symbolic link " + this.properties.getPath() + " already exist. Skipping!");
+			return;
+		}
+		
+		logger.info(String.format("Create symbolik link '%s' => '%s'", this.properties.getPath(), this.properties.getTarget()));
 		CommandResponse res = CommandFacade.executeCommand("ln", "-s", this.properties.getPath(), this.properties.getTarget());
 		if (!res.isOK()) {
 			throw new FileResourceException(res);
