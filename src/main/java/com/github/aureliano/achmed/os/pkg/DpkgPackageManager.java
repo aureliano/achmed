@@ -1,5 +1,7 @@
 package com.github.aureliano.achmed.os.pkg;
 
+import java.util.List;
+
 import com.github.aureliano.achmed.command.CommandFacade;
 import com.github.aureliano.achmed.command.CommandResponse;
 import com.github.aureliano.achmed.exception.PackageResourceException;
@@ -37,12 +39,12 @@ public class DpkgPackageManager implements IPackageManager {
 			return false;
 		}
 		
-		String[] match = StringHelper.match("Status:\\s(\\S+\\s\\S+\\s\\S+)", res.getOutput());
-		if (match == null) {
+		List<String> match = StringHelper.match("Status:\\s(\\S+\\s\\S+\\s\\S+)", res.getOutput());
+		if (match.isEmpty()) {
 			throw new PackageResourceException("Failed to match dpkg-query [" + res.getOutput() + "]");
 		}
 		
-		return desiredStatus.equalsIgnoreCase(match[1]);
+		return desiredStatus.equalsIgnoreCase(match.get(1));
 	}
 
 	public void setPackageProperties(PackageProperties properties) {

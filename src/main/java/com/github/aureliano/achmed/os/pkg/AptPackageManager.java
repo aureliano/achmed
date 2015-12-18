@@ -59,7 +59,7 @@ public class AptPackageManager extends DpkgPackageManager {
 		}
 		
 		String candidate = LanguageSingleton.instance().getValue("resource.package.apt.cache.latest_candidate_version");
-		String version = StringHelper.match(candidate + ":\\s+(\\S+)\\s", res.getOutput())[1];
+		String version = StringHelper.match(candidate + ":\\s+(\\S+)\\s", res.getOutput()).get(1);
 		
 		return version;
 	}

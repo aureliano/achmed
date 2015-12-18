@@ -1,5 +1,6 @@
 package com.github.aureliano.achmed.helper;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -58,33 +59,36 @@ public final class StringHelper {
 		return (value == null) ? false : value.matches(NUMBER_REGEX);
 	}
 	
-	public static String[] match(String regex, String target) {
+	public static List<String> match(String regex, String target) {
 		Matcher matcher = Pattern.compile(regex).matcher(target);
-		if (!matcher.find()) {
-			return null;
-		} else if (matcher.groupCount() == 0) {
-			return new String[] { matcher.group() };
-		}
+		List<String> groups = new ArrayList<String>();
 		
-		String[] groups = new String[matcher.groupCount() + 1];
-		for (int i = 0; i < groups.length; i++) {
-			groups[i] = matcher.group(i);
+		while (matcher.find()) {
+			if (groups.isEmpty()) {
+				groups.add(matcher.group());
+			}
+			
+			if (matcher.groupCount() > 0) {
+				for (byte i = 0; i < matcher.groupCount(); i++) {
+					groups.add(matcher.group(i + 1));
+				}
+			}
 		}
 		
 		return groups;
 	}
 	
 	public static String amendEnvVars(String text) {
-		String[] match = StringHelper.match("(\\$[\\w\\d]+)", text);
-		if (match == null) {
+		List<String> match = StringHelper.match("(\\$[\\w\\d]+)", text);
+		if (match.isEmpty()) {
 			return text;
 		}
 		
-		for (byte i = 1; i < match.length; i++) {
-			String regex = Pattern.quote(match[i]);
-			String var = System.getenv(match[i].replaceFirst("^\\$", ""));
+		for (byte i = 1; i < match.size(); i++) {
+			String regex = Pattern.quote(match.get(i));
+			String var = System.getenv(match.get(i).replaceFirst("^\\$", ""));
 			if (var == null) {
-				throw new AchmedException("Could not find any environment variable with name " + match[i]);
+				throw new AchmedException("Could not find any environment variable with name " + match.get(i));
 			}
 			text = text.replaceFirst(regex, var);
 		}

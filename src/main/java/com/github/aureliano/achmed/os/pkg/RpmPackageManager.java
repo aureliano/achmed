@@ -1,5 +1,7 @@
 package com.github.aureliano.achmed.os.pkg;
 
+import java.util.List;
+
 import com.github.aureliano.achmed.command.CommandFacade;
 import com.github.aureliano.achmed.command.CommandResponse;
 import com.github.aureliano.achmed.exception.PackageResourceException;
@@ -46,8 +48,8 @@ public class RpmPackageManager implements IPackageManager {
 			throw new PackageResourceException("Found more than one package installed to " + res.getCommand());
 		}
 		
-		String[] match = StringHelper.match("^(\\S+)\\s+(\\S+)\\s+(\\S+)\\s+(\\S+)\\s+(\\S+)$", res.getOutput());
-		if (match == null) {
+		List<String> match = StringHelper.match("^(\\S+)\\s+(\\S+)\\s+(\\S+)\\s+(\\S+)\\s+(\\S+)$", res.getOutput());
+		if (match.isEmpty()) {
 			throw new PackageResourceException("Failed to match rpm query " + res.getCommand());
 		}
 		

@@ -33,7 +33,7 @@ public final class PkgManagerHelper {
 		for (String opt : options) {
 			for (String repoParam : repoParams) {
 				String _regex = regex.replaceFirst("\\$\\{repoParam\\}", repoParam);
-				if (StringHelper.match(_regex, opt) != null) {
+				if (!StringHelper.match(_regex, opt).isEmpty()) {
 					scannedOptions.add(opt);
 					break;
 				}
@@ -76,7 +76,7 @@ public final class PkgManagerHelper {
 		
 		while (scanner.hasNextLine()) {
 			String[] tuple = scanner.nextLine().split("\\s+");
-			if (StringHelper.match("^(Obsoleting|Security:|Update)", tuple[0]) != null) {
+			if (!StringHelper.match("^(Obsoleting|Security:|Update)", tuple[0]).isEmpty()) {
 				break;
 			}
 			
@@ -89,14 +89,14 @@ public final class PkgManagerHelper {
 	
 	protected static Map<String, String> parseHash(String name, String version) {
 		String[] pkg = name.split("\\.");
-		String[] match = StringHelper.match("^(?:(\\d+):)?(\\S+)-(\\S+)$", version);
+		List<String> match = StringHelper.match("^(?:(\\d+):)?(\\S+)-(\\S+)$", version);
 		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("name", pkg[0]);
 		map.put("arch", pkg[1]);
-		map.put("epoch", (StringHelper.isEmpty(match[1])) ? "0" : match[1]);
-		map.put("version", match[2]);
-		map.put("release", match[3]);
+		map.put("epoch", (StringHelper.isEmpty(match.get(1))) ? "0" : match.get(1));
+		map.put("version", match.get(2));
+		map.put("release", match.get(3));
 		
 		return map;
 	}

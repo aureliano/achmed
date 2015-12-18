@@ -5,6 +5,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.List;
+
 import org.junit.Test;
 
 public class StringHelperTest {
@@ -57,14 +59,14 @@ public class StringHelperTest {
 	
 	@Test
 	public void testMatch() {
-		assertEquals("Ubuntu", StringHelper.match("^Ubuntu", "Ubuntu 12.04.5 LTS \\n \\l")[0]);
-		assertEquals("Debian", StringHelper.match("^Debian", "Debian GNU/Linux 6.0 \\n \\l")[0]);
-		assertEquals("CentOS", StringHelper.match("^CentOS", "CentOS release 5.2 (Final)\nKernel \\r on an \\m\n")[0]);
+		assertEquals("Ubuntu", StringHelper.match("^Ubuntu", "Ubuntu 12.04.5 LTS \\n \\l").get(0));
+		assertEquals("Debian", StringHelper.match("^Debian", "Debian GNU/Linux 6.0 \\n \\l").get(0));
+		assertEquals("CentOS", StringHelper.match("^CentOS", "CentOS release 5.2 (Final)\nKernel \\r on an \\m\n").get(0));
 		
-		assertEquals(" GNU/", StringHelper.match("\\sGNU/", "Debian GNU/Linux 6.0 \\n \\l")[0]);
+		assertEquals(" GNU/", StringHelper.match("\\sGNU/", "Debian GNU/Linux 6.0 \\n \\l").get(0));
 		
-		String[] found = StringHelper.match("Candidato:\\s+(\\S+)\\s", "telnet:\n  Instalado: 0.17-36build1\n  Candidato: 0.17-36build1\n  Tabela de versão:");
-		assertTrue(found.length == 2);
-		assertEquals("0.17-36build1", found[1]);
+		List<String> found = StringHelper.match("Candidato:\\s+(\\S+)\\s", "telnet:\n  Instalado: 0.17-36build1\n  Candidato: 0.17-36build1\n  Tabela de versão:");
+		assertEquals(2, found.size());
+		assertEquals("0.17-36build1", found.get(1));
 	}
 }
