@@ -57,9 +57,17 @@ public class PosixFileProvider implements IFileProvider {
 			return;
 		}
 		
-		CommandResponse res = CommandFacade.executeCommand(
-			"chown", StringHelper.join(ownerAndGroup.toArray()), this.properties.getPath()
-		);
+		List<String> commands = new ArrayList<String>();
+		commands.add("chown");
+		
+		if ((this.properties.getRecurse() != null) && ((this.properties.getRecurse()))) {
+			commands.add("-R");
+		}
+		
+		commands.add(StringHelper.join(ownerAndGroup.toArray()));
+		commands.add(this.properties.getPath());
+		
+		CommandResponse res = CommandFacade.executeCommand(commands.toArray(new String[0]));
 		
 		logger.debug(res.getCommand());
 		if (!res.isOK()) {
