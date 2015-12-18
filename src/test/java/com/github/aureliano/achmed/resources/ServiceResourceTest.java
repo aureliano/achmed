@@ -50,7 +50,7 @@ public class ServiceResourceTest {
 
 	private void checkProperties(ServiceProperties p) {
 		assertEquals("do something", p.getBinary());
-		assertTrue(p.isEnable());
+		assertTrue(p.getEnable());
 		assertTrue(p.getEnsure());
 		assertEquals("-p param", p.getFlags());
 		assertTrue(p.getHasRestart());

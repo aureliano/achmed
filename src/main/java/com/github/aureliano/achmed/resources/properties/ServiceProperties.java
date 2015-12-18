@@ -59,7 +59,7 @@ public class ServiceProperties extends ResourceProperties {
 		this.binary = binary;
 	}
 
-	public Boolean isEnable() {
+	public Boolean getEnable() {
 		return enable;
 	}
 

@@ -57,9 +57,9 @@ public class ServiceResource implements IResource {
 	}
 	
 	private void configureBootstrap(IService service) {
-		if (this.properties.isEnable() == null) {
+		if (this.properties.getEnable() == null) {
 			return; 
-		 } else if (this.properties.isEnable()) {
+		 } else if (this.properties.getEnable()) {
 			 service.enableBootstrap();
 		 } else {
 			 service.disableBootstrap();

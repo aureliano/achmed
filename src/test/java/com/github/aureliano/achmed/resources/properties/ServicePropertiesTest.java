@@ -51,7 +51,7 @@ public class ServicePropertiesTest {
 		assertEquals("nginx", service.getName());
 		assertTrue(service.getEnsure());
 		assertEquals("do something", service.getBinary());
-		assertFalse(service.isEnable());
+		assertFalse(service.getEnable());
 		assertEquals("-p param", service.getFlags());
 		assertFalse(service.getHasRestart());
 		assertTrue(service.getHasStatus());
