@@ -18,7 +18,7 @@ public class FilePropertiesTest {
 	public void testDefaultValues() {
 		FileProperties file = new FileProperties();
 		
-		assertFalse(file.isForce());
+		assertFalse(file.getForce());
 		assertFalse(file.isReplace());
 	}
 
@@ -45,7 +45,7 @@ public class FilePropertiesTest {
 		assertEquals(EnsureFileStatus.FILE, file.getEnsure());
 		assertEquals("/path/to/file.backup", file.getBackup());
 		assertEquals("File content", file.getContent());
-		assertFalse(file.isForce());
+		assertFalse(file.getForce());
 		assertEquals("terrorist", file.getGroup());
 		assertEquals("0000", file.getMode());
 		assertEquals("Achmed", file.getOwner());

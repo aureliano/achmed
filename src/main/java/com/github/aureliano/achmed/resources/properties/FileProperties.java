@@ -67,7 +67,7 @@ public class FileProperties extends ResourceProperties {
 		this.content = content;
 	}
 
-	public Boolean isForce() {
+	public Boolean getForce() {
 		return force;
 	}
 

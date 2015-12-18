@@ -145,7 +145,7 @@ public class PosixFileProvider implements IFileProvider {
 	}
 	
 	private void deleteDirectory() {
-		if ((this.properties.isForce() == null) || (!this.properties.isForce())) {
+		if ((this.properties.getForce() == null) || (!this.properties.getForce())) {
 			throw new FileResourceException("Cannot recreate directory " + this.properties.getPath() + " when force property isn't true.");
 		}
 		
@@ -176,7 +176,7 @@ public class PosixFileProvider implements IFileProvider {
 	private void createDirectory() {
 		File targetDir = new File(this.properties.getPath());
 		
-		if ((targetDir.exists()) && ((this.properties.isForce() == null || !this.properties.isForce()))) {
+		if ((targetDir.exists()) && ((this.properties.getForce() == null || !this.properties.getForce()))) {
 			logger.warn("Directory " + this.properties.getPath() + " already exist. Skipping!");
 			return;
 		} else if (targetDir.isDirectory()) {

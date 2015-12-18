@@ -54,7 +54,7 @@ public class FileResourceTest {
 		assertEquals(EnsureFileStatus.FILE, p.getEnsure());
 		assertEquals("/path/to/file.backup", p.getBackup());
 		assertEquals("File content", p.getContent());
-		assertFalse(p.isForce());
+		assertFalse(p.getForce());
 		assertEquals("terrorist", p.getGroup());
 		assertEquals("0000", p.getMode());
 		assertEquals("Achmed", p.getOwner());
