@@ -16,6 +16,7 @@ public class FileProperties extends ResourceProperties {
 	private String group;
 	private String mode;
 	private String owner;
+	private Boolean recurse;
 	private Boolean replace;
 	private String source;
 	private String target;
@@ -23,6 +24,7 @@ public class FileProperties extends ResourceProperties {
 	public FileProperties() {
 		this.force = false;
 		this.replace = false;
+		this.recurse = false;
 	}
 	
 	public FileProperties configureAttributes() {
@@ -98,6 +100,14 @@ public class FileProperties extends ResourceProperties {
 	public void setOwner(String owner) {
 		this.owner = owner;
 	}
+	
+	public Boolean getRecurse() {
+		return recurse;
+	}
+	
+	public void setRecurse(Boolean recurse) {
+		this.recurse = recurse;
+	}
 
 	public Boolean getReplace() {
 		return replace;
@@ -147,6 +157,8 @@ public class FileProperties extends ResourceProperties {
 			this.mode = StringHelper.parse(value);
 		} else if ("owner".equalsIgnoreCase(name)) {
 			this.owner = StringHelper.parse(value);
+		} else if ("recurse".equalsIgnoreCase(name)) {
+			this.recurse = BooleanHelper.parse(value);
 		} else if ("replace".equalsIgnoreCase(name)) {
 			this.replace = BooleanHelper.parse(value);
 		} else if ("source".equalsIgnoreCase(name)) {

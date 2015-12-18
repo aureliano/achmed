@@ -20,6 +20,7 @@ public class FilePropertiesTest {
 		
 		assertFalse(file.getForce());
 		assertFalse(file.getReplace());
+		assertFalse(file.getRecurse());
 	}
 
 	@Test
@@ -34,8 +35,7 @@ public class FilePropertiesTest {
 			.put("ignore", "ignore")
 			.put("mode", "0000")
 			.put("owner", "Achmed")
-			.put("purge", false)
-			.put("recurse", false)
+			.put("recurse", true)
 			.put("replace", true)
 			.put("source", "/path/to/source/file")
 			.put("target", "/path/to/target")
@@ -49,6 +49,7 @@ public class FilePropertiesTest {
 		assertEquals("terrorist", file.getGroup());
 		assertEquals("0000", file.getMode());
 		assertEquals("Achmed", file.getOwner());
+		assertTrue(file.getRecurse());
 		assertTrue(file.getReplace());
 		assertEquals("/path/to/source/file", file.getSource());
 		assertEquals("/path/to/target", file.getTarget());
