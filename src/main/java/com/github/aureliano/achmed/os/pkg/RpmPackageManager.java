@@ -11,7 +11,7 @@ public class RpmPackageManager implements IPackageManager {
 	private static final String RPM = "/bin/rpm";
 	private static final String QUERY_FORMAT = "'%{NAME} %|EPOCH?{%{EPOCH}}:{0}| %{VERSION} %{RELEASE} %{ARCH}\\n'";
 	
-	private PackageProperties properties;
+	protected PackageProperties properties;
 	
 	public RpmPackageManager() {
 		super();

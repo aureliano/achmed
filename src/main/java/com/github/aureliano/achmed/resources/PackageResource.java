@@ -29,7 +29,6 @@ public class PackageResource implements IResource {
 		logger.info(" >>> Apply package resource to: " + this.properties.getName());
 		
 		IPackageManager packageManager = this.resolvePackageManager();
-		packageManager.setPackageProperties(this.properties);
 		CommandResponse res = null;
 		
 		if ("absent".equalsIgnoreCase(this.properties.getEnsure())) {

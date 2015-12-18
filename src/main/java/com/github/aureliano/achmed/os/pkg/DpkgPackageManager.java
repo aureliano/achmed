@@ -11,7 +11,7 @@ public class DpkgPackageManager implements IPackageManager {
 	private static final String DPKG_QUERY = "/usr/bin/dpkg-query";
 	private static final String QUERY_FORMAT = "'${status} ${version}\\n'";
 
-	private PackageProperties properties;
+	protected PackageProperties properties;
 	
 	public DpkgPackageManager() {
 		super();

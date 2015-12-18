@@ -9,15 +9,12 @@ import com.github.aureliano.achmed.exception.PackageResourceException;
 import com.github.aureliano.achmed.helper.PkgManagerHelper;
 import com.github.aureliano.achmed.helper.StringHelper;
 import com.github.aureliano.achmed.idiom.LanguageSingleton;
-import com.github.aureliano.achmed.resources.properties.PackageProperties;
 import com.github.aureliano.achmed.types.DebianConfigFilesStatus;
 
 public class AptPackageManager extends DpkgPackageManager {
 
 	private static final String APT_GET = "/usr/bin/apt-get";
 	private static final String APT_CACHE = "/usr/bin/apt-cache";
-	
-	private PackageProperties properties;
 	
 	public AptPackageManager() {
 		super();
@@ -32,7 +29,7 @@ public class AptPackageManager extends DpkgPackageManager {
 		}
 		
 		if (!super.isInstalled()) {
-			throw new PackageResourceException("Expected package " + this.properties.getName() + " was installed, but it doesn't.");
+			throw new PackageResourceException("Expected package " + super.properties.getName() + " was installed, but it doesn't.");
 		}
 		
 		return res;
@@ -47,14 +44,14 @@ public class AptPackageManager extends DpkgPackageManager {
 		}
 		
 		if (super.isInstalled()) {
-			throw new PackageResourceException("Expected package " + this.properties.getName() + " was not installed, but it is.");
+			throw new PackageResourceException("Expected package " + super.properties.getName() + " was not installed, but it is.");
 		}
 		
 		return res;
 	}
 
 	public String latest() {
-		String cmd = String.format("%s policy %s", APT_CACHE, this.properties.getName());
+		String cmd = String.format("%s policy %s", APT_CACHE, super.properties.getName());
 		CommandResponse res = CommandFacade.executeCommand(PkgManagerHelper.buildCommand(cmd));
 		
 		if (!res.isOK()) {
@@ -66,45 +63,37 @@ public class AptPackageManager extends DpkgPackageManager {
 		
 		return version;
 	}
-
-	public void setPackageProperties(PackageProperties properties) {
-		this.properties = properties;
-	}
-
-	public PackageProperties getPackageProperties() {
-		return this.properties;
-	}
 	
 	private String buildInstallCommand() {
 		List<String> cmd = new ArrayList<String>();
 		cmd.add(APT_GET);
 		cmd.add("-q -y");
 		
-		if (this.properties.getConfigFiles() != null) {
-			if (DebianConfigFilesStatus.KEEP.equals(this.properties.getConfigFiles())) {
+		if (super.properties.getConfigFiles() != null) {
+			if (DebianConfigFilesStatus.KEEP.equals(super.properties.getConfigFiles())) {
 				cmd.add("-o");
 				cmd.add("DPkg::Options::=--force-confold");
-			} else if (DebianConfigFilesStatus.REPLACE.equals(this.properties.getConfigFiles())) {
+			} else if (DebianConfigFilesStatus.REPLACE.equals(super.properties.getConfigFiles())) {
 				cmd.add("-o");
 				cmd.add("DPkg::Options::=--force-confnew");
 			}
 		}
 		
 		String version = null;
-		if (!(("present".equalsIgnoreCase(this.properties.getEnsure())) ||
-				("installed".equalsIgnoreCase(this.properties.getEnsure()))) ||
-				("absent".equalsIgnoreCase(this.properties.getEnsure()))) {
-			version = this.properties.getEnsure();
+		if (!(("present".equalsIgnoreCase(super.properties.getEnsure())) ||
+				("installed".equalsIgnoreCase(super.properties.getEnsure()))) ||
+				("absent".equalsIgnoreCase(super.properties.getEnsure()))) {
+			version = super.properties.getEnsure();
 		}
 		
-		String pkg = this.properties.getName();
+		String pkg = super.properties.getName();
 		if (!StringHelper.isEmpty(version)) {
 			version = (version.equalsIgnoreCase("latest")) ? this.latest() : version;
 			pkg = String.format("%s=%s --force-yes", pkg, version);
 		}
 		
-		if (!this.properties.getInstallOptions().isEmpty()) {
-			cmd.add(StringHelper.join(this.properties.getInstallOptions(), " "));
+		if (!super.properties.getInstallOptions().isEmpty()) {
+			cmd.add(StringHelper.join(super.properties.getInstallOptions(), " "));
 		}
 		
 		cmd.add("install");
@@ -120,12 +109,12 @@ public class AptPackageManager extends DpkgPackageManager {
 		cmd.add("-y");
 		cmd.add("-q");
 		
-		if (!this.properties.getUninstallOptions().isEmpty()) {
-			cmd.add(StringHelper.join(this.properties.getUninstallOptions(), " "));
+		if (!super.properties.getUninstallOptions().isEmpty()) {
+			cmd.add(StringHelper.join(super.properties.getUninstallOptions(), " "));
 		}
 		
 		cmd.add("remove");
-		cmd.add(this.properties.getName());
+		cmd.add(super.properties.getName());
 		
 		return StringHelper.join(cmd, " ");
 	}
