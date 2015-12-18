@@ -43,7 +43,7 @@ public class ServiceProperties extends ResourceProperties {
 	}
 
 	@NotNull
-	public Boolean isEnsure() {
+	public Boolean getEnsure() {
 		return ensure;
 	}
 

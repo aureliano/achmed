@@ -49,7 +49,7 @@ public class ServicePropertiesTest {
 			.configureAttributes();
 		
 		assertEquals("nginx", service.getName());
-		assertTrue(service.isEnsure());
+		assertTrue(service.getEnsure());
 		assertEquals("do something", service.getBinary());
 		assertFalse(service.isEnable());
 		assertEquals("-p param", service.getFlags());

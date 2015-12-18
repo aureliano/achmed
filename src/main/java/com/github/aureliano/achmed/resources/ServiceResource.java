@@ -45,7 +45,7 @@ public class ServiceResource implements IResource {
 	}
 	
 	private void ensure(IService service) {
-		if (this.properties.isEnsure()) {
+		if (this.properties.getEnsure()) {
 			if (!service.isRunning()) {
 				service.start();
 			}
