@@ -178,6 +178,10 @@ public class PosixFileProvider implements IFileProvider {
 			logger.debug("Copy file " + source.getAbsolutePath() + " to " + target.getAbsolutePath());
 			FileHelper.copyFile(source, target);
 		} else {
+			if (this.properties.getContent() == null) {
+				throw new FileResourceException("Source nor content attribute was set into file resource.");
+			}
+			
 			String content = (this.properties.getContent() != null) ? this.properties.getContent() : "";
 			try (
 				OutputStream stream = new FileOutputStream(target);
