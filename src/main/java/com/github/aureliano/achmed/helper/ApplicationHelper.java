@@ -148,6 +148,8 @@ public final class ApplicationHelper {
 			return EasterEggHelper.tellMeanJewishJoke();
 		} else if ("blow up".equalsIgnoreCase(param)) {
 			return EasterEggHelper.blowUp();
+		} else if ("portrait".equalsIgnoreCase(param)) {
+			return EasterEggHelper.portrait();
 		} else {
 			return "Don't know how to handle such command: " + param;
 		}

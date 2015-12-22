@@ -64,4 +64,8 @@ public final class EasterEggHelper {
 	public static String blowUp() {
 		return FileHelper.readResource("meta/bomb.asc-art");
 	}
+	
+	public static String portrait() {
+		return FileHelper.readResource("meta/skull.asc-art");
+	}
 }
