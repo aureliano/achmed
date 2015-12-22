@@ -6,6 +6,7 @@ import com.github.aureliano.achmed.command.CommandBuilder;
 import com.github.aureliano.achmed.command.CommandFacade;
 import com.github.aureliano.achmed.command.CommandResponse;
 import com.github.aureliano.achmed.exception.ExecResourceException;
+import com.github.aureliano.achmed.helper.FileHelper;
 import com.github.aureliano.achmed.helper.StringHelper;
 import com.github.aureliano.achmed.resources.properties.ExecProperties;
 import com.github.aureliano.achmed.resources.properties.IResourceProperties;
@@ -79,7 +80,7 @@ public class ExecResource implements IResource {
 	private CommandBuilder createCommandBuilder(String command) {
 		return new CommandBuilder()
 			.withCommand(command)
-			.withWorkingDir(this.properties.getCwd())
+			.withWorkingDir(FileHelper.amendFilePath(this.properties.getCwd()))
 			.withVerbose(this.properties.getVerbose())
 			.withTimeout(CommandFacade.DEFAULT_TIMEOUT_EXECUTION)
 			.withTries(1);
