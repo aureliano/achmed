@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -17,9 +18,12 @@ public class CommandRunner implements Callable<CommandResponse> {
 	private File workingDir;
 	private boolean verbose;
 	
-	public CommandRunner(String command, String dir, boolean verbose, boolean splitCommand) {
-		String[] tokens = (splitCommand) ? command.split("\\s+") : new String[] { command };
-		this.command = Arrays.asList(tokens);
+	public CommandRunner(String command, String dir, boolean verbose, List<String> arguments) {
+		this.command = new ArrayList<>(Arrays.asList(command.split("\\s+")));
+		
+		if ((arguments != null) && (!arguments.isEmpty())) {
+			this.command.addAll(arguments);
+		}
 		
 		this.workingDir = new File(dir);
 		this.verbose = verbose;

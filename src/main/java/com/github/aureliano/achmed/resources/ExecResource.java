@@ -27,13 +27,26 @@ public class ExecResource implements IResource {
 
 	public void apply() {
 		this.properties.configureAttributes();
-		logger.info(" >>> Apply exec resource with command: " + this.properties.getCommand());
+		String command = this.commandPresentation();
+		
+		logger.info(" >>> Apply exec resource with command: " + command);
 		
 		if (this.canExecute()) {
 			this.execute();
 		}
 	}
 	
+	private String commandPresentation() {
+		StringBuilder cmd = new StringBuilder(this.properties.getCommand());
+		if (!this.properties.getArguments().isEmpty()) {
+			cmd
+				.append(" ")
+				.append(StringHelper.join(this.properties.getArguments(), " "));
+		}
+		
+		return cmd.toString();
+	}
+
 	public void setProperties(IResourceProperties properties) {
 		this.properties = (ExecProperties) properties;
 	}

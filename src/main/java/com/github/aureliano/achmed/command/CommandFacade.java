@@ -58,7 +58,9 @@ public final class CommandFacade {
 	
 	private static CommandResponse _executeCommand(CommandBuilder command) {
 		boolean verbose = command.getVerbose() != null ? command.getVerbose() : true;
-		CommandRunner runner = new CommandRunner(command.getCommand(), command.getWorkingDir(), verbose, command.getSplitCommand());
+		CommandRunner runner = new CommandRunner(
+			command.getCommand(), command.getWorkingDir(), verbose, command.getArguments()
+		);
 		
 		ExecutorService executor = Executors.newSingleThreadExecutor();
 		Future<CommandResponse> future = executor.submit(runner);

@@ -1,12 +1,10 @@
 package com.github.aureliano.achmed.command;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import com.github.aureliano.achmed.command.CommandBuilder;
 import com.github.aureliano.achmed.resources.properties.ExecProperties;
 
 public class CommandBuilderTest {
@@ -18,15 +16,13 @@ public class CommandBuilderTest {
 			.withTimeout(1000L)
 			.withTries(3)
 			.withVerbose(true)
-			.withWorkingDir("/path/to/working/dir")
-			.withSplitCommand(false);
+			.withWorkingDir("/path/to/working/dir");
 		
 		assertEquals("ls", cmd.getCommand());
 		assertEquals(new Long(1000), cmd.getTimeout());
 		assertEquals(new Integer(3), cmd.getTries());
 		assertTrue(cmd.getVerbose());
 		assertEquals("/path/to/working/dir", cmd.getWorkingDir());
-		assertFalse(cmd.getSplitCommand());
 	}
 
 	@Test

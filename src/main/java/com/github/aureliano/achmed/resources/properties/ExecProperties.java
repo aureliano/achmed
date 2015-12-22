@@ -1,6 +1,9 @@
 package com.github.aureliano.achmed.resources.properties;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import com.github.aureliano.achmed.annotation.Min;
 import com.github.aureliano.achmed.annotation.NotEmpty;
@@ -13,20 +16,20 @@ import com.github.aureliano.achmed.helper.StringHelper;
 public class ExecProperties extends ResourceProperties {
 
 	private String command;
+	private List<String> arguments;
 	private String cwd;
 	private Boolean verbose;
 	private String onlyIf;
 	private String unless;
 	private Long timeout;
 	private Integer tries;
-	private Boolean splitCommand;
 	
 	public ExecProperties() {
 		this.cwd = new File("").getAbsolutePath();
+		this.arguments = new ArrayList<>();
 		this.verbose = true;
 		this.timeout = CommandFacade.DEFAULT_TIMEOUT_EXECUTION;
 		this.tries = 1;
-		this.splitCommand = true;
 	}
 	
 	public ExecProperties configureAttributes() {
@@ -44,6 +47,14 @@ public class ExecProperties extends ResourceProperties {
 
 	public void setCommand(String command) {
 		this.command = command;
+	}
+	
+	public List<String> getArguments() {
+		return arguments;
+	}
+	
+	public void setArguments(List<String> arguments) {
+		this.arguments = arguments;
 	}
 
 	public String getCwd() {
@@ -95,17 +106,17 @@ public class ExecProperties extends ResourceProperties {
 		this.tries = tries;
 	}
 	
-	public Boolean getSplitCommand() {
-		return splitCommand;
-	}
-	
-	public void setSplitCommand(Boolean splitCommand) {
-		this.splitCommand = splitCommand;
-	}
-	
 	private void setAttribute(String name, Object value) {
 		if ("command".equalsIgnoreCase(name)) {
 			this.command = StringHelper.parse(value);
+		} else if ("arguments".equalsIgnoreCase(name)) {
+			if (value != null) {
+				try {
+					this.arguments = new ArrayList<>((Collection) value);
+				} catch (Exception ex) {
+					this.arguments.add(StringHelper.parse(value));
+				}
+			}
 		} else if ("cwd".equalsIgnoreCase(name)) {
 			this.cwd = StringHelper.parse(value);
 		} else if ("verbose".equalsIgnoreCase(name)) {
@@ -118,8 +129,6 @@ public class ExecProperties extends ResourceProperties {
 			this.timeout = LongHelper.parse(value);
 		} else if ("tries".equalsIgnoreCase(name)) {
 			this.tries = IntegerHelper.parse(value);
-		} else if ("splitcommand".equalsIgnoreCase(name)) {
-			this.splitCommand = BooleanHelper.parse(value);
 		}
 	}
 

@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.Set;
 
 import org.junit.Test;
@@ -22,13 +23,14 @@ public class ExecPropertiesTest {
 		assertEquals(true, exec.getVerbose());
 		assertEquals(new Long(300000), exec.getTimeout());
 		assertEquals(new Integer(1), exec.getTries());
-		assertEquals(true, exec.getSplitCommand());
+		assertTrue(exec.getArguments().isEmpty());
 	}
 
 	@Test
 	public void testConfigureAttributes() {
 		ExecProperties exec = (ExecProperties) new ExecProperties()
 			.put("command", "echo something")
+			.put("arguments", Arrays.asList("malabibala"))
 			.put("cwd", "/path/to/some/directory")
 			.put("verbose", true)
 			.put("onlyIf", "another command")
@@ -39,13 +41,13 @@ public class ExecPropertiesTest {
 			.configureAttributes();
 		
 		assertEquals("echo something", exec.getCommand());
+		assertEquals(Arrays.asList("malabibala"), exec.getArguments());
 		assertEquals("/path/to/some/directory", exec.getCwd());
 		assertTrue(exec.getVerbose());
 		assertEquals("another command", exec.getOnlyIf());
 		assertEquals("any other command", exec.getUnless());
 		assertEquals(new Long(10000), exec.getTimeout());
 		assertEquals(new Integer(3), exec.getTries());
-		assertEquals(false, exec.getSplitCommand());
 	}
 	
 	@Test

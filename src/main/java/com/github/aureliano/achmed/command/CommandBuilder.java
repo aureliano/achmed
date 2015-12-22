@@ -1,28 +1,30 @@
 package com.github.aureliano.achmed.command;
 
+import java.util.List;
+
 import com.github.aureliano.achmed.resources.properties.ExecProperties;
 
 public class CommandBuilder {
 
 	private String command;
+	private List<String> arguments;
 	private String workingDir;
 	private Boolean verbose;
 	private Long timeout;
 	private Integer tries;
-	private Boolean splitCommand;
 	
 	public CommandBuilder() {
-		this.splitCommand = true;
+		super();
 	}
 	
 	public CommandBuilder(ExecProperties properties) {
 		this
 			.withCommand(properties.getCommand())
+			.withArguments(properties.getArguments())
 			.withWorkingDir(properties.getCwd())
 			.withVerbose(properties.getVerbose())
 			.withTimeout(properties.getTimeout())
-			.withTries(properties.getTries())
-			.withSplitCommand(properties.getSplitCommand());
+			.withTries(properties.getTries());
 	}
 
 	public String getCommand() {
@@ -31,6 +33,15 @@ public class CommandBuilder {
 
 	public CommandBuilder withCommand(String command) {
 		this.command = command;
+		return this;
+	}
+	
+	public List<String> getArguments() {
+		return arguments;
+	}
+	
+	public CommandBuilder withArguments(List<String> arguments) {
+		this.arguments = arguments;
 		return this;
 	}
 
@@ -67,19 +78,6 @@ public class CommandBuilder {
 	
 	public CommandBuilder withTries(Integer tries) {
 		this.tries = tries;
-		return this;
-	}
-	
-	public Boolean getSplitCommand() {
-		return splitCommand;
-	}
-	
-	public void setSplitCommand(Boolean splitCommand) {
-		this.splitCommand = splitCommand;
-	}
-	
-	public CommandBuilder withSplitCommand(Boolean splitCommand) {
-		this.splitCommand = splitCommand;
 		return this;
 	}
 }
