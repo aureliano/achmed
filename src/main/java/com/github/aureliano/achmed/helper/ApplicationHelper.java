@@ -110,15 +110,21 @@ public final class ApplicationHelper {
 	}
 	
 	public static String version() {
+		String art = FileHelper.readResource("meta/version.asc-art");
 		Properties properties = PropertyHelper.loadProperties("meta/version.properties");
-		return new StringBuilder("achmed")
-			.append(" ")
+		String space = "               ";
+		
+		return new StringBuilder(art)
+			.append("\n")
+			.append(space)
+			.append("\n")
+			.append(space)
 			.append(properties.get("version"))
 			.append(":")
 			.append(properties.get("release"))
 			.append(" (")
 			.append(properties.get("date"))
-			.append(")")
+			.append(")\n")
 			.toString();
 	}
 	
