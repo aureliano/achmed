@@ -60,4 +60,8 @@ public final class EasterEggHelper {
 		
 		return jokes.getProperty(key);
 	}
+	
+	public static String blowUp() {
+		return FileHelper.readResource("meta/bomb.asc-art");
+	}
 }
