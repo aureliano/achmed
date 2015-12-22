@@ -9,9 +9,10 @@ public class CommandBuilder {
 	private Boolean verbose;
 	private Long timeout;
 	private Integer tries;
+	private Boolean splitCommand;
 	
 	public CommandBuilder() {
-		super();
+		this.splitCommand = true;
 	}
 	
 	public CommandBuilder(ExecProperties properties) {
@@ -20,7 +21,8 @@ public class CommandBuilder {
 			.withWorkingDir(properties.getCwd())
 			.withVerbose(properties.getVerbose())
 			.withTimeout(properties.getTimeout())
-			.withTries(properties.getTries());
+			.withTries(properties.getTries())
+			.withSplitCommand(properties.getSplitCommand());
 	}
 
 	public String getCommand() {
@@ -65,6 +67,19 @@ public class CommandBuilder {
 	
 	public CommandBuilder withTries(Integer tries) {
 		this.tries = tries;
+		return this;
+	}
+	
+	public Boolean getSplitCommand() {
+		return splitCommand;
+	}
+	
+	public void setSplitCommand(Boolean splitCommand) {
+		this.splitCommand = splitCommand;
+	}
+	
+	public CommandBuilder withSplitCommand(Boolean splitCommand) {
+		this.splitCommand = splitCommand;
 		return this;
 	}
 }

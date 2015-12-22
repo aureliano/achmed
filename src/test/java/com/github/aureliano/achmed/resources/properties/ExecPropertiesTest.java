@@ -22,6 +22,7 @@ public class ExecPropertiesTest {
 		assertEquals(true, exec.getVerbose());
 		assertEquals(new Long(300000), exec.getTimeout());
 		assertEquals(new Integer(1), exec.getTries());
+		assertEquals(true, exec.getSplitCommand());
 	}
 
 	@Test
@@ -34,6 +35,7 @@ public class ExecPropertiesTest {
 			.put("unless", "any other command")
 			.put("timeout", 10000)
 			.put("tries", 3)
+			.put("splitcommand", false)
 			.configureAttributes();
 		
 		assertEquals("echo something", exec.getCommand());
@@ -43,6 +45,7 @@ public class ExecPropertiesTest {
 		assertEquals("any other command", exec.getUnless());
 		assertEquals(new Long(10000), exec.getTimeout());
 		assertEquals(new Integer(3), exec.getTries());
+		assertEquals(false, exec.getSplitCommand());
 	}
 	
 	@Test

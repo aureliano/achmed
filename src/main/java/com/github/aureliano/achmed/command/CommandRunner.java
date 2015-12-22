@@ -17,8 +17,10 @@ public class CommandRunner implements Callable<CommandResponse> {
 	private File workingDir;
 	private boolean verbose;
 	
-	public CommandRunner(String command, String dir, boolean verbose) {
-		this.command = Arrays.asList(command.split("\\s+"));
+	public CommandRunner(String command, String dir, boolean verbose, boolean splitCommand) {
+		String[] tokens = (splitCommand) ? command.split("\\s+") : new String[] { command };
+		this.command = Arrays.asList(tokens);
+		
 		this.workingDir = new File(dir);
 		this.verbose = verbose;
 	}
