@@ -91,10 +91,11 @@ public final class ApplicationHelper {
 			
 			logger.info(" >> Found " + files.size() + " inner schema files.");
 			for (String file : files) {
-				logger.info(" >>> Parse included file " + file);
+				String filePath = FileHelper.amendFilePath(file);
+				logger.info(" >>> Parse included file " + filePath);
 				
-				Map<String, Object> m = YamlHelper.parseYaml(file);
-				m.put("schemaPath", file);
+				Map<String, Object> m = YamlHelper.parseYaml(filePath);
+				m.put("schemaPath", filePath);
 				includes.add(m);
 			}
 			
