@@ -1,5 +1,8 @@
 package com.github.aureliano.achmed.resources;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.log4j.Logger;
 
 import com.github.aureliano.achmed.command.CommandBuilder;
@@ -83,6 +86,15 @@ public class ExecResource implements IResource {
 	
 	private void execute() {
 		this.properties.setCommand(StringHelper.amendEnvVars(this.properties.getCommand()));
+		if ((this.properties.getAmendargs() != null) && (this.properties.getAmendargs() == true)) {
+			List<String> args = new ArrayList<>(this.properties.getArguments().size());
+			for (String arg : this.properties.getArguments()) {
+				args.add(StringHelper.amendEnvVars(arg));
+			}
+			
+			this.properties.setArguments(args);
+		}
+		
 		CommandResponse res = CommandFacade.executeCommand(this.properties);
 		
 		if (!res.isOK()) {
