@@ -23,6 +23,7 @@ public class ExecProperties extends ResourceProperties {
 	private String unless;
 	private Long timeout;
 	private Integer tries;
+	private Boolean amendargs;
 	
 	public ExecProperties() {
 		this.cwd = new File("").getAbsolutePath();
@@ -30,6 +31,7 @@ public class ExecProperties extends ResourceProperties {
 		this.verbose = true;
 		this.timeout = CommandFacade.DEFAULT_TIMEOUT_EXECUTION;
 		this.tries = 1;
+		this.amendargs = false;
 	}
 	
 	public ExecProperties configureAttributes() {
@@ -106,6 +108,14 @@ public class ExecProperties extends ResourceProperties {
 		this.tries = tries;
 	}
 	
+	public Boolean getAmendargs() {
+		return amendargs;
+	}
+	
+	public void setAmendargs(Boolean amendargs) {
+		this.amendargs = amendargs;
+	}
+	
 	private void setAttribute(String name, Object value) {
 		if ("command".equalsIgnoreCase(name)) {
 			this.command = StringHelper.parse(value);
@@ -129,6 +139,8 @@ public class ExecProperties extends ResourceProperties {
 			this.timeout = LongHelper.parse(value);
 		} else if ("tries".equalsIgnoreCase(name)) {
 			this.tries = IntegerHelper.parse(value);
+		} else if ("amendargs".equalsIgnoreCase(name)) {
+			this.amendargs = BooleanHelper.parse(value);
 		}
 	}
 
