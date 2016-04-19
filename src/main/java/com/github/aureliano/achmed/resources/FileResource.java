@@ -26,6 +26,7 @@ public class FileResource implements IResource {
 	
 	public void apply() {
 		this.properties.configureAttributes();
+		logger.debug("Resource description: " + this.properties.get("description"));
 		logger.info(" >>> Apply file resource to " + this.properties.getPath());
 		this.amendPaths();
 		

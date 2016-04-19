@@ -23,6 +23,7 @@ public class ServiceResource implements IResource {
 	
 	public void apply() {
 		this.properties.configureAttributes();
+		logger.debug("Resource description: " + this.properties.get("description"));
 		logger.info(" >>> Apply service resource " + this.properties.getName());
 		
 		IService service = AppConfiguration.instance().getOperatingSystem().getDefaultServiceManager();
