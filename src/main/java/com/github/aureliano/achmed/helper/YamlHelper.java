@@ -13,7 +13,7 @@ public final class YamlHelper {
 	}
 	
 	public static Map<String, Object> parseYaml(String path) {
-		String text = FileHelper.readFile(path);
+		String text = FileHelper.readFile(FileHelper.amendFilePath(path));
 		return (Map<String, Object>) YAML_PARSER.load(text);
 	}
 }
