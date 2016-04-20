@@ -124,6 +124,9 @@
 									<includes>
 										<include>*.jar</include>
 									</includes>
+									<excludes>
+										<exclude>*-sources.jar</exclude>
+									</excludes>
 									<directory>${project.build.directory}</directory>
 								</resource>
 							</resources>
