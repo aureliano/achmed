@@ -10,12 +10,13 @@ import com.github.aureliano.achmed.command.CommandResponse;
 import com.github.aureliano.achmed.exception.ExecResourceException;
 import com.github.aureliano.achmed.helper.FileHelper;
 import com.github.aureliano.achmed.helper.StringHelper;
+import com.github.aureliano.achmed.logging.LoggingFactory;
 import com.github.aureliano.achmed.resources.properties.ExecProperties;
 import com.github.aureliano.achmed.resources.properties.IResourceProperties;
 
 public class ExecResource implements IResource {
 
-	private static final Logger logger = Logger.getLogger(ExecResource.class.getName());
+	private static final Logger logger = LoggingFactory.createLogger(ExecResource.class);
 	
 	private ExecProperties properties;
 	

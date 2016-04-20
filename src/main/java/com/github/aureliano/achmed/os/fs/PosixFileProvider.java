@@ -15,12 +15,13 @@ import com.github.aureliano.achmed.exception.FileResourceException;
 import com.github.aureliano.achmed.helper.BooleanHelper;
 import com.github.aureliano.achmed.helper.FileHelper;
 import com.github.aureliano.achmed.helper.StringHelper;
+import com.github.aureliano.achmed.logging.LoggingFactory;
 import com.github.aureliano.achmed.resources.properties.FileProperties;
 import com.github.aureliano.achmed.types.EnsureFileStatus;
 
 public class PosixFileProvider implements IFileProvider {
 
-	private static final Logger logger = Logger.getLogger(PosixFileProvider.class.getName());
+	private static final Logger logger = LoggingFactory.createLogger(PosixFileProvider.class);
 	
 	private FileProperties properties;
 	

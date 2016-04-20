@@ -10,11 +10,12 @@ import java.util.concurrent.TimeoutException;
 import java.util.logging.Logger;
 
 import com.github.aureliano.achmed.helper.StringHelper;
+import com.github.aureliano.achmed.logging.LoggingFactory;
 import com.github.aureliano.achmed.resources.properties.ExecProperties;
 
 public final class CommandFacade {
 
-	private static final Logger logger = Logger.getLogger(CommandFacade.class.getName());
+	private static final Logger logger = LoggingFactory.createLogger(CommandFacade.class);
 	private static final long ONE_SECOND = 1000;
 	public static final long DEFAULT_TIMEOUT_EXECUTION = 300 * ONE_SECOND;
 	

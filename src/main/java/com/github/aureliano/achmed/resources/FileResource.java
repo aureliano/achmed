@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import com.github.aureliano.achmed.AppConfiguration;
 import com.github.aureliano.achmed.helper.FileHelper;
 import com.github.aureliano.achmed.helper.StringHelper;
+import com.github.aureliano.achmed.logging.LoggingFactory;
 import com.github.aureliano.achmed.os.fs.IFileProvider;
 import com.github.aureliano.achmed.resources.properties.FileProperties;
 import com.github.aureliano.achmed.resources.properties.IResourceProperties;
@@ -12,7 +13,7 @@ import com.github.aureliano.achmed.types.EnsureFileStatus;
 
 public class FileResource implements IResource {
 	
-	private static final Logger logger = Logger.getLogger(FileResource.class.getName());
+	private static final Logger logger = LoggingFactory.createLogger(FileResource.class);
 	
 	private FileProperties properties;
 	

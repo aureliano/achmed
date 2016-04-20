@@ -6,13 +6,14 @@ import java.util.Set;
 import java.util.logging.Logger;
 
 import com.github.aureliano.achmed.exception.AchmedValidationException;
+import com.github.aureliano.achmed.logging.LoggingFactory;
 import com.github.aureliano.achmed.resources.IResource;
 import com.github.aureliano.achmed.validation.ConstraintViolation;
 import com.github.aureliano.achmed.validation.ObjectValidator;
 
 public class Agent {
 	
-	private static final Logger logger = Logger.getLogger(Agent.class.getName());
+	private static final Logger logger = LoggingFactory.createLogger(Agent.class);
 
 	private List<IResource> resources;
 	

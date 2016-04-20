@@ -6,12 +6,13 @@ import java.util.logging.Logger;
 import com.github.aureliano.achmed.helper.StringHelper;
 import com.github.aureliano.achmed.idiom.LanguageCode;
 import com.github.aureliano.achmed.idiom.LanguageSingleton;
+import com.github.aureliano.achmed.logging.LoggingFactory;
 import com.github.aureliano.achmed.os.IOperatingSystem;
 import com.github.aureliano.achmed.os.OperatingSystemFactory;
 
 public final class AppConfiguration {
 
-	private static final Logger logger = Logger.getLogger(AppConfiguration.class.getName());
+	private static final Logger logger = LoggingFactory.createLogger(AppConfiguration.class);
 	
 	private static AppConfiguration instance;
 	

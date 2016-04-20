@@ -6,10 +6,11 @@ import com.github.aureliano.achmed.command.CommandFacade;
 import com.github.aureliano.achmed.command.CommandResponse;
 import com.github.aureliano.achmed.exception.ServiceResourceException;
 import com.github.aureliano.achmed.helper.StringHelper;
+import com.github.aureliano.achmed.logging.LoggingFactory;
 
 public class RedHatService extends LinuxService {
 
-	private static final Logger logger = Logger.getLogger(RedHatService.class.getName());
+	private static final Logger logger = LoggingFactory.createLogger(RedHatService.class);
 	private static final String SERVICE = "/sbin/service";
 	private static final String CHKCONFIG = "/sbin/chkconfig";
 	

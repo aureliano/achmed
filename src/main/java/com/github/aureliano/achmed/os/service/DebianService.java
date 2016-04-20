@@ -16,10 +16,11 @@ import com.github.aureliano.achmed.command.CommandFacade;
 import com.github.aureliano.achmed.command.CommandResponse;
 import com.github.aureliano.achmed.exception.ServiceResourceException;
 import com.github.aureliano.achmed.helper.StringHelper;
+import com.github.aureliano.achmed.logging.LoggingFactory;
 
 public class DebianService extends LinuxService {
 
-	private static final Logger logger = Logger.getLogger(DebianService.class.getName());
+	private static final Logger logger = LoggingFactory.createLogger(DebianService.class);
 	private static final String SERVICE = "/usr/sbin/service";
 	private static final String UPDATE_RC = "/usr/sbin/update-rc.d";
 	private static final String INVOKE_RC = "/usr/sbin/invoke-rc.d";

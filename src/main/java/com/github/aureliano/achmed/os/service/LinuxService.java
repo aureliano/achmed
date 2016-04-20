@@ -9,13 +9,14 @@ import com.github.aureliano.achmed.command.CommandFacade;
 import com.github.aureliano.achmed.command.CommandResponse;
 import com.github.aureliano.achmed.exception.ServiceResourceException;
 import com.github.aureliano.achmed.helper.StringHelper;
+import com.github.aureliano.achmed.logging.LoggingFactory;
 import com.github.aureliano.achmed.os.Linux;
 import com.github.aureliano.achmed.os.pkg.IPackageManager;
 import com.github.aureliano.achmed.types.OperatingSystemFamily;
 
 public abstract class LinuxService extends BaseService {
 	
-	private static final Logger logger = Logger.getLogger(LinuxService.class.getName());
+	private static final Logger logger = LoggingFactory.createLogger(LinuxService.class);
 
 	private Linux linux;
 	

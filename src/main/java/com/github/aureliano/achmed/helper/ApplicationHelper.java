@@ -8,12 +8,14 @@ import java.util.logging.Logger;
 
 import com.github.aureliano.achmed.Agent;
 import com.github.aureliano.achmed.exception.AchmedException;
+import com.github.aureliano.achmed.logging.LoggingConsoleHandler;
+import com.github.aureliano.achmed.logging.LoggingFactory;
 import com.github.aureliano.achmed.resources.IResource;
 import com.github.aureliano.achmed.resources.ResourceFactory;
 
 public final class ApplicationHelper {
 
-	private static final Logger logger = Logger.getLogger(ApplicationHelper.class.getName());
+	private static final Logger logger = LoggingFactory.createLogger(ApplicationHelper.class);
 	
 	private ApplicationHelper() {
 		throw new InstantiationError(this.getClass().getName() + " cannot be instantiated.");

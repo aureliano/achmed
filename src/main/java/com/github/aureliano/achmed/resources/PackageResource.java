@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import com.github.aureliano.achmed.AppConfiguration;
 import com.github.aureliano.achmed.command.CommandResponse;
 import com.github.aureliano.achmed.exception.PackageResourceException;
+import com.github.aureliano.achmed.logging.LoggingFactory;
 import com.github.aureliano.achmed.os.pkg.IPackageManager;
 import com.github.aureliano.achmed.os.pkg.PackageManagerFactory;
 import com.github.aureliano.achmed.resources.properties.IResourceProperties;
@@ -12,7 +13,7 @@ import com.github.aureliano.achmed.resources.properties.PackageProperties;
 
 public class PackageResource implements IResource {
 
-	private static final Logger logger = Logger.getLogger(PackageResource.class.getName());
+	private static final Logger logger = LoggingFactory.createLogger(PackageResource.class);
 	
 	private PackageProperties properties;
 	

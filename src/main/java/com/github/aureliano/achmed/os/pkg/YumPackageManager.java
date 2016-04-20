@@ -10,10 +10,11 @@ import com.github.aureliano.achmed.command.CommandResponse;
 import com.github.aureliano.achmed.exception.PackageResourceException;
 import com.github.aureliano.achmed.helper.PkgManagerHelper;
 import com.github.aureliano.achmed.helper.StringHelper;
+import com.github.aureliano.achmed.logging.LoggingFactory;
 
 public class YumPackageManager extends RpmPackageManager {
 
-	private static final Logger logger = Logger.getLogger(YumPackageManager.class.getName());
+	private static final Logger logger = LoggingFactory.createLogger(YumPackageManager.class);
 	private static final String YUM = "yum";
 	private static final String CHECK_UPDATE = YUM + " check-update";
 	
