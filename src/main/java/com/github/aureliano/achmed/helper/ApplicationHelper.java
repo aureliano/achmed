@@ -23,24 +23,23 @@ public final class ApplicationHelper {
 	}
 	
 	public static void execute(String path) {
-		Map<String, Object> map = parseYamlFile(path);
-		List<IResource> resources = buildAllResources(map);
+		List<IResource> resources = buildAllResources(path);
 		
 		logger.info("Found " + resources.size() + " resources.");
 		new Agent().withResources(resources).apply();
 	}
 	
-	private static List<IResource> buildAllResources(Map<String, Object> map) {
+	protected static List<IResource> buildAllResources(String path) {
+		Map<String, Object> map = parseYamlFile(path);
+		
 		List<IResource> resources = new ArrayList<>();
-		
 		resources.addAll(buildResources(map));
-		List<Map<String, Object>> children = (List<Map<String,Object>>) map.get("includes");
-		if (children == null) {
-			return resources;
-		}
 		
-		for (Map<String, Object> child : children) {
-			resources.addAll(buildResources(child));
+		if (map.get("includes") != null) {
+			List<String> includes = (List<String>) map.get("includes");
+			for (String include : includes) {
+				resources.addAll(buildAllResources(include));
+			}
 		}
 		
 		return resources;
@@ -81,27 +80,10 @@ public final class ApplicationHelper {
 	}
 	
 	private static Map<String, Object> parseYamlFile(String path) {
-		logger.info("Parse main file " + path);
+		logger.info("Parse yaml file " + path);
 		Map<String, Object> map = YamlHelper.parseYaml(path);
 		map.put("schemaPath", path);
-		
-		if (map.get("includes") != null) {
-			List<Map<String, Object>> includes = new ArrayList<>();
-			List<String> files = (List<String>) map.get("includes");
-			
-			logger.info(" >> Found " + files.size() + " inner schema files.");
-			for (String file : files) {
-				String filePath = FileHelper.amendFilePath(file);
-				logger.info(" >>> Parse included file " + filePath);
-				
-				Map<String, Object> m = YamlHelper.parseYaml(filePath);
-				m.put("schemaPath", filePath);
-				includes.add(m);
-			}
-			
-			map.put("includes", includes);
-		}
-		
+
 		return map;
 	}
 	
