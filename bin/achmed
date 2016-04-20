@@ -1,4 +1,4 @@
-export ACHMED_HOME=$(cd `dirname $0`/..; pwd)
+export ACHMED_HOME=$(cd `dirname $0`; pwd)
 
 if [ -z "$JAVACMD" ] ; then
   if [ -n "$JAVA_HOME" ] ; then
@@ -34,4 +34,4 @@ fi
 export JAVACMD
 export JAVA_OPTS
 
-$JAVACMD $JAVA_OPTS -jar $ACHMED_HOME/achmed-0.1.0.jar $*
+$JAVACMD $JAVA_OPTS -jar $ACHMED_HOME/lib/achmed-0.1.0.jar $*
