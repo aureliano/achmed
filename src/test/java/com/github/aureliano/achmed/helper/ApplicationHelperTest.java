@@ -50,6 +50,12 @@ public class ApplicationHelperTest {
 		assertTrue(help.contains("- Wiki: https://github.com/aureliano/achmed/wiki for more detailed insights."));
 	}
 	
+	@Test
+	public void testVersion() {
+		String version = ApplicationHelper.version();
+		assertTrue(version.contains("0.1.0:BETA-01 (2015-12-15)"));
+	}
+	
 	private String buildPath(String...tokens) {
 		return StringHelper.join(tokens, File.separator);
 	}
