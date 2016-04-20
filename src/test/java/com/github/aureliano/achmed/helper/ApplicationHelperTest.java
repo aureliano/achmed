@@ -56,6 +56,19 @@ public class ApplicationHelperTest {
 		assertTrue(version.contains("0.1.0:BETA-01 (2015-12-15)"));
 	}
 	
+	@Test
+	public void testError() {
+		String param = "malabibala";
+		String expected = "Don't know how to handle such command: " + param;
+		String actual = ApplicationHelper.error(new String[] { param });
+		
+		assertEquals(expected, actual);
+		
+		expected = "SILENCE...! I kill you!";
+		actual = ApplicationHelper.error(new String[] {});
+		assertEquals(expected, actual);
+	}
+	
 	private String buildPath(String...tokens) {
 		return StringHelper.join(tokens, File.separator);
 	}
