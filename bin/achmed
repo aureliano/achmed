@@ -1,1 +1,37 @@
-$JAVA_HOME/bin/java -Xmx256m -Xms128m -jar achmed-0.1.0.jar $*
+export ACHMED_HOME=$(cd `dirname $0`/..; pwd)
+
+if [ -z "$JAVACMD" ] ; then
+  if [ -n "$JAVA_HOME" ] ; then
+    JAVACMD="$JAVA_HOME/bin/java"
+  else
+    JAVACMD="java"
+  fi
+fi
+
+# Resolve full path to the java command.
+if [ ! -f "$JAVACMD" ] ; then
+  JAVACMD=$(which $JAVACMD 2>/dev/null)
+fi
+
+if [ ! -x "$JAVACMD" ] ; then
+  echo "Could not find any executable java binary. Please install java in your PATH or set JAVA_HOME." 1>&2
+  exit 1
+fi
+
+if [ "$JAVA_OPTS" ] ; then
+  echo "WARNING: Default JAVA_OPTS will be overridden by the JAVA_OPTS defined in the environment. Environment JAVA_OPTS are $JAVA_OPTS"  1>&2
+else
+  JAVA_OPTS="-XX:+UseParNewGC"
+  JAVA_OPTS="$JAVA_OPTS -XX:+UseConcMarkSweepGC"
+  JAVA_OPTS="$JAVA_OPTS -Djava.awt.headless=true"
+  JAVA_OPTS="$JAVA_OPTS -Xms128m"
+  JAVA_OPTS="$JAVA_OPTS -Xmx256m"
+
+  JAVA_OPTS="$JAVA_OPTS -XX:CMSInitiatingOccupancyFraction=75"
+  JAVA_OPTS="$JAVA_OPTS -XX:+UseCMSInitiatingOccupancyOnly"
+fi
+
+export JAVACMD
+export JAVA_OPTS
+
+$JAVACMD $JAVA_OPTS -jar $ACHMED_HOME/achmed-0.1.0.jar $*
