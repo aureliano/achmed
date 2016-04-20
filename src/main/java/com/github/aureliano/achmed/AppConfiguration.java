@@ -1,8 +1,7 @@
 package com.github.aureliano.achmed;
 
 import java.util.Locale;
-
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 
 import com.github.aureliano.achmed.helper.StringHelper;
 import com.github.aureliano.achmed.idiom.LanguageCode;
@@ -12,7 +11,7 @@ import com.github.aureliano.achmed.os.OperatingSystemFactory;
 
 public final class AppConfiguration {
 
-	private static final Logger logger = Logger.getLogger(AppConfiguration.class);
+	private static final Logger logger = Logger.getLogger(AppConfiguration.class.getName());
 	
 	private static AppConfiguration instance;
 	
@@ -45,7 +44,7 @@ public final class AppConfiguration {
 	}
 	
 	public IOperatingSystem getOperatingSystem() {
-		logger.debug("Creating an operating system prototype from " + this.operatingSystem.getClass().getName());
+		logger.fine("Creating an operating system prototype from " + this.operatingSystem.getClass().getName());
 		return operatingSystem.prototype();
 	}
 	

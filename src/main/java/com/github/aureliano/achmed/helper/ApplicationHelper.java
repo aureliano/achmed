@@ -4,19 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 
 import com.github.aureliano.achmed.Agent;
 import com.github.aureliano.achmed.exception.AchmedException;
 import com.github.aureliano.achmed.resources.IResource;
 import com.github.aureliano.achmed.resources.ResourceFactory;
-import com.github.aureliano.achmed.resources.properties.IResourceProperties;
-import com.github.aureliano.achmed.resources.properties.ResourceProperties;
 
 public final class ApplicationHelper {
 
-	private static final Logger logger = Logger.getLogger(ApplicationHelper.class);
+	private static final Logger logger = Logger.getLogger(ApplicationHelper.class.getName());
 	
 	private ApplicationHelper() {
 		throw new InstantiationError(this.getClass().getName() + " cannot be instantiated.");
@@ -61,7 +58,7 @@ public final class ApplicationHelper {
 			if (m.size() > 1) {
 				throw new AchmedException("Found more than one resource type inside array. Found: " + m);
 			} else if (m.isEmpty()) {
-				logger.warn("Empty map?! " + m);
+				logger.warning("Empty map?! " + m);
 				continue;
 			}
 			

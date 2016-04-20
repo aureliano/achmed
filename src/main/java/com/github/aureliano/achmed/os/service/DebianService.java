@@ -10,8 +10,7 @@ import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Arrays;
-
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 
 import com.github.aureliano.achmed.command.CommandFacade;
 import com.github.aureliano.achmed.command.CommandResponse;
@@ -20,7 +19,7 @@ import com.github.aureliano.achmed.helper.StringHelper;
 
 public class DebianService extends LinuxService {
 
-	private static final Logger logger = Logger.getLogger(DebianService.class);
+	private static final Logger logger = Logger.getLogger(DebianService.class.getName());
 	private static final String SERVICE = "/usr/sbin/service";
 	private static final String UPDATE_RC = "/usr/sbin/update-rc.d";
 	private static final String INVOKE_RC = "/usr/sbin/invoke-rc.d";
@@ -32,7 +31,7 @@ public class DebianService extends LinuxService {
 	@Override
 	public CommandResponse start() {
 		if (this.isRunning()) {
-			logger.debug("Service " + super.properties.getName() + " is already running.");
+			logger.fine("Service " + super.properties.getName() + " is already running.");
 			return null;
 		}
 		
@@ -52,7 +51,7 @@ public class DebianService extends LinuxService {
 	@Override
 	public CommandResponse stop() {
 		if (!this.isRunning()) {
-			logger.debug("Service " + super.properties.getName() + " is not running.");
+			logger.fine("Service " + super.properties.getName() + " is not running.");
 			return null;
 		}
 		
@@ -109,7 +108,7 @@ public class DebianService extends LinuxService {
 
 	public CommandResponse enableBootstrap() {
 		if (this.isEnabledInBootstrap()) {
-			logger.debug("Service " + super.properties.getName() + " is already enabled to initialize in bootstrap.");
+			logger.fine("Service " + super.properties.getName() + " is already enabled to initialize in bootstrap.");
 			return null;
 		}
 		
@@ -126,7 +125,7 @@ public class DebianService extends LinuxService {
 
 	public CommandResponse disableBootstrap() {
 		if (!this.isEnabledInBootstrap()) {
-			logger.debug("Service " + super.properties.getName() + " is not enabled to initialize in bootstrap.");
+			logger.fine("Service " + super.properties.getName() + " is not enabled to initialize in bootstrap.");
 			return null;
 		}
 		

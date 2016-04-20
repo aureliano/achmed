@@ -7,16 +7,14 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+import java.util.logging.Logger;
 
-import org.apache.log4j.Logger;
-
-import com.github.aureliano.achmed.exception.ExecResourceException;
 import com.github.aureliano.achmed.helper.StringHelper;
 import com.github.aureliano.achmed.resources.properties.ExecProperties;
 
 public final class CommandFacade {
 
-	private static final Logger logger = Logger.getLogger(CommandFacade.class);
+	private static final Logger logger = Logger.getLogger(CommandFacade.class.getName());
 	private static final long ONE_SECOND = 1000;
 	public static final long DEFAULT_TIMEOUT_EXECUTION = 300 * ONE_SECOND;
 	
@@ -45,8 +43,8 @@ public final class CommandFacade {
 			exitStatusCode = response.getExitStatusCode();
 			tries ++;
 			
-			logger.debug("Exit status code: " + exitStatusCode);
-			logger.debug("Tries: " + tries);
+			logger.fine("Exit status code: " + exitStatusCode);
+			logger.fine("Tries: " + tries);
 		} while ((tries < command.getTries()) && (exitStatusCode != 0));
 		
 		return response;
@@ -68,7 +66,7 @@ public final class CommandFacade {
 		try {
 			return future.get(command.getTimeout(), TimeUnit.MILLISECONDS);
 		} catch (TimeoutException ex) {
-			logger.warn("Execution timeout to command: " + command.getCommand());
+			logger.warning("Execution timeout to command: " + command.getCommand());
 			throw new RuntimeException(ex);
 		} catch (ExecutionException|InterruptedException ex) {
 			throw new RuntimeException(ex);

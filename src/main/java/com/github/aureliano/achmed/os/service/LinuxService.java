@@ -3,8 +3,7 @@ package com.github.aureliano.achmed.os.service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 
 import com.github.aureliano.achmed.command.CommandFacade;
 import com.github.aureliano.achmed.command.CommandResponse;
@@ -12,12 +11,11 @@ import com.github.aureliano.achmed.exception.ServiceResourceException;
 import com.github.aureliano.achmed.helper.StringHelper;
 import com.github.aureliano.achmed.os.Linux;
 import com.github.aureliano.achmed.os.pkg.IPackageManager;
-import com.github.aureliano.achmed.resources.properties.ServiceProperties;
 import com.github.aureliano.achmed.types.OperatingSystemFamily;
 
 public abstract class LinuxService extends BaseService {
 	
-	private static final Logger logger = Logger.getLogger(LinuxService.class);
+	private static final Logger logger = Logger.getLogger(LinuxService.class.getName());
 
 	private Linux linux;
 	
@@ -27,7 +25,7 @@ public abstract class LinuxService extends BaseService {
 
 	public CommandResponse start() {
 		if (this.isRunning()) {
-			logger.debug("Service " + super.properties.getName() + " is already running.");
+			logger.fine("Service " + super.properties.getName() + " is already running.");
 			return null;
 		}
 		
@@ -45,7 +43,7 @@ public abstract class LinuxService extends BaseService {
 
 	public CommandResponse stop() {
 		if (!this.isRunning()) {
-			logger.debug("Service " + super.properties.getName() + " is not running.");
+			logger.fine("Service " + super.properties.getName() + " is not running.");
 			return null;
 		}
 		

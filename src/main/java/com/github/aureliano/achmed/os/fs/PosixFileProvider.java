@@ -7,8 +7,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 
 import com.github.aureliano.achmed.command.CommandFacade;
 import com.github.aureliano.achmed.command.CommandResponse;
@@ -21,7 +20,7 @@ import com.github.aureliano.achmed.types.EnsureFileStatus;
 
 public class PosixFileProvider implements IFileProvider {
 
-	private static final Logger logger = Logger.getLogger(PosixFileProvider.class);
+	private static final Logger logger = Logger.getLogger(PosixFileProvider.class.getName());
 	
 	private FileProperties properties;
 	
@@ -37,7 +36,7 @@ public class PosixFileProvider implements IFileProvider {
 		CommandResponse res = CommandFacade.executeCommand(
 			"chmod", this.properties.getMode(), filePath);
 		
-		logger.debug(res.getCommand());
+		logger.fine(res.getCommand());
 		if (!res.isOK()) {
 			throw new FileResourceException(res);
 		}
@@ -56,7 +55,7 @@ public class PosixFileProvider implements IFileProvider {
 		}
 		
 		if (ownerAndGroup.isEmpty()) {
-			logger.warn("Ignore setting file owner because no owner neither group was provided.");
+			logger.warning("Ignore setting file owner because no owner neither group was provided.");
 			return;
 		}
 		
@@ -73,7 +72,7 @@ public class PosixFileProvider implements IFileProvider {
 		
 		CommandResponse res = CommandFacade.executeCommand(commands.toArray(new String[0]));
 		
-		logger.debug(res.getCommand());
+		logger.fine(res.getCommand());
 		if (!res.isOK()) {
 			throw new FileResourceException(res);
 		}
@@ -100,7 +99,7 @@ public class PosixFileProvider implements IFileProvider {
 		
 		File target = new File(this.properties.getPath());
 		if (!target.exists()) {
-			logger.warn("Path " + target.getPath() + " does not exist. Skip deleting!");
+			logger.warning("Path " + target.getPath() + " does not exist. Skip deleting!");
 			return;
 		}
 			
@@ -146,7 +145,7 @@ public class PosixFileProvider implements IFileProvider {
 				if (backupPath != null) {
 					File bkp = new File(backupPath);
 					FileHelper.copyFile(target, bkp);
-					logger.debug("File " + target.getAbsolutePath() + " was backed up to " + bkp);
+					logger.fine("File " + target.getAbsolutePath() + " was backed up to " + bkp);
 				}
 			}
 			
@@ -154,7 +153,7 @@ public class PosixFileProvider implements IFileProvider {
 				this.writeContent(target);
 			}
 			
-			logger.debug("Ignore file replacing.");
+			logger.fine("Ignore file replacing.");
 		} else {
 			this.writeContent(target);
 		}
@@ -175,7 +174,7 @@ public class PosixFileProvider implements IFileProvider {
 		if (!StringHelper.isEmpty(this.properties.getSource())) {
 			File source = new File(this.properties.getSource());
 			
-			logger.debug("Copy file " + source.getAbsolutePath() + " to " + target.getAbsolutePath());
+			logger.fine("Copy file " + source.getAbsolutePath() + " to " + target.getAbsolutePath());
 			FileHelper.copyFile(source, target);
 		} else {
 			if (this.properties.getContent() == null) {
@@ -199,7 +198,7 @@ public class PosixFileProvider implements IFileProvider {
 		File targetDir = new File(this.properties.getPath());
 		
 		if ((targetDir.exists()) && ((this.properties.getForce() == null || !this.properties.getForce()))) {
-			logger.warn("Directory " + this.properties.getPath() + " already exist. Skipping!");
+			logger.warning("Directory " + this.properties.getPath() + " already exist. Skipping!");
 			return;
 		} else if (targetDir.isDirectory()) {
 			FileHelper.delete(targetDir, true);
@@ -228,7 +227,7 @@ public class PosixFileProvider implements IFileProvider {
 		}
 		
 		if (FileHelper.isSymbolicLink(this.properties.getTarget())) {
-			logger.warn("Symbolic link " + this.properties.getTarget() + " already exist. Skipping!");
+			logger.warning("Symbolic link " + this.properties.getTarget() + " already exist. Skipping!");
 			return;
 		}
 		

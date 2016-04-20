@@ -1,6 +1,6 @@
 package com.github.aureliano.achmed.resources;
 
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 
 import com.github.aureliano.achmed.AppConfiguration;
 import com.github.aureliano.achmed.command.CommandResponse;
@@ -12,7 +12,7 @@ import com.github.aureliano.achmed.resources.properties.PackageProperties;
 
 public class PackageResource implements IResource {
 
-	private static final Logger logger = Logger.getLogger(PackageResource.class);
+	private static final Logger logger = Logger.getLogger(PackageResource.class.getName());
 	
 	private PackageProperties properties;
 	
@@ -26,7 +26,7 @@ public class PackageResource implements IResource {
 	
 	public void apply() {
 		this.properties.configureAttributes();
-		logger.debug("Resource description: " + this.properties.get("description"));
+		logger.fine("Resource description: " + this.properties.get("description"));
 		logger.info(" >>> Apply package resource to: " + this.properties.getName());
 		
 		IPackageManager packageManager = this.resolvePackageManager();

@@ -3,8 +3,7 @@ package com.github.aureliano.achmed;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 
 import com.github.aureliano.achmed.exception.AchmedValidationException;
 import com.github.aureliano.achmed.resources.IResource;
@@ -13,7 +12,7 @@ import com.github.aureliano.achmed.validation.ObjectValidator;
 
 public class Agent {
 	
-	private static final Logger logger = Logger.getLogger(Agent.class);
+	private static final Logger logger = Logger.getLogger(Agent.class.getName());
 
 	private List<IResource> resources;
 	
@@ -66,7 +65,7 @@ public class Agent {
 			
 			for (ConstraintViolation violation : violations) {
 				failed = true;
-				logger.error(violation.getMessage());
+				logger.severe(violation.getMessage());
 			}
 		}
 		

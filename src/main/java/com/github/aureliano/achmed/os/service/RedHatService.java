@@ -1,6 +1,6 @@
 package com.github.aureliano.achmed.os.service;
 
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 
 import com.github.aureliano.achmed.command.CommandFacade;
 import com.github.aureliano.achmed.command.CommandResponse;
@@ -9,7 +9,7 @@ import com.github.aureliano.achmed.helper.StringHelper;
 
 public class RedHatService extends LinuxService {
 
-	private static final Logger logger = Logger.getLogger(RedHatService.class);
+	private static final Logger logger = Logger.getLogger(RedHatService.class.getName());
 	private static final String SERVICE = "/sbin/service";
 	private static final String CHKCONFIG = "/sbin/chkconfig";
 	
@@ -20,7 +20,7 @@ public class RedHatService extends LinuxService {
 	@Override
 	public CommandResponse start() {
 		if (this.isRunning()) {
-			logger.debug("Service " + super.properties.getName() + " is already running.");
+			logger.fine("Service " + super.properties.getName() + " is already running.");
 			return null;
 		}
 		
@@ -40,7 +40,7 @@ public class RedHatService extends LinuxService {
 	@Override
 	public CommandResponse stop() {
 		if (!this.isRunning()) {
-			logger.debug("Service " + super.properties.getName() + " is not running.");
+			logger.fine("Service " + super.properties.getName() + " is not running.");
 			return null;
 		}
 		

@@ -3,8 +3,7 @@ package com.github.aureliano.achmed.os.pkg;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 
 import com.github.aureliano.achmed.command.CommandFacade;
 import com.github.aureliano.achmed.command.CommandResponse;
@@ -14,7 +13,7 @@ import com.github.aureliano.achmed.helper.StringHelper;
 
 public class YumPackageManager extends RpmPackageManager {
 
-	private static final Logger logger = Logger.getLogger(YumPackageManager.class);
+	private static final Logger logger = Logger.getLogger(YumPackageManager.class.getName());
 	private static final String YUM = "yum";
 	private static final String CHECK_UPDATE = YUM + " check-update";
 	
@@ -61,7 +60,7 @@ public class YumPackageManager extends RpmPackageManager {
 		}
 		
 		if (updates.size() > 1) {
-			logger.warn(CHECK_UPDATE + " got more than one update to package " +
+			logger.warning(CHECK_UPDATE + " got more than one update to package " +
 					super.properties.getName() + ". Picking the first one.");
 		}
 		

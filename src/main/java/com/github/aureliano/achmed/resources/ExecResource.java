@@ -2,8 +2,7 @@ package com.github.aureliano.achmed.resources;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 
 import com.github.aureliano.achmed.command.CommandBuilder;
 import com.github.aureliano.achmed.command.CommandFacade;
@@ -16,7 +15,7 @@ import com.github.aureliano.achmed.resources.properties.IResourceProperties;
 
 public class ExecResource implements IResource {
 
-	private static final Logger logger = Logger.getLogger(ExecResource.class);
+	private static final Logger logger = Logger.getLogger(ExecResource.class.getName());
 	
 	private ExecProperties properties;
 	
@@ -32,7 +31,7 @@ public class ExecResource implements IResource {
 		this.properties.configureAttributes();
 		String command = this.commandPresentation();
 		
-		logger.debug("Resource description: " + this.properties.get("description"));
+		logger.fine("Resource description: " + this.properties.get("description"));
 		logger.info(" >>> Apply exec resource with command: " + command);
 		
 		if (this.canExecute()) {

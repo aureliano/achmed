@@ -1,6 +1,6 @@
 package com.github.aureliano.achmed.resources;
 
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 
 import com.github.aureliano.achmed.AppConfiguration;
 import com.github.aureliano.achmed.helper.FileHelper;
@@ -12,7 +12,7 @@ import com.github.aureliano.achmed.types.EnsureFileStatus;
 
 public class FileResource implements IResource {
 	
-	private static final Logger logger = Logger.getLogger(FileResource.class);
+	private static final Logger logger = Logger.getLogger(FileResource.class.getName());
 	
 	private FileProperties properties;
 	
@@ -26,7 +26,7 @@ public class FileResource implements IResource {
 	
 	public void apply() {
 		this.properties.configureAttributes();
-		logger.debug("Resource description: " + this.properties.get("description"));
+		logger.fine("Resource description: " + this.properties.get("description"));
 		logger.info(" >>> Apply file resource to " + this.properties.getPath());
 		this.amendPaths();
 		

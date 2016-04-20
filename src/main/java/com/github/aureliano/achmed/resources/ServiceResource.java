@@ -1,6 +1,6 @@
 package com.github.aureliano.achmed.resources;
 
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 
 import com.github.aureliano.achmed.AppConfiguration;
 import com.github.aureliano.achmed.os.service.IService;
@@ -9,7 +9,7 @@ import com.github.aureliano.achmed.resources.properties.ServiceProperties;
 
 public class ServiceResource implements IResource {
 
-	private static final Logger logger = Logger.getLogger(ServiceResource.class);
+	private static final Logger logger = Logger.getLogger(ServiceResource.class.getName());
 	
 	private ServiceProperties properties;
 	
@@ -23,7 +23,7 @@ public class ServiceResource implements IResource {
 	
 	public void apply() {
 		this.properties.configureAttributes();
-		logger.debug("Resource description: " + this.properties.get("description"));
+		logger.fine("Resource description: " + this.properties.get("description"));
 		logger.info(" >>> Apply service resource " + this.properties.getName());
 		
 		IService service = AppConfiguration.instance().getOperatingSystem().getDefaultServiceManager();
