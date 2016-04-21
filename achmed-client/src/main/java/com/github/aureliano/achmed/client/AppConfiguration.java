@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed;
+package com.github.aureliano.achmed.client;
 
 import java.util.Locale;
 import java.util.logging.Logger;

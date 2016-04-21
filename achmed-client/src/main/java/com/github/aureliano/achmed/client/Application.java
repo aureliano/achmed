@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed;
+package com.github.aureliano.achmed.client;
 
 import com.github.aureliano.achmed.client.helper.ApplicationHelper;
 import com.github.aureliano.achmed.common.exception.AchmedException;
