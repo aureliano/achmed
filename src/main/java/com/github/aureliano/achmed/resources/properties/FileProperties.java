@@ -2,8 +2,8 @@ package com.github.aureliano.achmed.resources.properties;
 
 import com.github.aureliano.achmed.annotation.NotEmpty;
 import com.github.aureliano.achmed.annotation.NotNull;
-import com.github.aureliano.achmed.helper.BooleanHelper;
-import com.github.aureliano.achmed.helper.StringHelper;
+import com.github.aureliano.achmed.common.helper.BooleanHelper;
+import com.github.aureliano.achmed.common.helper.StringHelper;
 import com.github.aureliano.achmed.types.EnsureFileStatus;
 
 public class FileProperties extends ResourceProperties {

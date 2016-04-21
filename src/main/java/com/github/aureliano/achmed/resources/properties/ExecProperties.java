@@ -8,10 +8,10 @@ import java.util.List;
 import com.github.aureliano.achmed.annotation.Min;
 import com.github.aureliano.achmed.annotation.NotEmpty;
 import com.github.aureliano.achmed.command.CommandFacade;
-import com.github.aureliano.achmed.helper.BooleanHelper;
-import com.github.aureliano.achmed.helper.IntegerHelper;
-import com.github.aureliano.achmed.helper.LongHelper;
-import com.github.aureliano.achmed.helper.StringHelper;
+import com.github.aureliano.achmed.common.helper.BooleanHelper;
+import com.github.aureliano.achmed.common.helper.IntegerHelper;
+import com.github.aureliano.achmed.common.helper.LongHelper;
+import com.github.aureliano.achmed.common.helper.StringHelper;
 
 public class ExecProperties extends ResourceProperties {
 
