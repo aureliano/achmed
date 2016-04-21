@@ -5,6 +5,9 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import com.github.aureliano.achmed.client.idiom.LanguageCode;
+import com.github.aureliano.achmed.client.idiom.LanguageSingleton;
+
 public class LanguageSingletonTest {
 
 	@Test

@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed.idiom;
+package com.github.aureliano.achmed.client.idiom;
 
 import java.util.Properties;
 
