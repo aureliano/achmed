@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed.validation;
+package com.github.aureliano.achmed.client.validation;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -6,30 +6,28 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.github.aureliano.achmed.client.annotation.Size;
+import com.github.aureliano.achmed.client.annotation.Max;
 import com.github.aureliano.achmed.common.helper.ReflectionHelper;
 import com.github.aureliano.achmed.common.helper.StringHelper;
 
-public class SizeValidator implements IValidator {
+public class MaxValidator implements IValidator {
 
-	public SizeValidator() {
+	public MaxValidator() {
 		super();
 	}
-	
+
 	@Override
 	public Set<ConstraintViolation> validate(Object object, Method method, Annotation annotation) {
 		String property = ReflectionHelper.getSimpleAccessMethodName(method);
 		Object returnedValue = ReflectionHelper.callMethod(object, method.getName(), null, null);
+		Set<ConstraintViolation> violations = new HashSet<ConstraintViolation>();
 		
 		if (returnedValue == null) {
-			return null;
+			returnedValue = "";
 		}
 		
-		Set<ConstraintViolation> violations = new HashSet<ConstraintViolation>();
-		Size sizeAnnotation = (Size) annotation;
-		String message = sizeAnnotation.message();
-		int minSize = sizeAnnotation.min();
-		int maxSize = sizeAnnotation.max();
+		String message = ((Max) annotation).message();
+		int maxSize = ((Max) annotation).value();
 		int objectSize;
 		
 		if (Collection.class.isAssignableFrom(returnedValue.getClass())) {
@@ -41,14 +39,13 @@ public class SizeValidator implements IValidator {
 			objectSize = returnedValue.toString().length();
 		}
 		
-		if ((minSize > objectSize) || (maxSize < objectSize)) {
+		if (maxSize < objectSize) {
 			violations.add(new ConstraintViolation()
-				.withValidator(Size.class)
+				.withValidator(Max.class)
 				.withMessage(message
-					.replaceFirst("#\\{0\\}", property)
-					.replaceFirst("#\\{1\\}", String.valueOf(minSize))
-					.replaceFirst("#\\{2\\}", String.valueOf(maxSize))
-					.replaceFirst("#\\{3\\}", String.valueOf(objectSize))));
+					.replaceFirst("#\\{0\\}", String.valueOf(maxSize))
+					.replaceFirst("#\\{1\\}", property)
+					.replaceFirst("#\\{2\\}", String.valueOf(objectSize))));
 		}
 		
 		return violations;

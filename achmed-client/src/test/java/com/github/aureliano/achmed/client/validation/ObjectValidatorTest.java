@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed.validation;
+package com.github.aureliano.achmed.client.validation;
 
 import java.util.Set;
 
@@ -6,6 +6,8 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.github.aureliano.achmed.client.Model;
+import com.github.aureliano.achmed.validation.ConstraintViolation;
+import com.github.aureliano.achmed.validation.ObjectValidator;
 
 public class ObjectValidatorTest {
 

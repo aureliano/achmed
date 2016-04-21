@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed.validation;
+package com.github.aureliano.achmed.client.validation;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
