@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed.os.pkg;
+package com.github.aureliano.achmed.client.os.pkg;
 
 import static org.junit.Assert.assertTrue;
 

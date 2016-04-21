@@ -1,32 +1,32 @@
-package com.github.aureliano.achmed.os;
+package com.github.aureliano.achmed.client.os;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import com.github.aureliano.achmed.client.os.Debian;
+import com.github.aureliano.achmed.client.os.Ubuntu;
 import com.github.aureliano.achmed.client.os.pkg.AptPackageManager;
 import com.github.aureliano.achmed.client.types.OS;
 import com.github.aureliano.achmed.client.types.OperatingSystemFamily;
 
-public class DebianTest {
+public class UbuntuTest {
 	
 	@Test
 	public void testGetDefaultPackageManager() {
-		Debian os = new Debian();
+		Ubuntu os = new Ubuntu();
 		assertTrue(os.getDefaultPackageManager() instanceof AptPackageManager);
 	}
 
 	@Test
 	public void testGetOperatingSystem() {
-		Debian os = new Debian();
+		Ubuntu os = new Ubuntu();
 		assertEquals(OS.LINUX, os.getOperatingSystem());
 	}
 	
 	@Test
 	public void testGetOperatingSystemFamily() {
-		Debian os = new Debian();
-		assertEquals(OperatingSystemFamily.DEBIAN, os.getOperatingSystemFamily());
+		Ubuntu os = new Ubuntu();
+		assertEquals(OperatingSystemFamily.UBUNTU, os.getOperatingSystemFamily());
 	}
 }

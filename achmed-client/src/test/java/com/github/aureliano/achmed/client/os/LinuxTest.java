@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed.os;
+package com.github.aureliano.achmed.client.os;
 
 import static org.junit.Assert.assertEquals;
 
