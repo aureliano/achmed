@@ -10,7 +10,7 @@ import java.util.concurrent.TimeoutException;
 import java.util.logging.Logger;
 
 import com.github.aureliano.achmed.common.helper.StringHelper;
-import com.github.aureliano.achmed.logging.LoggingFactory;
+import com.github.aureliano.achmed.common.logging.LoggingFactory;
 import com.github.aureliano.achmed.resources.properties.ExecProperties;
 
 public final class CommandFacade {

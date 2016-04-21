@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed.logging;
+package com.github.aureliano.achmed.common.logging;
 
 import java.util.logging.Handler;
 import java.util.logging.Logger;

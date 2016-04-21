@@ -9,8 +9,8 @@ import com.github.aureliano.achmed.command.CommandFacade;
 import com.github.aureliano.achmed.command.CommandResponse;
 import com.github.aureliano.achmed.common.helper.FileHelper;
 import com.github.aureliano.achmed.common.helper.StringHelper;
+import com.github.aureliano.achmed.common.logging.LoggingFactory;
 import com.github.aureliano.achmed.exception.ExecResourceException;
-import com.github.aureliano.achmed.logging.LoggingFactory;
 import com.github.aureliano.achmed.resources.properties.ExecProperties;
 import com.github.aureliano.achmed.resources.properties.IResourceProperties;
 

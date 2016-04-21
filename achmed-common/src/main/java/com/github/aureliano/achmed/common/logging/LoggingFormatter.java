@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed.logging;
+package com.github.aureliano.achmed.common.logging;
 
 import java.text.DateFormat;
 import java.util.Date;
