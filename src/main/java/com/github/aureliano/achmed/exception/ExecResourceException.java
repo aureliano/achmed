@@ -1,6 +1,6 @@
 package com.github.aureliano.achmed.exception;
 
-import com.github.aureliano.achmed.command.CommandResponse;
+import com.github.aureliano.achmed.client.command.CommandResponse;
 
 public class ExecResourceException extends ResourceException {
 

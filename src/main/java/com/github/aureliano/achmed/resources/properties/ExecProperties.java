@@ -7,7 +7,7 @@ import java.util.List;
 
 import com.github.aureliano.achmed.client.annotation.Min;
 import com.github.aureliano.achmed.client.annotation.NotEmpty;
-import com.github.aureliano.achmed.command.CommandFacade;
+import com.github.aureliano.achmed.client.command.CommandFacade;
 import com.github.aureliano.achmed.common.helper.BooleanHelper;
 import com.github.aureliano.achmed.common.helper.IntegerHelper;
 import com.github.aureliano.achmed.common.helper.LongHelper;

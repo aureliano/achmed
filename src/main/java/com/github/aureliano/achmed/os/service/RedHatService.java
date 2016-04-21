@@ -2,8 +2,8 @@ package com.github.aureliano.achmed.os.service;
 
 import java.util.logging.Logger;
 
-import com.github.aureliano.achmed.command.CommandFacade;
-import com.github.aureliano.achmed.command.CommandResponse;
+import com.github.aureliano.achmed.client.command.CommandFacade;
+import com.github.aureliano.achmed.client.command.CommandResponse;
 import com.github.aureliano.achmed.common.helper.StringHelper;
 import com.github.aureliano.achmed.common.logging.LoggingFactory;
 import com.github.aureliano.achmed.exception.ServiceResourceException;

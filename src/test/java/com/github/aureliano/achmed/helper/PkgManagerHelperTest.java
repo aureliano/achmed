@@ -11,8 +11,8 @@ import java.util.Scanner;
 
 import org.junit.Test;
 
-import com.github.aureliano.achmed.command.CommandBuilder;
-import com.github.aureliano.achmed.command.CommandFacade;
+import com.github.aureliano.achmed.client.command.CommandBuilder;
+import com.github.aureliano.achmed.client.command.CommandFacade;
 
 public class PkgManagerHelperTest {
 

@@ -1,6 +1,6 @@
 package com.github.aureliano.achmed.os;
 
-import com.github.aureliano.achmed.command.CommandFacade;
+import com.github.aureliano.achmed.client.command.CommandFacade;
 import com.github.aureliano.achmed.common.helper.StringHelper;
 import com.github.aureliano.achmed.exception.UnsupportedOperatingSystemException;
 

@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed.command;
+package com.github.aureliano.achmed.client.command;
 
 public class CommandResponse {
 

@@ -1,6 +1,6 @@
 package com.github.aureliano.achmed.os.service;
 
-import com.github.aureliano.achmed.command.CommandResponse;
+import com.github.aureliano.achmed.client.command.CommandResponse;
 import com.github.aureliano.achmed.resources.properties.ServiceProperties;
 
 public interface IService {
