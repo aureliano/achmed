@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed.resources.properties;
+package com.github.aureliano.achmed.client.resources.properties;
 
 import java.util.HashMap;
 import java.util.Map;

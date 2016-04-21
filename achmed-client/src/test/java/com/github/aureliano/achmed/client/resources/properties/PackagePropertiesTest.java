@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed.resources.properties;
+package com.github.aureliano.achmed.client.resources.properties;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -10,6 +10,7 @@ import java.util.Set;
 
 import org.junit.Test;
 
+import com.github.aureliano.achmed.client.resources.properties.PackageProperties;
 import com.github.aureliano.achmed.client.types.DebianConfigFilesStatus;
 import com.github.aureliano.achmed.client.types.PackageProvider;
 import com.github.aureliano.achmed.validation.ConstraintViolation;

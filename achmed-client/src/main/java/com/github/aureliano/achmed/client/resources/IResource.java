@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed.resources;
+package com.github.aureliano.achmed.client.resources;
 
 import com.github.aureliano.achmed.resources.properties.IResourceProperties;
 

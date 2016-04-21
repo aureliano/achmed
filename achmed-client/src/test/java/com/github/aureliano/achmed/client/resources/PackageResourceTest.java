@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed.resources;
+package com.github.aureliano.achmed.client.resources;
 
 import static org.junit.Assert.assertEquals;
 
@@ -6,8 +6,10 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
+import com.github.aureliano.achmed.client.resources.PackageResource;
+import com.github.aureliano.achmed.client.resources.ResourceType;
+import com.github.aureliano.achmed.client.resources.properties.PackageProperties;
 import com.github.aureliano.achmed.client.types.PackageProvider;
-import com.github.aureliano.achmed.resources.properties.PackageProperties;
 
 public class PackageResourceTest {
 	

@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed.resources;
+package com.github.aureliano.achmed.client.resources;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -6,8 +6,10 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import com.github.aureliano.achmed.client.resources.FileResource;
+import com.github.aureliano.achmed.client.resources.ResourceType;
+import com.github.aureliano.achmed.client.resources.properties.FileProperties;
 import com.github.aureliano.achmed.client.types.EnsureFileStatus;
-import com.github.aureliano.achmed.resources.properties.FileProperties;
 
 public class FileResourceTest {
 	

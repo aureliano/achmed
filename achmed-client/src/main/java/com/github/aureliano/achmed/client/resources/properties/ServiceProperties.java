@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed.resources.properties;
+package com.github.aureliano.achmed.client.resources.properties;
 
 import com.github.aureliano.achmed.client.annotation.NotEmpty;
 import com.github.aureliano.achmed.client.annotation.NotNull;

@@ -6,8 +6,8 @@ import java.util.Set;
 import java.util.logging.Logger;
 
 import com.github.aureliano.achmed.client.exception.AchmedValidationException;
+import com.github.aureliano.achmed.client.resources.IResource;
 import com.github.aureliano.achmed.common.logging.LoggingFactory;
-import com.github.aureliano.achmed.resources.IResource;
 import com.github.aureliano.achmed.validation.ConstraintViolation;
 import com.github.aureliano.achmed.validation.ObjectValidator;
 
