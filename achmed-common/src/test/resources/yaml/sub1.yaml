@@ -1,0 +1,10 @@
+---
+resources:
+  - exec:
+      command: echo "Hello World!"
+    
+  - file:
+      path: /path/to/file
+      ensure: present
+      backup: true
+      source: /path/to/source/file

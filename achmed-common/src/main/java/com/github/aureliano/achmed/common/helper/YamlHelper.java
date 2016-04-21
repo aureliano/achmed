@@ -1,10 +1,9 @@
-package com.github.aureliano.achmed.helper;
+package com.github.aureliano.achmed.common.helper;
 
 import java.util.Map;
 
 import org.yaml.snakeyaml.Yaml;
 
-import com.github.aureliano.achmed.common.helper.FileHelper;
 
 public final class YamlHelper {
 

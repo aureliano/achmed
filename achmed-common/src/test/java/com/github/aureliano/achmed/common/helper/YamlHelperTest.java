@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed.helper;
+package com.github.aureliano.achmed.common.helper;
 
 import static org.junit.Assert.assertEquals;
 
@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.Test;
+
+import com.github.aureliano.achmed.common.helper.YamlHelper;
 
 public class YamlHelperTest {
 
