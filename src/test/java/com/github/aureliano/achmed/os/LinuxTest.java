@@ -9,10 +9,11 @@ import java.util.Scanner;
 import org.junit.Test;
 
 import com.github.aureliano.achmed.client.exception.ServiceResourceException;
+import com.github.aureliano.achmed.client.os.Linux;
+import com.github.aureliano.achmed.client.os.pkg.IPackageManager;
+import com.github.aureliano.achmed.client.os.service.IService;
 import com.github.aureliano.achmed.client.types.OS;
 import com.github.aureliano.achmed.client.types.OperatingSystemFamily;
-import com.github.aureliano.achmed.os.pkg.IPackageManager;
-import com.github.aureliano.achmed.os.service.IService;
 
 public class LinuxTest {
 

@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed.os.service;
+package com.github.aureliano.achmed.client.os.service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,11 +8,11 @@ import java.util.logging.Logger;
 import com.github.aureliano.achmed.client.command.CommandFacade;
 import com.github.aureliano.achmed.client.command.CommandResponse;
 import com.github.aureliano.achmed.client.exception.ServiceResourceException;
+import com.github.aureliano.achmed.client.os.Linux;
+import com.github.aureliano.achmed.client.os.pkg.IPackageManager;
 import com.github.aureliano.achmed.client.types.OperatingSystemFamily;
 import com.github.aureliano.achmed.common.helper.StringHelper;
 import com.github.aureliano.achmed.common.logging.LoggingFactory;
-import com.github.aureliano.achmed.os.Linux;
-import com.github.aureliano.achmed.os.pkg.IPackageManager;
 
 public abstract class LinuxService extends BaseService {
 	

@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed.os.fs;
+package com.github.aureliano.achmed.client.os.fs;
 
 import com.github.aureliano.achmed.resources.properties.FileProperties;
 

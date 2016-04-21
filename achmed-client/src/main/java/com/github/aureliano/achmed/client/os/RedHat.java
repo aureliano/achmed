@@ -1,20 +1,20 @@
-package com.github.aureliano.achmed.os;
+package com.github.aureliano.achmed.client.os;
 
 import com.github.aureliano.achmed.client.types.OperatingSystemFamily;
 import com.github.aureliano.achmed.client.types.PackageProvider;
 import com.github.aureliano.achmed.os.pkg.IPackageManager;
 import com.github.aureliano.achmed.os.pkg.PackageManagerFactory;
-import com.github.aureliano.achmed.os.service.DebianService;
 import com.github.aureliano.achmed.os.service.IService;
+import com.github.aureliano.achmed.os.service.RedHatService;
 
-public class Debian extends Linux {
+public class RedHat extends Linux {
 
 	private IPackageManager packageManager;
 	private IService serviceManager;
 	
-	public Debian() {
-		this.packageManager = PackageManagerFactory.createPackageManager(PackageProvider.APT);
-		this.serviceManager = new DebianService();
+	public RedHat() {
+		this.packageManager = PackageManagerFactory.createPackageManager(PackageProvider.YUM);
+		this.serviceManager = new RedHatService();
 	}
 
 	public IPackageManager getDefaultPackageManager() {
@@ -31,7 +31,7 @@ public class Debian extends Linux {
 	
 	@Override
 	public Linux prototype() {
-		Debian os = new Debian();
+		RedHat os = new RedHat();
 		
 		os.packageManager = this.packageManager;
 		os.serviceManager = this.serviceManager;

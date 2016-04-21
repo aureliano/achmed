@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed.os.service;
+package com.github.aureliano.achmed.client.os.service;
 
 import com.github.aureliano.achmed.client.exception.ServiceResourceException;
 import com.github.aureliano.achmed.resources.properties.ServiceProperties;

@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed.os;
+package com.github.aureliano.achmed.client.os;
 
 import java.util.HashMap;
 import java.util.Map;

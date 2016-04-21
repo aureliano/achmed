@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed.os.pkg;
+package com.github.aureliano.achmed.client.os.pkg;
 
 import java.util.ArrayList;
 import java.util.List;

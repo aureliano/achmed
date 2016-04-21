@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed.os.service;
+package com.github.aureliano.achmed.client.os.service;
 
 import java.io.IOException;
 import java.nio.file.FileSystems;

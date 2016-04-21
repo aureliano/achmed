@@ -5,9 +5,10 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import com.github.aureliano.achmed.client.os.CentOS;
+import com.github.aureliano.achmed.client.os.pkg.YumPackageManager;
 import com.github.aureliano.achmed.client.types.OS;
 import com.github.aureliano.achmed.client.types.OperatingSystemFamily;
-import com.github.aureliano.achmed.os.pkg.YumPackageManager;
 
 public class CentOSTest {
 	

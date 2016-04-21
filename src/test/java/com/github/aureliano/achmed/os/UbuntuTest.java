@@ -5,9 +5,10 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import com.github.aureliano.achmed.client.os.Ubuntu;
+import com.github.aureliano.achmed.client.os.pkg.AptPackageManager;
 import com.github.aureliano.achmed.client.types.OS;
 import com.github.aureliano.achmed.client.types.OperatingSystemFamily;
-import com.github.aureliano.achmed.os.pkg.AptPackageManager;
 
 public class UbuntuTest {
 	

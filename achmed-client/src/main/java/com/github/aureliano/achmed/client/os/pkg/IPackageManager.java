@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed.os.pkg;
+package com.github.aureliano.achmed.client.os.pkg;
 
 import com.github.aureliano.achmed.client.command.CommandResponse;
 import com.github.aureliano.achmed.resources.properties.PackageProperties;

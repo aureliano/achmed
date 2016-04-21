@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed.os;
+package com.github.aureliano.achmed.client.os;
 
 import com.github.aureliano.achmed.client.command.CommandResponse;
 import com.github.aureliano.achmed.client.types.OS;

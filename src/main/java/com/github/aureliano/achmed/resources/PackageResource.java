@@ -5,9 +5,9 @@ import java.util.logging.Logger;
 import com.github.aureliano.achmed.AppConfiguration;
 import com.github.aureliano.achmed.client.command.CommandResponse;
 import com.github.aureliano.achmed.client.exception.PackageResourceException;
+import com.github.aureliano.achmed.client.os.pkg.IPackageManager;
+import com.github.aureliano.achmed.client.os.pkg.PackageManagerFactory;
 import com.github.aureliano.achmed.common.logging.LoggingFactory;
-import com.github.aureliano.achmed.os.pkg.IPackageManager;
-import com.github.aureliano.achmed.os.pkg.PackageManagerFactory;
 import com.github.aureliano.achmed.resources.properties.IResourceProperties;
 import com.github.aureliano.achmed.resources.properties.PackageProperties;
 

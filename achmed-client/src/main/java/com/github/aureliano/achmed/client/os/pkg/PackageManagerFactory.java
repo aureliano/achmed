@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed.os.pkg;
+package com.github.aureliano.achmed.client.os.pkg;
 
 import com.github.aureliano.achmed.client.exception.UnsupportedPackageManagerException;
 import com.github.aureliano.achmed.client.types.PackageProvider;

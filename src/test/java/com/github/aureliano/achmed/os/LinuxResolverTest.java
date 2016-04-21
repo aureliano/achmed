@@ -4,6 +4,12 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import com.github.aureliano.achmed.client.os.CentOS;
+import com.github.aureliano.achmed.client.os.Debian;
+import com.github.aureliano.achmed.client.os.IOperatingSystem;
+import com.github.aureliano.achmed.client.os.LinuxResolver;
+import com.github.aureliano.achmed.client.os.Ubuntu;
+
 public class LinuxResolverTest {
 
 	@Test

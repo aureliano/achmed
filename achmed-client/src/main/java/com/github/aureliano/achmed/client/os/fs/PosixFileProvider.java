@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed.os.fs;
+package com.github.aureliano.achmed.client.os.fs;
 
 import java.io.BufferedOutputStream;
 import java.io.File;

@@ -4,6 +4,12 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import com.github.aureliano.achmed.client.os.pkg.AptPackageManager;
+import com.github.aureliano.achmed.client.os.pkg.DpkgPackageManager;
+import com.github.aureliano.achmed.client.os.pkg.GemPackageManager;
+import com.github.aureliano.achmed.client.os.pkg.IPackageManager;
+import com.github.aureliano.achmed.client.os.pkg.PackageManagerFactory;
+import com.github.aureliano.achmed.client.os.pkg.YumPackageManager;
 import com.github.aureliano.achmed.client.types.PackageProvider;
 
 public class PackageManagerFactoryTest {
