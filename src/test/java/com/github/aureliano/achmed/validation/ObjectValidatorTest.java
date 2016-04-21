@@ -5,7 +5,7 @@ import java.util.Set;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.github.aureliano.achmed.Model;
+import com.github.aureliano.achmed.client.Model;
 
 public class ObjectValidatorTest {
 
