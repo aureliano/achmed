@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import com.github.aureliano.achmed.common.helper.StringHelper;
 import com.github.aureliano.achmed.exception.AchmedException;
 
 public final class FileHelper {

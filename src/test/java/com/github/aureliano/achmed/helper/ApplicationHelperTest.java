@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.junit.Test;
 
+import com.github.aureliano.achmed.common.helper.StringHelper;
 import com.github.aureliano.achmed.resources.ExecResource;
 import com.github.aureliano.achmed.resources.FileResource;
 import com.github.aureliano.achmed.resources.IResource;

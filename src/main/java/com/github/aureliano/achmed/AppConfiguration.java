@@ -3,7 +3,7 @@ package com.github.aureliano.achmed;
 import java.util.Locale;
 import java.util.logging.Logger;
 
-import com.github.aureliano.achmed.helper.StringHelper;
+import com.github.aureliano.achmed.common.helper.StringHelper;
 import com.github.aureliano.achmed.idiom.LanguageCode;
 import com.github.aureliano.achmed.idiom.LanguageSingleton;
 import com.github.aureliano.achmed.logging.LoggingFactory;

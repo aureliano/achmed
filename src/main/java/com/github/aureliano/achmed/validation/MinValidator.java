@@ -7,8 +7,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.github.aureliano.achmed.annotation.Min;
+import com.github.aureliano.achmed.common.helper.StringHelper;
 import com.github.aureliano.achmed.helper.ReflectionHelper;
-import com.github.aureliano.achmed.helper.StringHelper;
 
 public class MinValidator implements IValidator {
 
