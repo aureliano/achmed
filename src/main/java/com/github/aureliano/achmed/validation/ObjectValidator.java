@@ -5,7 +5,7 @@ import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.github.aureliano.achmed.annotation.Constraint;
+import com.github.aureliano.achmed.client.annotation.Constraint;
 import com.github.aureliano.achmed.common.helper.ReflectionHelper;
 
 public final class ObjectValidator implements IValidator {

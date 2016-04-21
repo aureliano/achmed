@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import com.github.aureliano.achmed.annotation.NotEmpty;
+import com.github.aureliano.achmed.client.annotation.NotEmpty;
 import com.github.aureliano.achmed.client.types.DebianConfigFilesStatus;
 import com.github.aureliano.achmed.client.types.PackageProvider;
 import com.github.aureliano.achmed.common.helper.StringHelper;

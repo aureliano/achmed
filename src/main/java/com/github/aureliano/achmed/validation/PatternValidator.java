@@ -5,7 +5,7 @@ import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.github.aureliano.achmed.annotation.Pattern;
+import com.github.aureliano.achmed.client.annotation.Pattern;
 import com.github.aureliano.achmed.common.exception.AchmedException;
 import com.github.aureliano.achmed.common.helper.ReflectionHelper;
 

@@ -1,7 +1,7 @@
 package com.github.aureliano.achmed.resources.properties;
 
-import com.github.aureliano.achmed.annotation.NotEmpty;
-import com.github.aureliano.achmed.annotation.NotNull;
+import com.github.aureliano.achmed.client.annotation.NotEmpty;
+import com.github.aureliano.achmed.client.annotation.NotNull;
 import com.github.aureliano.achmed.client.types.EnsureFileStatus;
 import com.github.aureliano.achmed.common.helper.BooleanHelper;
 import com.github.aureliano.achmed.common.helper.StringHelper;

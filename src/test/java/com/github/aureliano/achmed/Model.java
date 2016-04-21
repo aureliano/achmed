@@ -3,12 +3,12 @@ package com.github.aureliano.achmed;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.github.aureliano.achmed.annotation.Max;
-import com.github.aureliano.achmed.annotation.Min;
-import com.github.aureliano.achmed.annotation.NotEmpty;
-import com.github.aureliano.achmed.annotation.NotNull;
-import com.github.aureliano.achmed.annotation.Pattern;
-import com.github.aureliano.achmed.annotation.Size;
+import com.github.aureliano.achmed.client.annotation.Max;
+import com.github.aureliano.achmed.client.annotation.Min;
+import com.github.aureliano.achmed.client.annotation.NotEmpty;
+import com.github.aureliano.achmed.client.annotation.NotNull;
+import com.github.aureliano.achmed.client.annotation.Pattern;
+import com.github.aureliano.achmed.client.annotation.Size;
 
 public class Model {
 

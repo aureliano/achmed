@@ -8,7 +8,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.github.aureliano.achmed.Model;
-import com.github.aureliano.achmed.annotation.Max;
+import com.github.aureliano.achmed.client.annotation.Max;
 
 public class MaxValidatorTest {
 
