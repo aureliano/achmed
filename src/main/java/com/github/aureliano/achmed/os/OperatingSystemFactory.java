@@ -1,8 +1,8 @@
 package com.github.aureliano.achmed.os;
 
 import com.github.aureliano.achmed.client.command.CommandFacade;
+import com.github.aureliano.achmed.client.exception.UnsupportedOperatingSystemException;
 import com.github.aureliano.achmed.common.helper.StringHelper;
-import com.github.aureliano.achmed.exception.UnsupportedOperatingSystemException;
 
 public final class OperatingSystemFactory {
 

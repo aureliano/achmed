@@ -1,6 +1,6 @@
 package com.github.aureliano.achmed.resources;
 
-import com.github.aureliano.achmed.exception.NoSuchResourceException;
+import com.github.aureliano.achmed.client.exception.NoSuchResourceException;
 
 public final class ResourceFactory {
 

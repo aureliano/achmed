@@ -12,8 +12,8 @@ import java.util.Scanner;
 import com.github.aureliano.achmed.client.command.CommandBuilder;
 import com.github.aureliano.achmed.client.command.CommandFacade;
 import com.github.aureliano.achmed.client.command.CommandResponse;
+import com.github.aureliano.achmed.client.exception.PackageResourceException;
 import com.github.aureliano.achmed.common.helper.StringHelper;
-import com.github.aureliano.achmed.exception.PackageResourceException;
 
 public final class PkgManagerHelper {
 

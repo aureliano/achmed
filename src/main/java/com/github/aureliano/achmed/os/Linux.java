@@ -2,9 +2,9 @@ package com.github.aureliano.achmed.os;
 
 import com.github.aureliano.achmed.client.command.CommandFacade;
 import com.github.aureliano.achmed.client.command.CommandResponse;
+import com.github.aureliano.achmed.client.exception.ServiceResourceException;
 import com.github.aureliano.achmed.client.types.OS;
 import com.github.aureliano.achmed.common.helper.StringHelper;
-import com.github.aureliano.achmed.exception.ServiceResourceException;
 import com.github.aureliano.achmed.os.fs.IFileProvider;
 import com.github.aureliano.achmed.os.fs.PosixFileProvider;
 
