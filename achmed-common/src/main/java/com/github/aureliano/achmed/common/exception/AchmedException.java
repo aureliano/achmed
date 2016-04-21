@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed.exception;
+package com.github.aureliano.achmed.common.exception;
 
 import com.github.aureliano.achmed.common.StatusCode;
 

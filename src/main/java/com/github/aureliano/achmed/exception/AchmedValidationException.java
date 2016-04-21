@@ -1,6 +1,7 @@
 package com.github.aureliano.achmed.exception;
 
 import com.github.aureliano.achmed.common.StatusCode;
+import com.github.aureliano.achmed.common.exception.AchmedException;
 
 public class AchmedValidationException extends AchmedException {
 

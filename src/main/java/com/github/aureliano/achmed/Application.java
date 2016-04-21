@@ -1,8 +1,8 @@
 package com.github.aureliano.achmed;
 
+import com.github.aureliano.achmed.common.exception.AchmedException;
 import com.github.aureliano.achmed.common.helper.StringHelper;
 import com.github.aureliano.achmed.common.types.StatusCode;
-import com.github.aureliano.achmed.exception.AchmedException;
 import com.github.aureliano.achmed.helper.ApplicationHelper;
 
 public class Application {

@@ -9,8 +9,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Callable;
 
+import com.github.aureliano.achmed.common.exception.AchmedException;
 import com.github.aureliano.achmed.common.helper.StringHelper;
-import com.github.aureliano.achmed.exception.AchmedException;
 
 public class CommandRunner implements Callable<CommandResponse> {
 

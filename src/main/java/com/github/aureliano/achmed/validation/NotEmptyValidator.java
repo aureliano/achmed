@@ -6,9 +6,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.github.aureliano.achmed.annotation.NotEmpty;
+import com.github.aureliano.achmed.common.exception.AchmedException;
 import com.github.aureliano.achmed.common.helper.ReflectionHelper;
 import com.github.aureliano.achmed.common.helper.StringHelper;
-import com.github.aureliano.achmed.exception.AchmedException;
 
 public class NotEmptyValidator implements IValidator {
 

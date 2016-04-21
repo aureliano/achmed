@@ -6,8 +6,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.github.aureliano.achmed.annotation.Pattern;
+import com.github.aureliano.achmed.common.exception.AchmedException;
 import com.github.aureliano.achmed.common.helper.ReflectionHelper;
-import com.github.aureliano.achmed.exception.AchmedException;
 
 public class PatternValidator implements IValidator {
 
