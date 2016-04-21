@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed.types;
+package com.github.aureliano.achmed.client.types;
 
 import static com.github.aureliano.achmed.client.types.OperatingSystemFamily.*;
 import static org.junit.Assert.assertEquals;
