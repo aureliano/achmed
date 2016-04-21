@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed.helper;
+package com.github.aureliano.achmed.common.helper;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import com.github.aureliano.achmed.common.helper.StringHelper;
 import com.github.aureliano.achmed.exception.AchmedException;
 
 public final class FileHelper {

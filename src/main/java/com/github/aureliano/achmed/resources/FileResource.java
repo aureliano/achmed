@@ -3,8 +3,8 @@ package com.github.aureliano.achmed.resources;
 import java.util.logging.Logger;
 
 import com.github.aureliano.achmed.AppConfiguration;
+import com.github.aureliano.achmed.common.helper.FileHelper;
 import com.github.aureliano.achmed.common.helper.StringHelper;
-import com.github.aureliano.achmed.helper.FileHelper;
 import com.github.aureliano.achmed.logging.LoggingFactory;
 import com.github.aureliano.achmed.os.fs.IFileProvider;
 import com.github.aureliano.achmed.resources.properties.FileProperties;

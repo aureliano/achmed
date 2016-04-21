@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed.helper;
+package com.github.aureliano.achmed.common.helper;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -14,6 +14,7 @@ import java.nio.file.Paths;
 import org.junit.After;
 import org.junit.Test;
 
+import com.github.aureliano.achmed.common.helper.FileHelper;
 import com.github.aureliano.achmed.exception.AchmedException;
 
 public class FileHelperTest {

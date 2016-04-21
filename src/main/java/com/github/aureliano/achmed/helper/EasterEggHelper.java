@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.Properties;
 import java.util.Random;
 
+import com.github.aureliano.achmed.common.helper.FileHelper;
 import com.github.aureliano.achmed.common.helper.PropertyHelper;
 
 public final class EasterEggHelper {
