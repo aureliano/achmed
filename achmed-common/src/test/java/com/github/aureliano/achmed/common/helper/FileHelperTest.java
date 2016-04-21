@@ -14,8 +14,7 @@ import java.nio.file.Paths;
 import org.junit.After;
 import org.junit.Test;
 
-import com.github.aureliano.achmed.common.helper.FileHelper;
-import com.github.aureliano.achmed.exception.AchmedException;
+import com.github.aureliano.achmed.common.exception.AchmedException;
 
 public class FileHelperTest {
 	
@@ -160,7 +159,7 @@ public class FileHelperTest {
 		dir = new File(dir.getAbsolutePath());
 		assertTrue(dir.exists());
 		
-		assertEquals(4, dir.list().length);
+		assertEquals(3, dir.list().length);
 	}
 	
 	@Test

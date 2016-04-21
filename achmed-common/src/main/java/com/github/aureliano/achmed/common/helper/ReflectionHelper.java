@@ -2,7 +2,7 @@ package com.github.aureliano.achmed.common.helper;
 
 import java.lang.reflect.Method;
 
-import com.github.aureliano.achmed.exception.AchmedException;
+import com.github.aureliano.achmed.common.exception.AchmedException;
 
 public final class ReflectionHelper {
 

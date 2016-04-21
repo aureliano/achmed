@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.github.aureliano.achmed.exception.AchmedException;
+import com.github.aureliano.achmed.common.exception.AchmedException;
 
 public final class StringHelper {
 
