@@ -8,9 +8,9 @@ import java.util.logging.Logger;
 import com.github.aureliano.achmed.client.command.CommandFacade;
 import com.github.aureliano.achmed.client.command.CommandResponse;
 import com.github.aureliano.achmed.client.exception.PackageResourceException;
+import com.github.aureliano.achmed.client.helper.PkgManagerHelper;
 import com.github.aureliano.achmed.common.helper.StringHelper;
 import com.github.aureliano.achmed.common.logging.LoggingFactory;
-import com.github.aureliano.achmed.helper.PkgManagerHelper;
 
 public class YumPackageManager extends RpmPackageManager {
 

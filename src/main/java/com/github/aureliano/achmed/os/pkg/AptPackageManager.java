@@ -6,9 +6,9 @@ import java.util.List;
 import com.github.aureliano.achmed.client.command.CommandFacade;
 import com.github.aureliano.achmed.client.command.CommandResponse;
 import com.github.aureliano.achmed.client.exception.PackageResourceException;
+import com.github.aureliano.achmed.client.helper.PkgManagerHelper;
 import com.github.aureliano.achmed.client.types.DebianConfigFilesStatus;
 import com.github.aureliano.achmed.common.helper.StringHelper;
-import com.github.aureliano.achmed.helper.PkgManagerHelper;
 import com.github.aureliano.achmed.idiom.LanguageSingleton;
 
 public class AptPackageManager extends DpkgPackageManager {

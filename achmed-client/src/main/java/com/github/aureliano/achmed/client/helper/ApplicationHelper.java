@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed.helper;
+package com.github.aureliano.achmed.client.helper;
 
 import java.util.ArrayList;
 import java.util.List;

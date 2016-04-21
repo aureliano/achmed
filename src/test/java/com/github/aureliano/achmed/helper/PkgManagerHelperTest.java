@@ -13,6 +13,7 @@ import org.junit.Test;
 
 import com.github.aureliano.achmed.client.command.CommandBuilder;
 import com.github.aureliano.achmed.client.command.CommandFacade;
+import com.github.aureliano.achmed.client.helper.PkgManagerHelper;
 
 public class PkgManagerHelperTest {
 
