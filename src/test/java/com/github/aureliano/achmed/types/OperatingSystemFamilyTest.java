@@ -1,11 +1,11 @@
 package com.github.aureliano.achmed.types;
 
-import static com.github.aureliano.achmed.types.OperatingSystemFamily.*;
+import static com.github.aureliano.achmed.client.types.OperatingSystemFamily.*;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.github.aureliano.achmed.types.OS;
+import com.github.aureliano.achmed.client.types.OS;
 
 public class OperatingSystemFamilyTest {
 

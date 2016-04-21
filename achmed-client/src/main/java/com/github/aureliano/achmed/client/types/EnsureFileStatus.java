@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed.types;
+package com.github.aureliano.achmed.client.types;
 
 public enum EnsureFileStatus {
 

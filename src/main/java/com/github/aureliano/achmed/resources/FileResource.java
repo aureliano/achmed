@@ -3,13 +3,13 @@ package com.github.aureliano.achmed.resources;
 import java.util.logging.Logger;
 
 import com.github.aureliano.achmed.AppConfiguration;
+import com.github.aureliano.achmed.client.types.EnsureFileStatus;
 import com.github.aureliano.achmed.common.helper.FileHelper;
 import com.github.aureliano.achmed.common.helper.StringHelper;
 import com.github.aureliano.achmed.common.logging.LoggingFactory;
 import com.github.aureliano.achmed.os.fs.IFileProvider;
 import com.github.aureliano.achmed.resources.properties.FileProperties;
 import com.github.aureliano.achmed.resources.properties.IResourceProperties;
-import com.github.aureliano.achmed.types.EnsureFileStatus;
 
 public class FileResource implements IResource {
 	

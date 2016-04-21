@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 
+import com.github.aureliano.achmed.client.types.OperatingSystemFamily;
 import com.github.aureliano.achmed.command.CommandFacade;
 import com.github.aureliano.achmed.command.CommandResponse;
 import com.github.aureliano.achmed.common.helper.StringHelper;
@@ -12,7 +13,6 @@ import com.github.aureliano.achmed.common.logging.LoggingFactory;
 import com.github.aureliano.achmed.exception.ServiceResourceException;
 import com.github.aureliano.achmed.os.Linux;
 import com.github.aureliano.achmed.os.pkg.IPackageManager;
-import com.github.aureliano.achmed.types.OperatingSystemFamily;
 
 public abstract class LinuxService extends BaseService {
 	

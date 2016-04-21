@@ -10,8 +10,8 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import com.github.aureliano.achmed.types.DebianConfigFilesStatus;
-import com.github.aureliano.achmed.types.PackageProvider;
+import com.github.aureliano.achmed.client.types.DebianConfigFilesStatus;
+import com.github.aureliano.achmed.client.types.PackageProvider;
 import com.github.aureliano.achmed.validation.ConstraintViolation;
 import com.github.aureliano.achmed.validation.ObjectValidator;
 

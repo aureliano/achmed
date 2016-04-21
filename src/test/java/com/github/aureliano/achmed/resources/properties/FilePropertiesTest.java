@@ -8,7 +8,7 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import com.github.aureliano.achmed.types.EnsureFileStatus;
+import com.github.aureliano.achmed.client.types.EnsureFileStatus;
 import com.github.aureliano.achmed.validation.ConstraintViolation;
 import com.github.aureliano.achmed.validation.ObjectValidator;
 

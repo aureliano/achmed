@@ -5,9 +5,9 @@ import java.util.Collection;
 import java.util.List;
 
 import com.github.aureliano.achmed.annotation.NotEmpty;
+import com.github.aureliano.achmed.client.types.DebianConfigFilesStatus;
+import com.github.aureliano.achmed.client.types.PackageProvider;
 import com.github.aureliano.achmed.common.helper.StringHelper;
-import com.github.aureliano.achmed.types.DebianConfigFilesStatus;
-import com.github.aureliano.achmed.types.PackageProvider;
 
 public class PackageProperties extends ResourceProperties {
 

@@ -2,8 +2,8 @@ package com.github.aureliano.achmed.types;
 
 import static org.junit.Assert.assertEquals;
 
-import static com.github.aureliano.achmed.types.OperatingSystemFamily.*;
-import static com.github.aureliano.achmed.types.PackageProvider.*;
+import static com.github.aureliano.achmed.client.types.OperatingSystemFamily.*;
+import static com.github.aureliano.achmed.client.types.PackageProvider.*;
 
 import org.junit.Test;
 

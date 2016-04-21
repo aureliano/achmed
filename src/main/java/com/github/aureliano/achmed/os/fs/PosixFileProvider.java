@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import com.github.aureliano.achmed.client.types.EnsureFileStatus;
 import com.github.aureliano.achmed.command.CommandFacade;
 import com.github.aureliano.achmed.command.CommandResponse;
 import com.github.aureliano.achmed.common.helper.BooleanHelper;
@@ -17,7 +18,6 @@ import com.github.aureliano.achmed.common.helper.StringHelper;
 import com.github.aureliano.achmed.common.logging.LoggingFactory;
 import com.github.aureliano.achmed.exception.FileResourceException;
 import com.github.aureliano.achmed.resources.properties.FileProperties;
-import com.github.aureliano.achmed.types.EnsureFileStatus;
 
 public class PosixFileProvider implements IFileProvider {
 

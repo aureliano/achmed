@@ -3,13 +3,13 @@ package com.github.aureliano.achmed.os.pkg;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.aureliano.achmed.client.types.DebianConfigFilesStatus;
 import com.github.aureliano.achmed.command.CommandFacade;
 import com.github.aureliano.achmed.command.CommandResponse;
 import com.github.aureliano.achmed.common.helper.StringHelper;
 import com.github.aureliano.achmed.exception.PackageResourceException;
 import com.github.aureliano.achmed.helper.PkgManagerHelper;
 import com.github.aureliano.achmed.idiom.LanguageSingleton;
-import com.github.aureliano.achmed.types.DebianConfigFilesStatus;
 
 public class AptPackageManager extends DpkgPackageManager {
 

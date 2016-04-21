@@ -1,7 +1,7 @@
 package com.github.aureliano.achmed.os.pkg;
 
+import com.github.aureliano.achmed.client.types.PackageProvider;
 import com.github.aureliano.achmed.exception.UnsupportedPackageManagerException;
-import com.github.aureliano.achmed.types.PackageProvider;
 
 public class PackageManagerFactory {
 

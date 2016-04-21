@@ -1,11 +1,11 @@
 package com.github.aureliano.achmed.os;
 
+import com.github.aureliano.achmed.client.types.OS;
+import com.github.aureliano.achmed.client.types.OperatingSystemFamily;
 import com.github.aureliano.achmed.command.CommandResponse;
 import com.github.aureliano.achmed.os.fs.IFileProvider;
 import com.github.aureliano.achmed.os.pkg.IPackageManager;
 import com.github.aureliano.achmed.os.service.IService;
-import com.github.aureliano.achmed.types.OS;
-import com.github.aureliano.achmed.types.OperatingSystemFamily;
 
 public interface IOperatingSystem {
 	

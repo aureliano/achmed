@@ -4,7 +4,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import com.github.aureliano.achmed.types.PackageProvider;
+import com.github.aureliano.achmed.client.types.PackageProvider;
 
 public class PackageManagerFactoryTest {
 

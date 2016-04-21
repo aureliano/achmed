@@ -5,9 +5,9 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import com.github.aureliano.achmed.client.types.OS;
+import com.github.aureliano.achmed.client.types.OperatingSystemFamily;
 import com.github.aureliano.achmed.os.pkg.AptPackageManager;
-import com.github.aureliano.achmed.types.OS;
-import com.github.aureliano.achmed.types.OperatingSystemFamily;
 
 public class DebianTest {
 	

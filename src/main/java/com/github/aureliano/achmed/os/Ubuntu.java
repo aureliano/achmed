@@ -1,6 +1,6 @@
 package com.github.aureliano.achmed.os;
 
-import com.github.aureliano.achmed.types.OperatingSystemFamily;
+import com.github.aureliano.achmed.client.types.OperatingSystemFamily;
 
 public class Ubuntu extends Debian {
 	
