@@ -2,7 +2,7 @@ package com.github.aureliano.achmed.idiom;
 
 import java.util.Properties;
 
-import com.github.aureliano.achmed.helper.PropertyHelper;
+import com.github.aureliano.achmed.common.helper.PropertyHelper;
 
 public class LanguageSingleton {
 
