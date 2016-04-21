@@ -164,6 +164,12 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
+				<groupId>com.github.aureliano</groupId>
+				<artifactId>achmed-common</artifactId>
+				<version>0.1.0</version>
+			</dependency>
+			
+			<dependency>
 				<groupId>org.yaml</groupId>
 				<artifactId>snakeyaml</artifactId>
 				<version>1.16</version>
