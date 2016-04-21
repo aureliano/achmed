@@ -1,7 +1,7 @@
 package com.github.aureliano.achmed.exception;
 
 import com.github.aureliano.achmed.command.CommandResponse;
-import com.github.aureliano.achmed.types.StatusCode;
+import com.github.aureliano.achmed.common.StatusCode;
 
 public class ResourceException extends AchmedException {
 
