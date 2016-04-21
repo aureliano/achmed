@@ -1,9 +1,11 @@
-package com.github.aureliano.achmed.helper;
+package com.github.aureliano.achmed.common.helper;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
+
+import com.github.aureliano.achmed.common.helper.IntegerHelper;
 
 public class IntegerHelperTest {
 

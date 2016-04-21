@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed.helper;
+package com.github.aureliano.achmed.common.helper;
 
 public final class IntegerHelper {
 
