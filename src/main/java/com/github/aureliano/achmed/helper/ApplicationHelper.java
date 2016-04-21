@@ -8,7 +8,6 @@ import java.util.logging.Logger;
 
 import com.github.aureliano.achmed.Agent;
 import com.github.aureliano.achmed.exception.AchmedException;
-import com.github.aureliano.achmed.logging.LoggingConsoleHandler;
 import com.github.aureliano.achmed.logging.LoggingFactory;
 import com.github.aureliano.achmed.resources.IResource;
 import com.github.aureliano.achmed.resources.ResourceFactory;
