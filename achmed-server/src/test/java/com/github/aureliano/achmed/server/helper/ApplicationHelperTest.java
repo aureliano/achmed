@@ -13,7 +13,7 @@ public class ApplicationHelperTest {
 
 	@Test
 	public void testBuildServerConfiguration() {
-		ServerConfiguration configuration = ApplicationHelper.buildServerConfiguration();
+		ServerConfiguration configuration = ApplicationHelper.buildServerConfiguration("src/test/resources/");
 		File repo = new File("/tmp");
 		
 		assertEquals(new Integer(9876), configuration.getPortNumber());

@@ -1,5 +1,6 @@
 package com.github.aureliano.achmed.server.helper;
 
+import java.io.File;
 import java.util.Properties;
 
 import com.github.aureliano.achmed.common.helper.FileHelper;
@@ -13,12 +14,12 @@ public final class ApplicationHelper {
 	private ApplicationHelper() {}
 	
 	public static void execute() {
-		ServerConfiguration configuration = buildServerConfiguration();
+		ServerConfiguration configuration = buildServerConfiguration("");
 		AchmedServerHandler.instance().startUp(configuration);
 	}
 	
-	protected static ServerConfiguration buildServerConfiguration() {
-		Properties properties = PropertyHelper.loadProperties("achmed-server.properties");
+	protected static ServerConfiguration buildServerConfiguration(String dir) {
+		Properties properties = PropertyHelper.loadProperties(new File(dir + "achmed-server.properties"));
 		return ServerConfiguration.build(properties);
 	}
 	
