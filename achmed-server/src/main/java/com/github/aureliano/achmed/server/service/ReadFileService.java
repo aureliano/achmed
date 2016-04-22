@@ -1,16 +1,19 @@
 package com.github.aureliano.achmed.server.service;
 
 import java.io.File;
-import java.io.UnsupportedEncodingException;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import com.github.aureliano.achmed.common.exception.AchmedException;
 import com.github.aureliano.achmed.common.helper.FileHelper;
 import com.github.aureliano.achmed.common.helper.StringHelper;
+import com.github.aureliano.achmed.common.logging.LoggingFactory;
 import com.github.aureliano.achmed.server.AchmedServerHandler;
 
 public class ReadFileService implements IService {
 
+	private static final Logger logger = LoggingFactory.createLogger(ReadFileService.class);
+	
 	public ReadFileService() {}
 	
 	@Override
@@ -22,11 +25,8 @@ public class ReadFileService implements IService {
 		
 		File requestedFile = FileHelper.buildFile(AchmedServerHandler.instance().getFileRepository(), resourcePath);
 		if (!(requestedFile.exists() && requestedFile.isFile())) {
-			try {
-				return (" >>> Resource path: " + resourcePath).getBytes("UTF-8");
-			} catch (UnsupportedEncodingException ex) {
-				throw new AchmedException(ex);
-			}
+			logger.warning("Requested resource path [ " + requestedFile + " ] does not exist.");
+			return new byte[0];
 		}
 		
 		return new byte[0];
