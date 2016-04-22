@@ -10,6 +10,11 @@
 	<version>0.1.0</version>
 	<name>achmed</name>
 	
+	<modules>
+		<module>achmed-common</module>
+		<module>achmed-client</module>
+	</modules>
+	
 	<build>
 		<plugins>
 			<plugin>
@@ -183,19 +188,4 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
-	<dependencies>
-		<dependency>
-			<groupId>org.yaml</groupId>
-			<artifactId>snakeyaml</artifactId>
-			<version>1.16</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.7</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
 </project>
