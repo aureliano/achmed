@@ -7,6 +7,7 @@ import java.net.Socket;
 import java.util.logging.Logger;
 
 import com.github.aureliano.achmed.common.exception.AchmedException;
+import com.github.aureliano.achmed.common.helper.StringHelper;
 import com.github.aureliano.achmed.common.logging.LoggingFactory;
 import com.github.aureliano.achmed.server.service.IService;
 import com.github.aureliano.achmed.server.service.ServiceFactory;
@@ -56,7 +57,7 @@ public class ThreadHandler implements Runnable {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
 			String requestedService = reader.readLine();
 		
-			if (!requestedService.matches(SERVICE_NAME_PATTERN)) {
+			if ((StringHelper.isEmpty(requestedService)) || (!requestedService.matches(SERVICE_NAME_PATTERN))) {
 				throw new AchmedException("Broken service name description.");
 			}
 			
