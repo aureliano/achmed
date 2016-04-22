@@ -1,8 +1,13 @@
 package com.github.aureliano.achmed.common.helper;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+
+import com.github.aureliano.achmed.common.exception.AchmedException;
 
 public final class PropertyHelper {
 
@@ -11,12 +16,27 @@ public final class PropertyHelper {
 	}
 	
 	public static Properties loadProperties(String resourceName) {
+		InputStream stream = getResourceAsStream(resourceName);
+		return loadProperties(stream);
+	}
+	
+	public static Properties loadProperties(File file) {
+		try {
+			InputStream stream = new FileInputStream(file);
+			return loadProperties(stream);
+		} catch (FileNotFoundException ex) {
+			throw new AchmedException(ex);
+		}
+	}
+	
+	private static Properties loadProperties(InputStream stream) {
 		Properties properties = new Properties();
 		
-		try (InputStream stream = getResourceAsStream(resourceName)) {
+		try {
 			properties.load(stream);
+			stream.close();
 		} catch (IOException ex) {
-			throw new RuntimeException(ex);
+			throw new AchmedException(ex);
 		}
 		
 		return properties;
@@ -38,7 +58,7 @@ public final class PropertyHelper {
 			stream = PropertyHelper.class.getClassLoader().getResourceAsStream(stripped);
 		}
 		if (stream == null) {
-			throw new RuntimeException(resource + " not found");
+			throw new AchmedException(resource + " not found");
 		}
 		
 		return stream;
