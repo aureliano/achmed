@@ -231,6 +231,23 @@ public final class FileHelper {
 		return dir.isDirectory();
 	}
 	
+	public static String buildPath(String... tokens) {
+		StringBuilder builder = new StringBuilder();
+		
+		for (String token : tokens) {
+			if (builder.length() > 0) {
+				builder.append(File.separator);
+			}
+			builder.append(token);
+		}
+		
+		return builder.toString();
+	}
+	
+	public static File buildFile(String... tokens) {
+		return new File(buildPath(tokens));
+	}
+	
 	private static void forceDelete(File file) {
 		if (file.isDirectory()) {
 			File[] children = file.listFiles();

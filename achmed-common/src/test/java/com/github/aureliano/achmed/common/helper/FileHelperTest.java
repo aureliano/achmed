@@ -180,6 +180,16 @@ public class FileHelperTest {
 		assertEquals(expected, FileHelper.readResource(resourceName));
 	}
 	
+	@Test
+	public void testBuildPath() {
+		assertEquals("src/test/resources", FileHelper.buildPath("src", "test", "resources"));
+	}
+	
+	@Test
+	public void testBuildFile() {
+		assertEquals(new File("src/test/resources"), FileHelper.buildFile("src", "test", "resources"));
+	}
+	
 	private void createDirectoryStructure() {
 		File sourceDir = new File("src/test/resources");
 		
