@@ -6,14 +6,20 @@ import com.github.aureliano.achmed.common.helper.FileHelper;
 import com.github.aureliano.achmed.common.helper.PropertyHelper;
 import com.github.aureliano.achmed.common.helper.StringHelper;
 import com.github.aureliano.achmed.server.AchmedServerHandler;
+import com.github.aureliano.achmed.server.conf.ServerConfiguration;
 
 public final class ApplicationHelper {
 
 	private ApplicationHelper() {}
 	
-	public static void execute(String port) {
-		Integer portNumber = Integer.parseInt(port);
-		AchmedServerHandler.instance().startUp(portNumber);
+	public static void execute() {
+		ServerConfiguration configuration = buildServerConfiguration();
+		AchmedServerHandler.instance().startUp(configuration);
+	}
+	
+	protected static ServerConfiguration buildServerConfiguration() {
+		Properties properties = PropertyHelper.loadProperties("achmed-server.properties");
+		return ServerConfiguration.build(properties);
 	}
 	
 	public static void addShutDownHook() {
@@ -44,12 +50,6 @@ public final class ApplicationHelper {
 	}
 	
 	public static String error(String[] args) {
-		if (args.length == 0) {
-			return "Port number parameter is mandatory.";
-		} else if ((args.length == 2) && ("-p".equals(args[0])) && (!args[1].matches("\\d+"))) {
-			return "Port number must be a valid integer.";
-		} else {
-			return "Don't know how to handle such command: " + StringHelper.join(args, " ");
-		}
+		return "Don't know how to handle such command: " + StringHelper.join(args, " ");
 	}
 }

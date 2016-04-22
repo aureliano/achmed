@@ -2,7 +2,6 @@ package com.github.aureliano.achmed.server;
 
 import com.github.aureliano.achmed.common.StatusCode;
 import com.github.aureliano.achmed.common.exception.AchmedException;
-import com.github.aureliano.achmed.common.helper.StringHelper;
 import com.github.aureliano.achmed.server.helper.ApplicationHelper;
 
 public class Application {
@@ -17,18 +16,13 @@ public class Application {
 	}
 
 	public void startUp(String[] args) {
-		if (args.length == 0) {
-			this.printHelp();
-			return;
-		}
-
 		StatusCode status = null;
-		if ((args[0].equals("-h")) || (args[0].equals("--help")) || (args[0].equals("help"))) {
+		if (args.length == 0) {
+			status = this.handleExecution();
+		} else if ((args[0].equals("-h")) || (args[0].equals("--help")) || (args[0].equals("help"))) {
 			status = this.printHelp();
 		} else if ((args[0].equals("-v")) || (args[0].equals("--version")) || (args[0].equals("version"))) {
 			status = this.printVersion();
-		} else if (args[0].equals("-p")) {
-			status = this.handleExecution(args);
 		} else {
 			status = this.printError(args);
 		}
@@ -36,28 +30,13 @@ public class Application {
 		System.exit(status.getCode());
 	}
 	
-	protected StatusCode handleExecution(String[] args) {
-		if (args.length == 1) {
-			return this.prepareExecution(null);
-		} else if (args.length != 2) {
-			System.err.println("Invalid arguments. You must pass only one port number.");
-			return StatusCode.CLI_PARAMETERS_ERROR;
-		} else {
-			return this.prepareExecution(args[1]);
-		}
+	protected StatusCode handleExecution() {
+		return this.prepareExecution();
 	}
 
-	protected StatusCode prepareExecution(String port) {
-		if (StringHelper.isEmpty(port)) {
-			System.out.println(ApplicationHelper.error(new String[0]));
-			return StatusCode.CLI_PARAMETERS_ERROR;
-		} else if (!port.matches("\\d+")) {
-			System.out.println(ApplicationHelper.error(new String[] { "-p", port }));
-			return StatusCode.CLI_PARAMETERS_ERROR;
-		}
-		
+	protected StatusCode prepareExecution() {
 		try {
-			ApplicationHelper.execute(port);
+			ApplicationHelper.execute();
 			return StatusCode.SUCCESS;
 		} catch (AchmedException ex) {
 			System.err.println(ex.getMessage());

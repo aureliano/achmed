@@ -7,13 +7,14 @@ import java.util.logging.Logger;
 
 import com.github.aureliano.achmed.common.StatusCode;
 import com.github.aureliano.achmed.common.logging.LoggingFactory;
+import com.github.aureliano.achmed.server.conf.ServerConfiguration;
 
 public class AchmedServerHandler {
 
 	private static final Logger logger = LoggingFactory.createLogger(AchmedServerHandler.class);
 	private static AchmedServerHandler instance;
 	
-	private Integer portNumber;
+	private ServerConfiguration configuration;
 	
 	private AchmedServerHandler() {}
 	
@@ -25,13 +26,11 @@ public class AchmedServerHandler {
 		return instance;
 	}
 	
-	public void startUp(Integer portNumber) {
-		this.configurePortNumber(portNumber);
-		
+	public void startUp(ServerConfiguration configuration) {
 		try (
-			ServerSocket serverSocket = new ServerSocket(portNumber);
+			ServerSocket serverSocket = new ServerSocket(configuration.getPortNumber());
 		) {
-			logger.info("Achmed server started and listening on port " + portNumber);
+			logger.info("Achmed server started and listening on port " + configuration.getPortNumber());
 			this.listen(serverSocket);
 		} catch (IOException ex) {
 			logger.log(Level.SEVERE, ex.getMessage(), ex);
@@ -47,14 +46,6 @@ public class AchmedServerHandler {
 		while (true) {
 			Runnable thread = ThreadHandler.handle(serverSocket.accept());
 			thread.run();
-		}
-	}
-	
-	private void configurePortNumber(Integer portNumber) {
-		this.portNumber = portNumber;
-		if ((this.portNumber == null) || (this.portNumber <= 0)) {
-			logger.log(Level.SEVERE, "Invalid port number: " + this.portNumber);
-			System.exit(StatusCode.CLI_PARAMETERS_ERROR.getCode());
 		}
 	}
 }
