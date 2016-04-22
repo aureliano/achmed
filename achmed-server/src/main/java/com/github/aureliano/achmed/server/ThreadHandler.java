@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,9 +23,11 @@ public class ThreadHandler implements Runnable {
 	private static final Logger logger = LoggingFactory.createLogger(ThreadHandler.class);
 	
 	private Socket socket;
+	private Map<String, String> map;
 	
 	private ThreadHandler(Socket socket) {
 		this.socket = socket;
+		this.map = new HashMap<>();
 	}
 	
 	public static Runnable handle(Socket socket) {
@@ -34,8 +38,9 @@ public class ThreadHandler implements Runnable {
 	@Override
 	public void run() {
 		try {
+			this.consumeRequestParameters();
 			IService service = this.createService();
-			service.consume(this.socket);
+			service.consume(this.map);
 			
 			this.closeSocket();
 		} catch (AchmedException ex) {
@@ -59,16 +64,25 @@ public class ThreadHandler implements Runnable {
 	}
 	
 	private String getRequestedService() {
-		try {
-			BufferedReader reader = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
-			String requestedService = reader.readLine();
+		String serviceName = this.map.get("service");
+		if (StringHelper.isEmpty(serviceName)) {
+			throw new AchmedException("Empty service name description.");
+		}
 		
-			if ((StringHelper.isEmpty(requestedService)) || (!requestedService.matches(SERVICE_NAME_PATTERN))) {
-				throw new AchmedException("Broken service name description.");
-			}
+		return serviceName.toUpperCase();
+	}
+	
+	private void consumeRequestParameters() {
+		try (
+			BufferedReader reader = new BufferedReader(
+					new InputStreamReader(this.socket.getInputStream()))
+		) {
+			String line = null;
 			
-			String serviceName = requestedService.replaceFirst(SERVICE_PATTERN, "").trim();
-			return serviceName.toUpperCase();
+			while ((line = reader.readLine()) != null) {
+				String[] tokens = line.split(":");
+				this.map.put(tokens[0].trim(), tokens[1].trim());
+			}
 		} catch (IOException ex) {
 			throw new AchmedException(ex);
 		}
