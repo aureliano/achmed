@@ -37,14 +37,14 @@ public class ApplicationHelperTest {
 	public void testHelp() {
 		String help = ApplicationHelper.help();
 		
-		assertTrue(help.contains("Usage: [java -jar] achmed-x.x.x.jar burst [FILE]"));
+		assertTrue(help.contains("Usage: [java -jar] achmed-client-x.x.x.jar burst [FILE]"));
 		assertTrue(help.contains("-h        Print this message."));
 		assertTrue(help.contains("-v        Print the version."));
 		assertTrue(help.contains("--help    Print this message."));
 		assertTrue(help.contains("--version Print the version."));
 		assertTrue(help.contains("Required JVM 1.7 or higher."));
 		assertTrue(help.contains("Example:"));
-		assertTrue(help.contains("java -jar achmed-x.x.x.jar burst /path/to/schema.yaml"));
+		assertTrue(help.contains("java -jar achmed-client-x.x.x.jar burst /path/to/schema.yaml"));
 		assertTrue(help.contains("Get involved"));
 		assertTrue(help.contains("- Source: https://github.com/aureliano/achmed"));
 		assertTrue(help.contains("- Issues: https://github.com/aureliano/achmed/issues"));
