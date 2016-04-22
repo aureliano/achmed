@@ -40,7 +40,7 @@ public class ThreadHandler implements Runnable {
 		try {
 			this.consumeRequestParameters();
 			IService service = this.createService();
-			service.consume(this.parameters);
+			service.consume(this.socket, this.parameters);
 			
 			this.closeSocket();
 		} catch (AchmedException ex) {
