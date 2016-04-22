@@ -9,8 +9,6 @@ import org.junit.Test;
 
 import com.github.aureliano.achmed.client.Model;
 import com.github.aureliano.achmed.client.annotation.Min;
-import com.github.aureliano.achmed.validation.ConstraintViolation;
-import com.github.aureliano.achmed.validation.MinValidator;
 
 public class MinValidatorTest {
 

@@ -5,8 +5,8 @@ import java.util.List;
 import com.github.aureliano.achmed.client.command.CommandFacade;
 import com.github.aureliano.achmed.client.command.CommandResponse;
 import com.github.aureliano.achmed.client.exception.PackageResourceException;
+import com.github.aureliano.achmed.client.resources.properties.PackageProperties;
 import com.github.aureliano.achmed.common.helper.StringHelper;
-import com.github.aureliano.achmed.resources.properties.PackageProperties;
 
 public class DpkgPackageManager implements IPackageManager {
 

@@ -2,7 +2,7 @@ package com.github.aureliano.achmed.client.command;
 
 import java.util.List;
 
-import com.github.aureliano.achmed.resources.properties.ExecProperties;
+import com.github.aureliano.achmed.client.resources.properties.ExecProperties;
 
 public class CommandBuilder {
 

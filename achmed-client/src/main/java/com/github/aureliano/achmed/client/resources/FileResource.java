@@ -2,14 +2,14 @@ package com.github.aureliano.achmed.client.resources;
 
 import java.util.logging.Logger;
 
-import com.github.aureliano.achmed.AppConfiguration;
+import com.github.aureliano.achmed.client.AppConfiguration;
 import com.github.aureliano.achmed.client.os.fs.IFileProvider;
+import com.github.aureliano.achmed.client.resources.properties.FileProperties;
+import com.github.aureliano.achmed.client.resources.properties.IResourceProperties;
 import com.github.aureliano.achmed.client.types.EnsureFileStatus;
 import com.github.aureliano.achmed.common.helper.FileHelper;
 import com.github.aureliano.achmed.common.helper.StringHelper;
 import com.github.aureliano.achmed.common.logging.LoggingFactory;
-import com.github.aureliano.achmed.resources.properties.FileProperties;
-import com.github.aureliano.achmed.resources.properties.IResourceProperties;
 
 public class FileResource implements IResource {
 	

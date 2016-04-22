@@ -5,8 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import com.github.aureliano.achmed.client.command.CommandBuilder;
-import com.github.aureliano.achmed.resources.properties.ExecProperties;
+import com.github.aureliano.achmed.client.resources.properties.ExecProperties;
 
 public class CommandBuilderTest {
 

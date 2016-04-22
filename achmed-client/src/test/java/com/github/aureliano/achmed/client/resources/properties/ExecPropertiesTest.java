@@ -10,9 +10,8 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import com.github.aureliano.achmed.client.resources.properties.ExecProperties;
-import com.github.aureliano.achmed.validation.ConstraintViolation;
-import com.github.aureliano.achmed.validation.ObjectValidator;
+import com.github.aureliano.achmed.client.validation.ConstraintViolation;
+import com.github.aureliano.achmed.client.validation.ObjectValidator;
 
 public class ExecPropertiesTest {
 	

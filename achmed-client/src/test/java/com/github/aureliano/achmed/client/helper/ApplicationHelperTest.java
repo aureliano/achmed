@@ -8,13 +8,12 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.github.aureliano.achmed.client.helper.ApplicationHelper;
+import com.github.aureliano.achmed.client.resources.ExecResource;
+import com.github.aureliano.achmed.client.resources.FileResource;
+import com.github.aureliano.achmed.client.resources.IResource;
+import com.github.aureliano.achmed.client.resources.PackageResource;
+import com.github.aureliano.achmed.client.resources.ServiceResource;
 import com.github.aureliano.achmed.common.helper.StringHelper;
-import com.github.aureliano.achmed.resources.ExecResource;
-import com.github.aureliano.achmed.resources.FileResource;
-import com.github.aureliano.achmed.resources.IResource;
-import com.github.aureliano.achmed.resources.PackageResource;
-import com.github.aureliano.achmed.resources.ServiceResource;
 
 public class ApplicationHelperTest {
 

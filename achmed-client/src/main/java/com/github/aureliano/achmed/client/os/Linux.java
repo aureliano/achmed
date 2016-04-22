@@ -3,10 +3,10 @@ package com.github.aureliano.achmed.client.os;
 import com.github.aureliano.achmed.client.command.CommandFacade;
 import com.github.aureliano.achmed.client.command.CommandResponse;
 import com.github.aureliano.achmed.client.exception.ServiceResourceException;
+import com.github.aureliano.achmed.client.os.fs.IFileProvider;
+import com.github.aureliano.achmed.client.os.fs.PosixFileProvider;
 import com.github.aureliano.achmed.client.types.OS;
 import com.github.aureliano.achmed.common.helper.StringHelper;
-import com.github.aureliano.achmed.os.fs.IFileProvider;
-import com.github.aureliano.achmed.os.fs.PosixFileProvider;
 
 public abstract class Linux implements IOperatingSystem {
 

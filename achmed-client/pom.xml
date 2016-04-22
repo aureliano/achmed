@@ -17,6 +17,11 @@
 	
 	<dependencies>
 		<dependency>
+			<groupId>com.github.aureliano</groupId>
+			<artifactId>achmed-common</artifactId>
+		</dependency>
+		
+		<dependency>
 			<groupId>org.yaml</groupId>
 			<artifactId>snakeyaml</artifactId>
 		</dependency>

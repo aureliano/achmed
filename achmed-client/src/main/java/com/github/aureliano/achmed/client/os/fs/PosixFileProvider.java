@@ -12,12 +12,12 @@ import java.util.logging.Logger;
 import com.github.aureliano.achmed.client.command.CommandFacade;
 import com.github.aureliano.achmed.client.command.CommandResponse;
 import com.github.aureliano.achmed.client.exception.FileResourceException;
+import com.github.aureliano.achmed.client.resources.properties.FileProperties;
 import com.github.aureliano.achmed.client.types.EnsureFileStatus;
 import com.github.aureliano.achmed.common.helper.BooleanHelper;
 import com.github.aureliano.achmed.common.helper.FileHelper;
 import com.github.aureliano.achmed.common.helper.StringHelper;
 import com.github.aureliano.achmed.common.logging.LoggingFactory;
-import com.github.aureliano.achmed.resources.properties.FileProperties;
 
 public class PosixFileProvider implements IFileProvider {
 

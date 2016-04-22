@@ -1,7 +1,7 @@
 package com.github.aureliano.achmed.client.os.pkg;
 
 import com.github.aureliano.achmed.client.command.CommandResponse;
-import com.github.aureliano.achmed.resources.properties.PackageProperties;
+import com.github.aureliano.achmed.client.resources.properties.PackageProperties;
 
 public interface IPackageManager {
 

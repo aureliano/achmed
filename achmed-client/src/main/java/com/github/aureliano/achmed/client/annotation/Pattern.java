@@ -5,7 +5,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import com.github.aureliano.achmed.validation.PatternValidator;
+import com.github.aureliano.achmed.client.validation.PatternValidator;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)

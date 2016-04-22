@@ -1,6 +1,6 @@
 package com.github.aureliano.achmed.client.resources;
 
-import com.github.aureliano.achmed.resources.properties.IResourceProperties;
+import com.github.aureliano.achmed.client.resources.properties.IResourceProperties;
 
 public interface IResource {
 

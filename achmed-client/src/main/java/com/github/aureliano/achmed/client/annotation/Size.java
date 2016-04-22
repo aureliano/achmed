@@ -5,7 +5,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import com.github.aureliano.achmed.validation.SizeValidator;
+import com.github.aureliano.achmed.client.validation.SizeValidator;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)

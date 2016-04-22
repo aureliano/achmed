@@ -1,6 +1,6 @@
 package com.github.aureliano.achmed.client.os.fs;
 
-import com.github.aureliano.achmed.resources.properties.FileProperties;
+import com.github.aureliano.achmed.client.resources.properties.FileProperties;
 
 public interface IFileProvider {
 

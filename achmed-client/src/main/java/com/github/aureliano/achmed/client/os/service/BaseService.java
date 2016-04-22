@@ -1,7 +1,7 @@
 package com.github.aureliano.achmed.client.os.service;
 
 import com.github.aureliano.achmed.client.exception.ServiceResourceException;
-import com.github.aureliano.achmed.resources.properties.ServiceProperties;
+import com.github.aureliano.achmed.client.resources.properties.ServiceProperties;
 
 public abstract class BaseService implements IService {
 

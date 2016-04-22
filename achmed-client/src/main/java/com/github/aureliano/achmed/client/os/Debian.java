@@ -1,11 +1,11 @@
 package com.github.aureliano.achmed.client.os;
 
+import com.github.aureliano.achmed.client.os.pkg.IPackageManager;
+import com.github.aureliano.achmed.client.os.pkg.PackageManagerFactory;
+import com.github.aureliano.achmed.client.os.service.DebianService;
+import com.github.aureliano.achmed.client.os.service.IService;
 import com.github.aureliano.achmed.client.types.OperatingSystemFamily;
 import com.github.aureliano.achmed.client.types.PackageProvider;
-import com.github.aureliano.achmed.os.pkg.IPackageManager;
-import com.github.aureliano.achmed.os.pkg.PackageManagerFactory;
-import com.github.aureliano.achmed.os.service.DebianService;
-import com.github.aureliano.achmed.os.service.IService;
 
 public class Debian extends Linux {
 

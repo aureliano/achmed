@@ -2,11 +2,11 @@ package com.github.aureliano.achmed.client.resources;
 
 import java.util.logging.Logger;
 
-import com.github.aureliano.achmed.AppConfiguration;
+import com.github.aureliano.achmed.client.AppConfiguration;
 import com.github.aureliano.achmed.client.os.service.IService;
+import com.github.aureliano.achmed.client.resources.properties.IResourceProperties;
+import com.github.aureliano.achmed.client.resources.properties.ServiceProperties;
 import com.github.aureliano.achmed.common.logging.LoggingFactory;
-import com.github.aureliano.achmed.resources.properties.IResourceProperties;
-import com.github.aureliano.achmed.resources.properties.ServiceProperties;
 
 public class ServiceResource implements IResource {
 

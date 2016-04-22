@@ -9,8 +9,6 @@ import org.junit.Test;
 
 import com.github.aureliano.achmed.client.Model;
 import com.github.aureliano.achmed.client.annotation.Max;
-import com.github.aureliano.achmed.validation.ConstraintViolation;
-import com.github.aureliano.achmed.validation.MaxValidator;
 
 public class MaxValidatorTest {
 
