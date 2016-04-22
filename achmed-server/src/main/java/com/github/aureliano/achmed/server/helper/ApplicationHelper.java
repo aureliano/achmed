@@ -2,17 +2,27 @@ package com.github.aureliano.achmed.server.helper;
 
 import java.util.Properties;
 
-import com.github.aureliano.achmed.common.exception.AchmedException;
 import com.github.aureliano.achmed.common.helper.FileHelper;
 import com.github.aureliano.achmed.common.helper.PropertyHelper;
 import com.github.aureliano.achmed.common.helper.StringHelper;
+import com.github.aureliano.achmed.server.AchmedServerHandler;
 
 public final class ApplicationHelper {
 
 	private ApplicationHelper() {}
 	
-	public static void execute(String path) {
-		throw new AchmedException("Not implemented yet.");
+	public static void execute(String port) {
+		Integer portNumber = Integer.parseInt(port);
+		AchmedServerHandler.instance().startUp(portNumber);
+	}
+	
+	public static void addShutDownHook() {
+		Runtime.getRuntime().addShutdownHook(new Thread() {
+			@Override
+			public void run() {
+				AchmedServerHandler.instance().shutDown();
+			}
+		});
 	}
 	
 	public static String help() {
