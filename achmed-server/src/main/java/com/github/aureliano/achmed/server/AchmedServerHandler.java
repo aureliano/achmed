@@ -15,8 +15,11 @@ public class AchmedServerHandler {
 	private static AchmedServerHandler instance;
 	
 	private ServerConfiguration configuration;
+	private boolean serverRunning;
 	
-	private AchmedServerHandler() {}
+	private AchmedServerHandler() {
+		this.serverRunning = false;
+	}
 	
 	public static AchmedServerHandler instance() {
 		if (instance == null) {
@@ -30,7 +33,9 @@ public class AchmedServerHandler {
 		try (
 			ServerSocket serverSocket = new ServerSocket(configuration.getPortNumber());
 		) {
+			this.serverRunning = true;
 			logger.info("Achmed server started and listening on port " + configuration.getPortNumber());
+			
 			this.listen(serverSocket);
 		} catch (IOException ex) {
 			logger.log(Level.SEVERE, ex.getMessage(), ex);
@@ -39,7 +44,14 @@ public class AchmedServerHandler {
 	}
 	
 	public void shutDown() {
-		logger.info("Achmed server has just shut down.");
+		if (this.serverRunning) {
+			this.serverRunning = false;
+			logger.info("Achmed server has just shut down.");
+		}
+	}
+	
+	public String getFileRepository() {
+		return this.configuration.getFileRepository();
 	}
 	
 	private void listen(ServerSocket serverSocket) throws IOException {
