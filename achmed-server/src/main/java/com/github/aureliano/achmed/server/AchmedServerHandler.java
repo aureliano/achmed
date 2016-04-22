@@ -58,8 +58,8 @@ public class AchmedServerHandler {
 	
 	private void listen(ServerSocket serverSocket) throws IOException {
 		while (true) {
-			Runnable thread = ThreadHandler.handle(serverSocket.accept());
-			thread.run();
+			Runnable runnable = ThreadHandler.handle(serverSocket.accept());
+			new Thread(runnable).start();
 		}
 	}
 }
