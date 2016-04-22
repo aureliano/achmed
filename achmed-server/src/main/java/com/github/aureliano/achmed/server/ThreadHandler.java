@@ -23,11 +23,11 @@ public class ThreadHandler implements Runnable {
 	private static final Logger logger = LoggingFactory.createLogger(ThreadHandler.class);
 	
 	private Socket socket;
-	private Map<String, String> map;
+	private Map<String, String> parameters;
 	
 	private ThreadHandler(Socket socket) {
 		this.socket = socket;
-		this.map = new HashMap<>();
+		this.parameters = new HashMap<>();
 	}
 	
 	public static Runnable handle(Socket socket) {
@@ -40,7 +40,7 @@ public class ThreadHandler implements Runnable {
 		try {
 			this.consumeRequestParameters();
 			IService service = this.createService();
-			service.consume(this.map);
+			service.consume(this.parameters);
 			
 			this.closeSocket();
 		} catch (AchmedException ex) {
@@ -64,7 +64,7 @@ public class ThreadHandler implements Runnable {
 	}
 	
 	private String getRequestedService() {
-		String serviceName = this.map.get("service");
+		String serviceName = this.parameters.get("service");
 		if (StringHelper.isEmpty(serviceName)) {
 			throw new AchmedException("Empty service name description.");
 		}
@@ -81,7 +81,7 @@ public class ThreadHandler implements Runnable {
 			
 			while ((line = reader.readLine()) != null) {
 				String[] tokens = line.split(":");
-				this.map.put(tokens[0].trim(), tokens[1].trim());
+				this.parameters.put(tokens[0].trim(), tokens[1].trim());
 			}
 		} catch (IOException ex) {
 			throw new AchmedException(ex);
