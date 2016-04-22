@@ -13,6 +13,7 @@
 	<modules>
 		<module>achmed-common</module>
 		<module>achmed-client</module>
+		<module>achmed-server</module>
 	</modules>
 	
 	<build>
