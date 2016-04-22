@@ -8,6 +8,7 @@ import com.github.aureliano.achmed.server.helper.ApplicationHelper;
 public class Application {
 
 	public static void main(String[] args) {
+		ApplicationHelper.addShutDownHook();
 		new Application().startUp(args);
 	}
 
@@ -46,14 +47,17 @@ public class Application {
 		}
 	}
 
-	protected StatusCode prepareExecution(String path) {
-		if (StringHelper.isEmpty(path)) {
+	protected StatusCode prepareExecution(String port) {
+		if (StringHelper.isEmpty(port)) {
 			System.out.println(ApplicationHelper.error(new String[0]));
+			return StatusCode.CLI_PARAMETERS_ERROR;
+		} else if (!port.matches("\\d+")) {
+			System.out.println(ApplicationHelper.error(new String[] { "-p", port }));
 			return StatusCode.CLI_PARAMETERS_ERROR;
 		}
 		
 		try {
-			ApplicationHelper.execute(path);
+			ApplicationHelper.execute(port);
 			return StatusCode.SUCCESS;
 		} catch (AchmedException ex) {
 			System.err.println(ex.getMessage());
