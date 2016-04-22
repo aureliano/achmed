@@ -2,7 +2,6 @@ package com.github.aureliano.achmed.server;
 
 import java.io.IOException;
 import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -33,14 +32,7 @@ public class AchmedServerHandler {
 			ServerSocket serverSocket = new ServerSocket(portNumber);
 		) {
 			logger.info("Achmed server started and listening on port " + portNumber);
-			
-			while (true) {
-				Socket clientSocket = serverSocket.accept();
-				logger.info("Accepted connection from: " + clientSocket.getInetAddress().getHostAddress());
-				
-				clientSocket.close();
-				logger.info("Closed connection.");
-			}
+			this.listen(serverSocket);
 		} catch (IOException ex) {
 			logger.log(Level.SEVERE, ex.getMessage(), ex);
 			System.exit(StatusCode.SERVER_LISTEN_CONNECTION.getCode());
@@ -49,6 +41,13 @@ public class AchmedServerHandler {
 	
 	public void shutDown() {
 		logger.info("Achmed server has just shut down.");
+	}
+	
+	private void listen(ServerSocket serverSocket) throws IOException {
+		while (true) {
+			Runnable thread = ThreadHandler.handle(serverSocket.accept());
+			thread.run();
+		}
 	}
 	
 	private void configurePortNumber(Integer portNumber) {
