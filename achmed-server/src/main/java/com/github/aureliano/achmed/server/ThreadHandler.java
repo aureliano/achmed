@@ -43,6 +43,7 @@ public class ThreadHandler implements Runnable {
 		try {
 			this.conversation();
 			this.closeSocket();
+			logger.info("Request processed.");
 		} catch (AchmedException ex) {
 			logger.log(Level.SEVERE, ex.getMessage(), ex);
 			ex.printStackTrace();
@@ -77,15 +78,19 @@ public class ThreadHandler implements Runnable {
 		try (
 			BufferedReader reader = new BufferedReader(
 				new InputStreamReader(this.socket.getInputStream()));
+			OutputStream writer = this.socket.getOutputStream();
 		) {
 			IService service = this.createService(reader.readLine());
 			Map<String, String> parameters = new HashMap<>();
 			
 			String[] tokens = reader.readLine().split(":");
 			parameters.put(tokens[0].trim(), tokens[1].trim());
-			byte[] response = service.consume(parameters);
+			byte[] response = service.consume(writer, parameters);
 			
-			this.socket.getOutputStream().write(response);
+			if ((response != null) && (response.length > 0)) {
+				writer.write(response);
+				writer.flush();
+			}
 		} catch (IOException ex) {
 			throw new AchmedException(ex);
 		}

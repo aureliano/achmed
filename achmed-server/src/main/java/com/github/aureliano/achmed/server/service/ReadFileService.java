@@ -1,6 +1,11 @@
 package com.github.aureliano.achmed.server.service;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -17,7 +22,7 @@ public class ReadFileService implements IService {
 	public ReadFileService() {}
 	
 	@Override
-	public byte[] consume(Map<String, String> parameters) {
+	public byte[] consume(OutputStream outputStream, Map<String, String> parameters) {
 		String resourcePath = parameters.get("resource");
 		if (StringHelper.isEmpty(resourcePath)) {
 			throw new AchmedException("Empty resource path.");
@@ -27,6 +32,22 @@ public class ReadFileService implements IService {
 		if (!(requestedFile.exists() && requestedFile.isFile())) {
 			logger.warning("Requested resource path [ " + requestedFile + " ] does not exist.");
 			return new byte[0];
+		}
+		
+		int count;
+		byte[] buffer = new byte[1024];
+		
+		try (
+			InputStream stream = new FileInputStream(requestedFile)
+		) {
+			logger.info("Sending bytes of file " + requestedFile);
+			while ((count = stream.read(buffer)) > 0) {
+				outputStream.write(buffer, 0, count);
+			}
+			
+			outputStream.flush();
+		} catch (IOException ex) {
+			throw new AchmedException(ex);
 		}
 		
 		return new byte[0];
