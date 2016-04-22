@@ -1,14 +1,18 @@
-Usage: [java -jar] achmed-x.x.x.jar -p xxxx
-  -p [NUMBER]  The port number where application should listen for connections.
-  -h           Print this message.
-  -v           Print the version.
-  --help       Print this message.
-  --version    Print the version.
+Usage: [java -jar] achmed-server-x.x.x.jar
+  -h        Print this message.
+  -v        Print the version.
+  --help    Print this message.
+  --version Print the version.
+
+You have to create a file at $ACHMED_SERVER_HOME named achmed-server.properties in order to configure the server.
+File must looks like this:
+port=9876
+file.repository=/path/to/file/repository
 
 Required JVM 1.7 or higher.
 
 Example:
-  java -jar achmed-x.x.x.jar -p xxxx
+  java -jar achmed-server-x.x.x.jar
 
 Get involved
  - Source: https://github.com/aureliano/achmed
