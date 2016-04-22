@@ -1,7 +1,0 @@
----
-title: The main infrastructure abstraction.
-description: Synchronize the development environment configuration.
-
-includes:
-  - src/test/resources/yaml/sub1.yaml
-  - src/test/resources/yaml/sub2.yaml
