@@ -1,4 +1,4 @@
-Usage: [java -jar] achmed-x.x.x.jar burst [FILE]
+Usage: [java -jar] achmed-client-x.x.x.jar burst [FILE]
   -h        Print this message.
   -v        Print the version.
   --help    Print this message.
@@ -7,7 +7,7 @@ Usage: [java -jar] achmed-x.x.x.jar burst [FILE]
 Required JVM 1.7 or higher.
 
 Example:
-  java -jar achmed-x.x.x.jar burst /path/to/schema.yaml
+  java -jar achmed-client-x.x.x.jar burst /path/to/schema.yaml
 
 Get involved
  - Source: https://github.com/aureliano/achmed
