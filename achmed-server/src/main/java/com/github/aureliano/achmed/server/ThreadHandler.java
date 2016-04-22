@@ -1,8 +1,13 @@
 package com.github.aureliano.achmed.server;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,11 +28,9 @@ public class ThreadHandler implements Runnable {
 	private static final Logger logger = LoggingFactory.createLogger(ThreadHandler.class);
 	
 	private Socket socket;
-	private Map<String, String> parameters;
 	
 	private ThreadHandler(Socket socket) {
 		this.socket = socket;
-		this.parameters = new HashMap<>();
 	}
 	
 	public static Runnable handle(Socket socket) {
@@ -38,24 +41,22 @@ public class ThreadHandler implements Runnable {
 	@Override
 	public void run() {
 		try {
-			this.consumeRequestParameters();
-			IService service = this.createService();
-			service.consume(this.socket, this.parameters);
-			
+			this.conversation();
 			this.closeSocket();
 		} catch (AchmedException ex) {
 			logger.log(Level.SEVERE, ex.getMessage(), ex);
+			ex.printStackTrace();
 		}
 	}
 	
-	private IService createService() {
-		ServiceType type = this.getServiceType();
+	private IService createService(String data) {
+		ServiceType type = this.getServiceType(data);
 		logger.info("Accessing service: " + type);
 		return ServiceFactory.createService(type);
 	}
 	
-	private ServiceType getServiceType() {
-		String serviceName = this.getRequestedService();
+	private ServiceType getServiceType(String data) {
+		String serviceName = this.getRequestedService(data);
 		try {
 			return ServiceType.valueOf(serviceName);
 		} catch (Exception ex) {
@@ -63,26 +64,28 @@ public class ThreadHandler implements Runnable {
 		}
 	}
 	
-	private String getRequestedService() {
-		String serviceName = this.parameters.get("service");
-		if (StringHelper.isEmpty(serviceName)) {
-			throw new AchmedException("Empty service name description.");
+	private String getRequestedService(String data) {
+		if (!data.matches(SERVICE_NAME_PATTERN)) {
+			throw new AchmedException("Invalid service: " + data);
 		}
 		
+		String serviceName = data.split(":")[1].trim();
 		return serviceName.toUpperCase();
 	}
 	
-	private void consumeRequestParameters() {
+	private void conversation() {
 		try (
 			BufferedReader reader = new BufferedReader(
-					new InputStreamReader(this.socket.getInputStream()))
+				new InputStreamReader(this.socket.getInputStream()));
 		) {
-			String line = null;
+			IService service = this.createService(reader.readLine());
+			Map<String, String> parameters = new HashMap<>();
 			
-			while ((line = reader.readLine()) != null) {
-				String[] tokens = line.split(":");
-				this.parameters.put(tokens[0].trim(), tokens[1].trim());
-			}
+			String[] tokens = reader.readLine().split(":");
+			parameters.put(tokens[0].trim(), tokens[1].trim());
+			byte[] response = service.consume(parameters);
+			
+			this.socket.getOutputStream().write(response);
 		} catch (IOException ex) {
 			throw new AchmedException(ex);
 		}
