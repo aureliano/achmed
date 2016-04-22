@@ -33,6 +33,7 @@ public class ThreadHandler implements Runnable {
 	public void run() {
 		IService service = this.createService();
 		service.consume(this.socket);
+		this.closeSocket();
 	}
 	
 	private IService createService() {
@@ -63,6 +64,17 @@ public class ThreadHandler implements Runnable {
 			return serviceName.toUpperCase();
 		} catch (IOException ex) {
 			throw new AchmedException(ex);
+		}
+	}
+	
+	private void closeSocket() {
+		if (!this.socket.isClosed()) {
+			try {
+				this.socket.close();
+			} catch (IOException ex) {
+				throw new AchmedException(ex);
+			}
+			logger.info("Closed connection.");
 		}
 	}
 }
