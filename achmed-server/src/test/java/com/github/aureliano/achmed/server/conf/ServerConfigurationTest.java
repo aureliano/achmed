@@ -32,7 +32,7 @@ public class ServerConfigurationTest {
 		File repo = new File("");
 		Properties properties = new Properties();
 		properties.setProperty("port", "9876");
-		properties.setProperty("file.repository", repo.getAbsolutePath());
+		properties.setProperty("file.repository", repo.getAbsolutePath() + File.separator);
 		
 		ServerConfiguration conf = ServerConfiguration.build(properties);
 		assertEquals(new Integer(9876), conf.getPortNumber());

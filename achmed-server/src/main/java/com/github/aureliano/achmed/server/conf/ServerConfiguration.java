@@ -33,10 +33,11 @@ public class ServerConfiguration {
 	
 	public static ServerConfiguration build(Properties properties) {
 		validate(properties);
+		String fileRepository = properties.getProperty("file.repository").replaceFirst(File.separator + "$", "");
 		
 		return new ServerConfiguration()
 			.withPortNumber(Integer.parseInt(properties.getProperty("port")))
-			.withFileRepository(properties.getProperty("file.repository"));
+			.withFileRepository(fileRepository);
 	}
 	
 	private static void validate(Properties properties) {
