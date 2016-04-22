@@ -30,11 +30,13 @@ public class AchmedServerHandler {
 	}
 	
 	public void startUp(ServerConfiguration configuration) {
+		this.configuration = configuration;
+		
 		try (
-			ServerSocket serverSocket = new ServerSocket(configuration.getPortNumber());
+			ServerSocket serverSocket = new ServerSocket(this.configuration.getPortNumber());
 		) {
 			this.serverRunning = true;
-			logger.info("Achmed server started and listening on port " + configuration.getPortNumber());
+			logger.info("Achmed server started and listening on port " + this.configuration.getPortNumber());
 			
 			this.listen(serverSocket);
 		} catch (IOException ex) {
