@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -33,7 +32,7 @@ public class ReadFileService implements IService {
 			logger.warning("Requested resource path [ " + requestedFile + " ] does not exist.");
 			return new byte[0];
 		}
-		
+
 		int count;
 		byte[] buffer = new byte[1024];
 		

@@ -9,6 +9,8 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.nio.ByteBuffer;
+import java.nio.channels.SocketChannel;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -27,14 +29,14 @@ public class ThreadHandler implements Runnable {
 	private static final String SERVICE_NAME_PATTERN = SERVICE_PATTERN + "(read_file)$";
 	private static final Logger logger = LoggingFactory.createLogger(ThreadHandler.class);
 	
-	private Socket socket;
+	private SocketChannel socket;
 	
-	private ThreadHandler(Socket socket) {
+	private ThreadHandler(SocketChannel socket) {
 		this.socket = socket;
 	}
 	
-	public static Runnable handle(Socket socket) {
-		logger.info("Accepted connection from: " + socket.getInetAddress().getHostAddress());
+	public static Runnable handle(SocketChannel socket) {
+		logger.info("Accepted connection from: " + socket);
 		return new ThreadHandler(socket);
 	}
 	
@@ -42,7 +44,6 @@ public class ThreadHandler implements Runnable {
 	public void run() {
 		try {
 			this.conversation();
-			this.closeSocket();
 			logger.info("Request processed.");
 		} catch (AchmedException ex) {
 			logger.log(Level.SEVERE, ex.getMessage(), ex);
@@ -75,6 +76,29 @@ public class ThreadHandler implements Runnable {
 	}
 	
 	private void conversation() {
+		ByteBuffer byteBuffer = ByteBuffer.allocate(4096);
+		try {
+			while (true) {
+				this.socket.configureBlocking(true);
+				int nread = 0;
+				
+				while (nread != -1) {
+					try {
+						nread = this.socket.read(byteBuffer);
+					} catch (IOException ex) {
+						logger.warning(ex.getMessage());
+						nread = -1;
+					}
+					byteBuffer.rewind();
+				}
+			}
+		} catch (IOException ex) {
+			throw new AchmedException(ex);
+		}
+		
+		
+		
+		/*
 		try (
 			BufferedReader reader = new BufferedReader(
 				new InputStreamReader(this.socket.getInputStream()));
@@ -93,17 +117,48 @@ public class ThreadHandler implements Runnable {
 			}
 		} catch (IOException ex) {
 			throw new AchmedException(ex);
-		}
-	}
-	
-	private void closeSocket() {
-		if (!this.socket.isClosed()) {
-			try {
-				this.socket.close();
-			} catch (IOException ex) {
-				throw new AchmedException(ex);
-			}
-			logger.info("Closed connection.");
-		}
+		}*/
 	}
 }
+
+/*
+ 		Socket socket = new Socket("127.0.0.1", 9876);
+		PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+		out.println("service: read_file");
+		out.println("resource: eclipse.tar.gz");
+		
+		int count;
+		byte[] buffer = new byte[1024];
+		
+		long init = System.currentTimeMillis();
+		
+		String host = "127.0.0.1";
+		SocketAddress sad = new InetSocketAddress(host, 9876);
+		SocketChannel sc = SocketChannel.open();
+		sc.connect(sad);
+		sc.configureBlocking(true);
+
+		String fname = "/tmp/eclipse.tar.gz";
+		long fileSize = new File(fname).length();
+
+		FileChannel fc = new FileInputStream(fname).getChannel();
+		long start = System.currentTimeMillis();
+		long curnset = 0;
+		curnset = fc.transferTo(0, fileSize, sc);
+		System.out.println("total bytes transferred: " + curnset + " and time taken:" + (System.currentTimeMillis() - start));
+		
+		/*
+		FileOutputStream writer = new FileOutputStream(new File("/tmp/another-eclipse.tar.gz"));
+		InputStream stream = socket.getInputStream();
+		
+		while ((count = stream.read(buffer)) > 0) {
+			writer.write(buffer, 0, count);
+		}
+		
+		writer.flush();
+		
+		stream.close();
+		writer.close();
+		
+		System.out.println("Time millis: " + (System.currentTimeMillis() - init));
+*/
