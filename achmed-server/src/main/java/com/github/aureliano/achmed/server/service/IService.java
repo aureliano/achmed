@@ -5,5 +5,5 @@ import java.util.Map;
 
 public interface IService {
 
-	public abstract byte[] consume(OutputStream outputStream, Map<String, String> parameters);
+	public abstract String consume(OutputStream outputStream, Map<String, String> parameters);
 }

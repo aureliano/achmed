@@ -1,9 +1,7 @@
 package com.github.aureliano.achmed.server;
 
 import java.io.IOException;
-import java.net.InetSocketAddress;
 import java.net.ServerSocket;
-import java.nio.channels.ServerSocketChannel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -34,24 +32,6 @@ public class AchmedServerHandler {
 	public void startUp(ServerConfiguration configuration) {
 		this.configuration = configuration;
 		
-		InetSocketAddress inetSocketAddress = new InetSocketAddress(this.configuration.getPortNumber());
-		try (
-			ServerSocketChannel serverSocketChannel = ServerSocketChannel.open()
-		) {
-			ServerSocket serverSocket = serverSocketChannel.socket();
-			serverSocket.setReuseAddress(true);
-			serverSocket.bind(inetSocketAddress);
-			
-			this.serverRunning = true;
-			logger.info("Achmed server started and listening on port " + this.configuration.getPortNumber());
-			
-			this.listen(serverSocketChannel);
-		} catch (IOException ex) {
-			logger.log(Level.SEVERE, ex.getMessage(), ex);
-			System.exit(StatusCode.SERVER_LISTEN_CONNECTION.getCode());
-		}
-		
-		/*
 		try (
 			ServerSocket serverSocket = new ServerSocket(this.configuration.getPortNumber());
 		) {
@@ -63,7 +43,6 @@ public class AchmedServerHandler {
 			logger.log(Level.SEVERE, ex.getMessage(), ex);
 			System.exit(StatusCode.SERVER_LISTEN_CONNECTION.getCode());
 		}
-		*/
 	}
 	
 	public void shutDown() {
@@ -77,9 +56,9 @@ public class AchmedServerHandler {
 		return this.configuration.getFileRepository();
 	}
 	
-	private void listen(ServerSocketChannel serverSocketChannel) throws IOException {
+	private void listen(ServerSocket serverSocket) throws IOException {
 		while (true) {
-			Runnable runnable = ThreadHandler.handle(serverSocketChannel.accept());
+			Runnable runnable = ThreadHandler.handle(serverSocket.accept());
 			new Thread(runnable).start();
 		}
 	}
