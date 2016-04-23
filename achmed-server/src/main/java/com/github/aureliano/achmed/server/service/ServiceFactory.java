@@ -9,7 +9,7 @@ public final class ServiceFactory {
 	public static IService createService(ServiceType type) {
 		switch (type) {
 		case READ_FILE:
-			return new ReadFileService();
+			return new CheckFileStatusService();
 		default:
 			throw new AchmedException("Unsupported service type: " + type);
 		}

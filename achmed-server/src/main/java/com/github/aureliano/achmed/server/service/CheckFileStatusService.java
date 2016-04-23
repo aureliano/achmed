@@ -11,11 +11,11 @@ import com.github.aureliano.achmed.common.helper.StringHelper;
 import com.github.aureliano.achmed.common.logging.LoggingFactory;
 import com.github.aureliano.achmed.server.AchmedServerHandler;
 
-public class ReadFileService implements IService {
+public class CheckFileStatusService implements IService {
 
-	private static final Logger logger = LoggingFactory.createLogger(ReadFileService.class);
+	private static final Logger logger = LoggingFactory.createLogger(CheckFileStatusService.class);
 	
-	public ReadFileService() {}
+	public CheckFileStatusService() {}
 	
 	@Override
 	public String consume(OutputStream outputStream, Map<String, String> parameters) {

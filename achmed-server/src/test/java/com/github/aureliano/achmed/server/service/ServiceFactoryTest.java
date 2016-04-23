@@ -9,6 +9,6 @@ public class ServiceFactoryTest {
 	@Test
 	public void testCreateService() {
 		IService service = ServiceFactory.createService(ServiceType.READ_FILE);
-		assertTrue(service instanceof ReadFileService);
+		assertTrue(service instanceof CheckFileStatusService);
 	}
 }
