@@ -1,6 +1,8 @@
 package com.github.aureliano.achmed.server.conf;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.util.Properties;
@@ -11,6 +13,13 @@ import com.github.aureliano.achmed.common.exception.AchmedException;
 
 public class ServerConfigurationTest {
 
+	@Test
+	public void testInstance() {
+		ServerConfiguration c = ServerConfiguration.instance();
+		assertNotNull(c);
+		assertTrue(c == ServerConfiguration.instance());
+	}
+	
 	@Test(expected = AchmedException.class)
 	public void testBuildWithError1() {
 		Properties properties = new Properties();

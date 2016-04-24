@@ -8,11 +8,21 @@ import com.github.aureliano.achmed.common.helper.StringHelper;
 
 public class ServerConfiguration {
 
+	private static ServerConfiguration instance;
+	
 	private Integer portNumber;
 	private String fileRepository;
 	
-	public ServerConfiguration() {}
+	private ServerConfiguration() {}
 
+	public static ServerConfiguration instance() {
+		if (instance == null) {
+			instance = new ServerConfiguration();
+		}
+		
+		return instance;
+	}
+	
 	public Integer getPortNumber() {
 		return portNumber;
 	}
@@ -35,9 +45,10 @@ public class ServerConfiguration {
 		validate(properties);
 		String fileRepository = properties.getProperty("file.repository").replaceFirst(File.separator + "$", "");
 		
-		return new ServerConfiguration()
+		instance = new ServerConfiguration()
 			.withPortNumber(Integer.parseInt(properties.getProperty("port")))
 			.withFileRepository(fileRepository);
+		return instance;
 	}
 	
 	private static void validate(Properties properties) {
