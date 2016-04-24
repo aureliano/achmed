@@ -9,8 +9,7 @@ import com.github.aureliano.achmed.common.exception.AchmedException;
 import com.github.aureliano.achmed.common.helper.FileHelper;
 import com.github.aureliano.achmed.common.helper.StringHelper;
 import com.github.aureliano.achmed.common.logging.LoggingFactory;
-import com.github.aureliano.achmed.server.DefaultServer;
-import com.github.aureliano.achmed.server.control.RequestedFilesControl;
+import com.github.aureliano.achmed.server.conf.ServerConfiguration;
 
 public class CheckFileStatusService implements IService {
 
@@ -25,15 +24,12 @@ public class CheckFileStatusService implements IService {
 			throw new AchmedException("Empty resource path.");
 		}
 		
-		File requestedFile = FileHelper.buildFile(DefaultServer.instance().getFileRepository(), resourcePath);
+		File requestedFile = FileHelper.buildFile(ServerConfiguration.instance().getFileRepository(), resourcePath);
 		if (!(requestedFile.exists() && requestedFile.isFile())) {
 			logger.warning("Requested resource path [ " + requestedFile + " ] does not exist.");
-			return Boolean.FALSE.toString();
+			return null;
 		}
 		
-		String ip = socket.getInetAddress().getHostAddress();
-		RequestedFilesControl.instance().addRequest(ip, resourcePath);
-		
-		return Boolean.TRUE.toString();
+		return requestedFile.getAbsolutePath();
 	}
 }

@@ -6,7 +6,7 @@ import java.util.Properties;
 import com.github.aureliano.achmed.common.helper.FileHelper;
 import com.github.aureliano.achmed.common.helper.PropertyHelper;
 import com.github.aureliano.achmed.common.helper.StringHelper;
-import com.github.aureliano.achmed.server.DefaultServer;
+import com.github.aureliano.achmed.server.FileChannelServer;
 import com.github.aureliano.achmed.server.conf.ServerConfiguration;
 
 public final class ApplicationHelper {
@@ -15,7 +15,7 @@ public final class ApplicationHelper {
 	
 	public static void execute() {
 		ServerConfiguration configuration = buildServerConfiguration("");
-		DefaultServer.instance().startUp(configuration);
+		FileChannelServer.instance().startUp(configuration);
 	}
 	
 	protected static ServerConfiguration buildServerConfiguration(String dir) {
@@ -27,7 +27,7 @@ public final class ApplicationHelper {
 		Runtime.getRuntime().addShutdownHook(new Thread() {
 			@Override
 			public void run() {
-				DefaultServer.instance().shutDown();
+				FileChannelServer.instance().shutDown();
 			}
 		});
 	}
