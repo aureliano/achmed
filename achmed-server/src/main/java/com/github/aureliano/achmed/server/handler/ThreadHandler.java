@@ -79,7 +79,7 @@ public class ThreadHandler implements Runnable {
 			
 			String[] tokens = reader.readLine().split(":");
 			parameters.put(tokens[0].trim(), tokens[1].trim());
-			String response = service.consume(writer, parameters);
+			String response = service.consume(this.socket, parameters);
 			
 			if ((response != null) && (response.length() > 0)) {
 				writer.write(response.getBytes("UTF-8"));

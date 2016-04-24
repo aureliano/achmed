@@ -1,7 +1,7 @@
 package com.github.aureliano.achmed.server.service;
 
 import java.io.File;
-import java.io.OutputStream;
+import java.net.Socket;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -18,7 +18,7 @@ public class CheckFileStatusService implements IService {
 	public CheckFileStatusService() {}
 	
 	@Override
-	public String consume(OutputStream outputStream, Map<String, String> parameters) {
+	public String consume(Socket socket, Map<String, String> parameters) {
 		String resourcePath = parameters.get("resource");
 		if (StringHelper.isEmpty(resourcePath)) {
 			throw new AchmedException("Empty resource path.");
