@@ -29,7 +29,7 @@ public class ThreadHandler implements Runnable {
 	}
 	
 	public static Runnable handle(Socket socket) {
-		logger.info("Accepted connection from: " + socket);
+		logger.info("Accepted connection from: " + socket.getInetAddress().getHostName());
 		return new ThreadHandler(socket);
 	}
 	
