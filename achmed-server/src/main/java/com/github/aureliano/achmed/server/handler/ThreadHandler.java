@@ -1,4 +1,4 @@
-package com.github.aureliano.achmed.server;
+package com.github.aureliano.achmed.server.handler;
 
 import java.io.BufferedReader;
 import java.io.IOException;

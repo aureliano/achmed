@@ -8,22 +8,23 @@ import java.util.logging.Logger;
 import com.github.aureliano.achmed.common.StatusCode;
 import com.github.aureliano.achmed.common.logging.LoggingFactory;
 import com.github.aureliano.achmed.server.conf.ServerConfiguration;
+import com.github.aureliano.achmed.server.handler.ThreadHandler;
 
-public class AchmedServerHandler {
+public class DefaultServer {
 
-	private static final Logger logger = LoggingFactory.createLogger(AchmedServerHandler.class);
-	private static AchmedServerHandler instance;
+	private static final Logger logger = LoggingFactory.createLogger(DefaultServer.class);
+	private static DefaultServer instance;
 	
 	private ServerConfiguration configuration;
 	private boolean serverRunning;
 	
-	private AchmedServerHandler() {
+	private DefaultServer() {
 		this.serverRunning = false;
 	}
 	
-	public static AchmedServerHandler instance() {
+	public static DefaultServer instance() {
 		if (instance == null) {
-			instance = new AchmedServerHandler();
+			instance = new DefaultServer();
 		}
 		
 		return instance;
