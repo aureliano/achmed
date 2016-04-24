@@ -10,6 +10,7 @@ import com.github.aureliano.achmed.common.helper.FileHelper;
 import com.github.aureliano.achmed.common.helper.StringHelper;
 import com.github.aureliano.achmed.common.logging.LoggingFactory;
 import com.github.aureliano.achmed.server.DefaultServer;
+import com.github.aureliano.achmed.server.control.RequestedFilesControl;
 
 public class CheckFileStatusService implements IService {
 
@@ -29,6 +30,9 @@ public class CheckFileStatusService implements IService {
 			logger.warning("Requested resource path [ " + requestedFile + " ] does not exist.");
 			return Boolean.FALSE.toString();
 		}
+		
+		String ip = socket.getInetAddress().getHostAddress();
+		RequestedFilesControl.instance().addRequest(ip, resourcePath);
 		
 		return Boolean.TRUE.toString();
 	}
