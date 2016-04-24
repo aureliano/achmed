@@ -2,12 +2,16 @@ package com.github.aureliano.achmed.server;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.github.aureliano.achmed.common.StatusCode;
 import com.github.aureliano.achmed.common.logging.LoggingFactory;
 import com.github.aureliano.achmed.server.conf.ServerConfiguration;
+import com.github.aureliano.achmed.server.control.RequestedFilesControl;
 import com.github.aureliano.achmed.server.handler.ThreadHandler;
 
 public class DefaultServer {
@@ -36,6 +40,7 @@ public class DefaultServer {
 		try (
 			ServerSocket serverSocket = new ServerSocket(this.configuration.getPortNumber());
 		) {
+			this.configureThreadExecutors();
 			this.serverRunning = true;
 			logger.info("Achmed server started and listening on port " + this.configuration.getPortNumber());
 			
@@ -62,5 +67,22 @@ public class DefaultServer {
 			Runnable runnable = ThreadHandler.handle(serverSocket.accept());
 			new Thread(runnable).start();
 		}
+	}
+	
+	private void configureThreadExecutors() {
+		ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+		final int minutes = 5;
+		scheduler.scheduleAtFixedRate(
+				this.createRequestedFilesCleaner(minutes), minutes, minutes, TimeUnit.MINUTES);
+	}
+	
+	private Runnable createRequestedFilesCleaner(final int minutes) {
+		return new Runnable() {
+			
+			@Override
+			public void run() {
+				RequestedFilesControl.instance().removeOldRequests(minutes * 1000 * 60);
+			}
+		};
 	}
 }
